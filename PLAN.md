@@ -443,8 +443,8 @@ Tüm tablolar `dr_` önekiyle ortak PostgreSQL'dedir.
 | `dr_bilge_requests` | `id`, `title`, `url`, `app_name` NULL, `status`, `description`, `created_by`, `created_at`, `updated_at`, `deleted_at` |
 | `dr_freezes` | `id`, `start_date`, `end_date`, `title`, `created_by`, `created_at`, `deleted_at` |
 | `dr_health_events` | `id`, `app_name`, `env`, `state`, `status_code`, `response_ms`, `detail`, `observed_by`, `observed_at` |
-| `dr_app_overrides` | `app_name` PK, `url_dev`, `url_test`, `url_prod`, `k8s_workload`, `health_muted`, `updated_by`, `updated_at` |
-| `dr_audit_log` | `id`, `at`, `user_id`, `user_name`, `module`, `action`, `entity`, `entity_id`, `detail` JSONB |
+| `dr_app_overrides` | `app_name` PK, `url_dev`, `url_test`, `url_prod`, `k8s_workload`, `health_muted` (sessize alınan ortamlar, ör. `dev,prod`), `updated_by`, `updated_at` |
+| `dr_audit_log` | `id`, `at`, `user_id`, `user_name`, `module`, `action`, `entity`, `entity_id`, `app_name` (uygulamaya göre süzme için), `detail` JSONB |
 
 Zaman damgaları veritabanı saatiyle (`now()`) yazılır; istemci saatleri farklı olabilir.
 
@@ -518,7 +518,7 @@ Kod aşağıdaki varsayımlarla yazılır. Yanıtlar farklı çıkarsa etkilenen
 | # | Soru | Varsayım | Etkilediği yer |
 |---|---|---|---|
 | 1 | Ortak PostgreSQL'e geliştirici masaüstlerinden (5432) erişim var mı? | Var | Yoksa Faz 1 ve sohbet buluşması çalışmaz; altyapıdan erişim gerekir |
-| 2 | DevOps collection adresi, proje adı ve sunucu sürümü nedir? Repolar tek projede mi? | Tek proje, API 6.0 | `DEVOPS_*` ayarları |
+| 2 | DevOps collection adresi, proje adı ve sunucu sürümü nedir? Repolar tek projede mi? | **Yanıtlandı:** `https://devops.halkbank.com.tr/DefaultCollection`, proje `Halkbank` (repo adresi `…/Halkbank/_git/DDDB.Iz.Anm.<ad>`). Sunucu sürümü bilinmiyor: API 6.0 varsayıldı | `DEVOPS_*` ayarları |
 | 3 | `_Container-CD` YAML pipeline mı, klasik Release mi? | Bilinmiyor: ikisi de aranır | `DevopsAPI` |
 | 4 | Dev/Test/Prod ayrı cluster ve ayrı token mı? API portu nedir? | Üç ayrı cluster; port kullanıcı girer | `K8S_<ORTAM>_*` |
 | 5 | Pod/deployment adı repo adından nasıl türüyor? | Ingress host'u, sonra küçük harfli ad | K8s eşlemesi, `dr_app_overrides` |

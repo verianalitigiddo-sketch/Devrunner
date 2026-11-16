@@ -1,0 +1,93 @@
+{
+ "count": 9,
+ "value": [
+  {
+   "id": "00000001-aaaa-4bbb-8ccc-000000000001",
+   "name": "DDDB.Iz.Anm.Musteri360",
+   "defaultBranch": "refs/heads/master",
+   "webUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.Musteri360",
+   "isDisabled": false,
+   "project": {
+    "name": "Halkbank"
+   }
+  },
+  {
+   "id": "00000002-aaaa-4bbb-8ccc-000000000002",
+   "name": "DDDB.Iz.Anm.KrediSkor",
+   "defaultBranch": "refs/heads/master",
+   "webUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KrediSkor",
+   "isDisabled": false,
+   "project": {
+    "name": "Halkbank"
+   }
+  },
+  {
+   "id": "00000003-aaaa-4bbb-8ccc-000000000003",
+   "name": "DDDB.Iz.Anm.KampanyaTakip",
+   "defaultBranch": "refs/heads/master",
+   "webUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KampanyaTakip",
+   "isDisabled": false,
+   "project": {
+    "name": "Halkbank"
+   }
+  },
+  {
+   "id": "00000004-aaaa-4bbb-8ccc-000000000004",
+   "name": "DDDB.Iz.Anm.RaporPortal",
+   "defaultBranch": "refs/heads/master",
+   "webUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.RaporPortal",
+   "isDisabled": false,
+   "project": {
+    "name": "Halkbank"
+   }
+  },
+  {
+   "id": "00000005-aaaa-4bbb-8ccc-000000000005",
+   "name": "DDDB.Iz.Anm.VeriKalite",
+   "defaultBranch": "refs/heads/master",
+   "webUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.VeriKalite",
+   "isDisabled": false,
+   "project": {
+    "name": "Halkbank"
+   }
+  },
+  {
+   "id": "00000006-aaaa-4bbb-8ccc-000000000006",
+   "name": "DDDB.Iz.Anm.ChurnTahmin",
+   "defaultBranch": "refs/heads/master",
+   "webUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.ChurnTahmin",
+   "isDisabled": false,
+   "project": {
+    "name": "Halkbank"
+   }
+  },
+  {
+   "id": "00000007-aaaa-4bbb-8ccc-000000000007",
+   "name": "DDDB.Iz.Anm.SubeAnaliz",
+   "defaultBranch": "refs/heads/master",
+   "webUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.SubeAnaliz",
+   "isDisabled": false,
+   "project": {
+    "name": "Halkbank"
+   }
+  },
+  {
+   "id": "00000008-aaaa-4bbb-8ccc-000000000008",
+   "name": "DDDB.Iz.Anm.DokumanArama",
+   "defaultBranch": "refs/heads/master",
+   "webUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.DokumanArama",
+   "isDisabled": false,
+   "project": {
+    "name": "Halkbank"
+   }
+  },
+  {
+   "id": "ffffffff-0000-4000-8000-000000000000",
+   "name": "Baska.Ekip.Uygulama",
+   "defaultBranch": "refs/heads/main",
+   "project": {
+    "name": "Halkbank"
+   }
+  }
+ ]
+}

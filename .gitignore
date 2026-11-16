@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+
+# Ayarlar ve secret'lar (PAT, token, parola). Depoya GİRMEZ.
+.env
+.env.*
+!.env.example
+
+# Üretilen dosyalar: log, kubeconfig, sohbet anahtarı, katalog önbelleği
+.local/

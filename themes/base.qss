@@ -1,0 +1,134 @@
+/*
+ * Tüm temaların ortak stili. Dolar işaretli yer tutucular scripts/theme.py içindeki paletten gelir.
+ * Renk yazmayın; palet anahtarı kullanın ki beş temada da çalışsın.
+ */
+
+QWidget {
+    color: $text;
+    font-family: $font;
+    font-size: $font_size;
+}
+QMainWindow, QDialog, #PageRoot { background: $bg; }
+QToolTip { background: $surface; color: $text; border: 1px solid $border; padding: 4px; }
+
+/* ---------------- Başlık çubuğu ---------------- */
+#Header { background: $header_bg; border-bottom: $border_w solid $border; }
+#Header QLabel { color: $header_text; }
+#HeaderTitle { font-family: $heading_font; font-size: 15pt; font-weight: 700; letter-spacing: 1px; }
+#HeaderUser, #HeaderOnline { padding: 2px 8px; }
+#FreezeBadge { padding: 4px 12px; border-radius: $radius; font-weight: 800; letter-spacing: 1px; }
+#FreezeBadge[state="active"] { background: $danger; color: #ffffff; }
+#FreezeBadge[state="upcoming"] { background: transparent; color: $warning; border: $border_w solid $warning; }
+
+/* ---------------- Sol menü ---------------- */
+#NavList { background: $surface; border: none; border-right: $border_w solid $border; padding-top: 6px; outline: 0; }
+#NavList::item { padding: 9px 14px; border: none; color: $text; }
+#NavList::item:hover { background: $surface_alt; }
+#NavList::item:selected { background: $selection; color: $selection_text; border-left: 3px solid $accent; }
+
+/* ---------------- Yazı rolleri ---------------- */
+QLabel[role="h1"] { font-family: $heading_font; font-size: 16pt; font-weight: 700; }
+QLabel[role="h2"] { font-family: $heading_font; font-size: 12pt; font-weight: 700; }
+QLabel[role="muted"] { color: $muted; }
+QLabel[role="mono"], QPlainTextEdit[role="mono"], QTextBrowser[role="mono"] { font-family: $mono; }
+
+/* Durum hapı: QLabel[pill="success|warning|danger|info|missing"] */
+QLabel[pill] { border-radius: $radius; padding: 1px 8px; font-weight: 600; }
+QLabel[pill="success"] { color: $success; border: 1px solid $success; }
+QLabel[pill="warning"] { color: $warning; border: 1px solid $warning; }
+QLabel[pill="danger"]  { color: $danger;  border: 1px solid $danger; }
+QLabel[pill="info"]    { color: $info;    border: 1px solid $info; }
+QLabel[pill="missing"] { color: $missing; border: 1px solid $missing; }
+
+/* Bilgi şeridi: QFrame#Banner[level="info|warning|error|demo"] */
+#Banner { border-radius: $radius; padding: 6px 10px; }
+#Banner[level="info"]    { background: $surface_alt; border: 1px solid $info; }
+#Banner[level="warning"] { background: $surface_alt; border: 1px solid $warning; }
+#Banner[level="error"]   { background: $surface_alt; border: 1px solid $danger; }
+#Banner[level="demo"]    { background: $surface_alt; border: 1px dashed $accent; }
+#Banner QLabel { background: transparent; }
+
+/* ---------------- Paneller ---------------- */
+QGroupBox { background: $surface; $panel_border border-radius: $radius; margin-top: 14px; padding: 10px 8px 8px 8px; }
+QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 4px; color: $muted; font-weight: 700; }
+#Card { background: $surface; $panel_border border-radius: $radius; }
+QFrame#Separator { background: $border; max-height: 1px; min-height: 1px; }
+
+/* ---------------- Düğmeler ---------------- */
+QPushButton, QToolButton {
+    background: $surface_alt; color: $text; $button_border border-radius: $radius;
+    padding: 5px 12px;
+}
+QToolButton { padding: 4px 6px; }
+QPushButton:hover, QToolButton:hover { border-color: $accent; }
+QPushButton:pressed, QToolButton:pressed { background: $selection; }
+QPushButton:disabled, QToolButton:disabled { color: $muted; }
+QPushButton[kind="primary"] { background: $accent; color: $accent_text; border-color: $accent; font-weight: 700; }
+QPushButton[kind="primary"]:hover { background: $accent_hover; }
+QPushButton[kind="danger"] { color: $danger; border-color: $danger; }
+QPushButton[kind="primary"]:disabled, QPushButton[kind="danger"]:disabled { background: $surface_alt; color: $muted; border-color: $border; }
+QPushButton[kind="link"] { background: transparent; border: none; color: $info; padding: 2px 4px; text-align: left; }
+QPushButton[kind="link"]:hover { text-decoration: underline; }
+
+/* ---------------- Girişler ---------------- */
+QLineEdit, QPlainTextEdit, QTextEdit, QTextBrowser, QSpinBox, QDateEdit, QComboBox {
+    background: $input_bg; color: $text; $input_border border-radius: $radius;
+    padding: 4px 6px; selection-background-color: $selection; selection-color: $selection_text;
+}
+QLineEdit:focus, QPlainTextEdit:focus, QTextEdit:focus, QComboBox:focus, QDateEdit:focus, QSpinBox:focus { border-color: $accent; }
+QLineEdit:read-only { color: $muted; }
+QComboBox::drop-down { border: none; width: 18px; }
+QComboBox QAbstractItemView { background: $surface; color: $text; selection-background-color: $selection; selection-color: $selection_text; border: 1px solid $border; }
+QCheckBox { spacing: 6px; }
+QCheckBox::indicator { width: 14px; height: 14px; background: $input_bg; border: 1px solid $muted; border-radius: 3px; }
+QCheckBox::indicator:hover { border-color: $accent; }
+QCheckBox::indicator:checked { background: $accent; border-color: $accent; }
+QCheckBox::indicator:disabled { background: $surface_alt; }
+
+/* ---------------- Tablolar ve listeler ---------------- */
+QTableView, QTableWidget, QTreeView, QListView, QListWidget {
+    background: $surface; alternate-background-color: $surface_alt; color: $text;
+    $panel_border border-radius: $radius; gridline-color: $border;
+    selection-background-color: $selection; selection-color: $selection_text; outline: 0;
+}
+QListWidget::item { padding: 4px 6px; }
+QHeaderView::section {
+    background: $surface_alt; color: $muted; padding: 5px 6px; border: none;
+    border-bottom: 1px solid $border; border-right: 1px solid $border; font-weight: 700;
+}
+QTableCornerButton::section { background: $surface_alt; border: none; }
+
+/* ---------------- Sekmeler ---------------- */
+QTabWidget::pane { border: $border_w solid $border; border-radius: $radius; background: $surface; top: -1px; }
+QTabBar::tab { background: $surface_alt; color: $muted; padding: 6px 14px; border: $border_w solid $border; border-bottom: none; margin-right: 2px; }
+QTabBar::tab:selected { background: $surface; color: $text; border-bottom: 2px solid $accent; }
+
+/* ---------------- Kaydırma çubukları ---------------- */
+QScrollBar:vertical { background: $bg; width: 12px; margin: 0; }
+QScrollBar:horizontal { background: $bg; height: 12px; margin: 0; }
+QScrollBar::handle { background: $surface_alt; border: 1px solid $border; border-radius: $radius; min-height: 24px; min-width: 24px; }
+QScrollBar::handle:hover { background: $selection; }
+QScrollBar::add-line, QScrollBar::sub-line { width: 0; height: 0; }
+QScrollBar::add-page, QScrollBar::sub-page { background: transparent; }
+
+QSplitter::handle { background: $border; }
+QSplitter::handle:horizontal { width: 1px; }
+QSplitter::handle:vertical { height: 1px; }
+QScrollArea { border: none; background: transparent; }
+QScrollArea > QWidget > QWidget { background: transparent; }
+
+/* ---------------- Durum çubuğu ve menüler ---------------- */
+QStatusBar { background: $surface; color: $muted; border-top: $border_w solid $border; }
+QStatusBar QLabel { padding: 0 8px; color: $muted; }
+QMenu { background: $surface; color: $text; border: 1px solid $border; }
+QMenu::item { padding: 5px 20px; }
+QMenu::item:selected { background: $selection; color: $selection_text; }
+
+/* ---------------- Takvim ---------------- */
+QCalendarWidget QWidget#qt_calendar_navigationbar { background: $surface_alt; }
+QCalendarWidget QToolButton { background: transparent; border: none; color: $text; font-weight: 700; }
+QCalendarWidget QAbstractItemView { background: $surface; selection-background-color: $accent; selection-color: $accent_text; }
+
+/* ---------------- Terminal / log ---------------- */
+#Console { background: $input_bg; font-family: $mono; font-size: 10pt; }
+#ShellBadge { background: $surface_alt; border: 1px solid $accent; border-radius: $radius; padding: 3px 8px; font-weight: 700; }

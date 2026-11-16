@@ -1,0 +1,2652 @@
+{
+ "101": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5001,
+    "buildNumber": "20261116.2",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:08:40.0000000Z",
+    "startTime": "2026-11-16T06:09:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "17be31111a2a73ed562b0f79c37459eef50bea63",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T06:15:09.0000000Z"
+   },
+   {
+    "id": 5002,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T01:35:40.0000000Z",
+    "startTime": "2026-11-16T01:36:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "89463e85759cde66bacfb3d00b1f9163ce9ff57f",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T01:43:38.0000000Z"
+   },
+   {
+    "id": 5003,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T22:54:40.0000000Z",
+    "startTime": "2026-11-15T22:55:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "93cd59bf5c941cf0dc98d2c1e2acf72f9e574f7a",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-15T23:01:53.0000000Z"
+   },
+   {
+    "id": 5004,
+    "buildNumber": "20261115.3",
+    "status": "completed",
+    "queueTime": "2026-11-15T17:47:40.0000000Z",
+    "startTime": "2026-11-15T17:48:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "ddd1dfb23b982ef8daf61a26146d3f31fc377a4c",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T17:53:49.0000000Z"
+   },
+   {
+    "id": 5005,
+    "buildNumber": "20261115.3",
+    "status": "completed",
+    "queueTime": "2026-11-15T11:00:40.0000000Z",
+    "startTime": "2026-11-15T11:01:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "ab9099a435a240ae5af305535ec42e0829a3b2e9",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-15T11:13:53.0000000Z"
+   },
+   {
+    "id": 5006,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T03:49:40.0000000Z",
+    "startTime": "2026-11-15T03:50:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "451b4cf36123fdf77656af7229d4beef3eabedcb",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T03:54:34.0000000Z"
+   },
+   {
+    "id": 5007,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T00:36:40.0000000Z",
+    "startTime": "2026-11-15T00:37:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "50c187fcce177b4e0837b8a3d261a7ab3aa2e4f9",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T00:51:49.0000000Z"
+   },
+   {
+    "id": 5008,
+    "buildNumber": "20261114.6",
+    "status": "completed",
+    "queueTime": "2026-11-14T22:16:40.0000000Z",
+    "startTime": "2026-11-14T22:17:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "654821d07fcd9eb1a7cad415366eb16f508ebad7",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T22:28:56.0000000Z"
+   },
+   {
+    "id": 5009,
+    "buildNumber": "20261114.5",
+    "status": "completed",
+    "queueTime": "2026-11-14T15:21:40.0000000Z",
+    "startTime": "2026-11-14T15:22:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "6dadd6c795a76d79bf3c4c06434308bc89fa6a68",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T15:27:47.0000000Z"
+   },
+   {
+    "id": 5010,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T10:15:40.0000000Z",
+    "startTime": "2026-11-14T10:16:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "1c11f735dc713d960c0fd195c17af08a1745d6d8",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-14T10:20:32.0000000Z"
+   },
+   {
+    "id": 5011,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T03:51:40.0000000Z",
+    "startTime": "2026-11-14T03:52:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "405cacec877409a977d21e02ff01cf99988c24c9",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T03:55:24.0000000Z"
+   },
+   {
+    "id": 5012,
+    "buildNumber": "20261114.3",
+    "status": "completed",
+    "queueTime": "2026-11-14T01:46:40.0000000Z",
+    "startTime": "2026-11-14T01:47:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "4b22d3081c8eaee95715bd6fa4161293c4c2e2e3",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 101,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T01:57:48.0000000Z"
+   }
+  ]
+ },
+ "102": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5013,
+    "buildNumber": "20261116.6",
+    "status": "completed",
+    "queueTime": "2026-11-16T08:00:40.0000000Z",
+    "startTime": "2026-11-16T08:01:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "2dbc2134c30ff46e8026695ff8cda88b436d76e2",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T08:03:46.0000000Z"
+   },
+   {
+    "id": 5014,
+    "buildNumber": "20261116.5",
+    "status": "completed",
+    "queueTime": "2026-11-16T01:36:40.0000000Z",
+    "startTime": "2026-11-16T01:37:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "295b4715c333e8615fb8d16c2720797d32ebd689",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T01:49:32.0000000Z"
+   },
+   {
+    "id": 5015,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T22:51:40.0000000Z",
+    "startTime": "2026-11-15T22:52:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "fc3e058be0f3eab05cec4eb5edd968311ca35cfb",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-15T22:59:31.0000000Z"
+   },
+   {
+    "id": 5016,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T18:14:40.0000000Z",
+    "startTime": "2026-11-15T18:15:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "fa5d310011b7e948d0e6e6607c69dee1bb5e4bcf",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T18:26:05.0000000Z"
+   },
+   {
+    "id": 5017,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T11:47:40.0000000Z",
+    "startTime": "2026-11-15T11:48:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "6c52c49f9b49bd26df57c59a8715a10343dac043",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T11:57:35.0000000Z"
+   },
+   {
+    "id": 5018,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T06:44:40.0000000Z",
+    "startTime": "2026-11-15T06:45:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "847fd9b4e64d1bcb702753a15f987c71a65e688e",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-15T06:51:25.0000000Z"
+   },
+   {
+    "id": 5019,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T02:15:40.0000000Z",
+    "startTime": "2026-11-15T02:16:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "38602ab696a402f23ae8cc938dcdcd03969b6662",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T02:19:21.0000000Z"
+   },
+   {
+    "id": 5020,
+    "buildNumber": "20261114.1",
+    "status": "completed",
+    "queueTime": "2026-11-14T22:15:40.0000000Z",
+    "startTime": "2026-11-14T22:16:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "3ceddf2d839fbc501223b5135496f63cdc1110c1",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T22:19:57.0000000Z"
+   },
+   {
+    "id": 5021,
+    "buildNumber": "20261114.5",
+    "status": "completed",
+    "queueTime": "2026-11-14T15:55:40.0000000Z",
+    "startTime": "2026-11-14T15:56:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "7914c120c8dcd19f3e3511287900f7f993829b43",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-14T16:00:46.0000000Z"
+   },
+   {
+    "id": 5022,
+    "buildNumber": "20261114.3",
+    "status": "completed",
+    "queueTime": "2026-11-14T12:23:40.0000000Z",
+    "startTime": "2026-11-14T12:24:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "baa4b71add2467ac778eedb3693dffbc6c6fa611",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T12:36:27.0000000Z"
+   },
+   {
+    "id": 5023,
+    "buildNumber": "20261114.1",
+    "status": "completed",
+    "queueTime": "2026-11-14T07:04:40.0000000Z",
+    "startTime": "2026-11-14T07:05:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "72d8567d894a05e430b187ef310c0c003fa7f104",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T07:18:21.0000000Z"
+   },
+   {
+    "id": 5024,
+    "buildNumber": "20261114.1",
+    "status": "completed",
+    "queueTime": "2026-11-14T01:12:40.0000000Z",
+    "startTime": "2026-11-14T01:13:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "8ce21ea3db20a56edc815fe7ceda8bbb71710434",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 102,
+     "name": "DDDB.Iz.Anm.Musteri360_Container-CD"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-14T01:22:15.0000000Z"
+   }
+  ]
+ },
+ "103": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5025,
+    "buildNumber": "20261116.2",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:20:40.0000000Z",
+    "startTime": "2026-11-16T06:21:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "8acd4e10bc594585944528c00ef8c2d6f7fd5646",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-16T06:26:18.0000000Z"
+   },
+   {
+    "id": 5026,
+    "buildNumber": "20261116.5",
+    "status": "completed",
+    "queueTime": "2026-11-16T04:26:40.0000000Z",
+    "startTime": "2026-11-16T04:27:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "0e8fa8e0284d82e587f7e1fbda4bd9caeb5cf467",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T04:38:30.0000000Z"
+   },
+   {
+    "id": 5027,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T22:25:40.0000000Z",
+    "startTime": "2026-11-15T22:26:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "f10c718b1eb0e38a675dd5af3c365296dca02eec",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T22:37:04.0000000Z"
+   },
+   {
+    "id": 5028,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T13:51:40.0000000Z",
+    "startTime": "2026-11-15T13:52:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "85d5169590b2b633956b8c0ca8499b926b5252e3",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T13:54:39.0000000Z"
+   },
+   {
+    "id": 5029,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T11:47:40.0000000Z",
+    "startTime": "2026-11-15T11:48:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "a53f8a28abf3e3fc21813d25655238a643ff5011",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T12:01:20.0000000Z"
+   },
+   {
+    "id": 5030,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T05:30:40.0000000Z",
+    "startTime": "2026-11-15T05:31:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "902059e4ff9ab5c29f044aed7552332702627f73",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-15T05:45:59.0000000Z"
+   },
+   {
+    "id": 5031,
+    "buildNumber": "20261114.2",
+    "status": "completed",
+    "queueTime": "2026-11-14T23:16:40.0000000Z",
+    "startTime": "2026-11-14T23:17:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "e117dac3119c4ea3e18050815958a499eeea163e",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T23:27:16.0000000Z"
+   },
+   {
+    "id": 5032,
+    "buildNumber": "20261114.5",
+    "status": "completed",
+    "queueTime": "2026-11-14T20:19:40.0000000Z",
+    "startTime": "2026-11-14T20:20:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "fcbb4e59fbddcf7c9c96e9ec4d71c366b41b3143",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T20:29:53.0000000Z"
+   },
+   {
+    "id": 5033,
+    "buildNumber": "20261114.2",
+    "status": "completed",
+    "queueTime": "2026-11-14T13:10:40.0000000Z",
+    "startTime": "2026-11-14T13:11:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "be0f051b1b66b5a9e3c436571d8cbbac43b409ef",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T13:23:06.0000000Z"
+   },
+   {
+    "id": 5034,
+    "buildNumber": "20261114.6",
+    "status": "completed",
+    "queueTime": "2026-11-14T10:11:40.0000000Z",
+    "startTime": "2026-11-14T10:12:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "da587e8aa25d6b29afffcfd2341ef40b57c700aa",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T10:23:13.0000000Z"
+   },
+   {
+    "id": 5035,
+    "buildNumber": "20261114.6",
+    "status": "completed",
+    "queueTime": "2026-11-14T04:13:40.0000000Z",
+    "startTime": "2026-11-14T04:14:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "00e85ece0b49452d46d483f3d450281c6c6f7633",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-14T04:16:05.0000000Z"
+   },
+   {
+    "id": 5036,
+    "buildNumber": "20261114.5",
+    "status": "completed",
+    "queueTime": "2026-11-14T00:19:40.0000000Z",
+    "startTime": "2026-11-14T00:20:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "1ca3c4480279b6a68f9797b06d7ce3c9b4a69f3c",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 103,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T00:33:28.0000000Z"
+   }
+  ]
+ },
+ "104": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5037,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T07:55:40.0000000Z",
+    "startTime": "2026-11-16T07:56:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "20a045026e06809725e979778d7248e2951f58d0",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-16T07:58:53.0000000Z"
+   },
+   {
+    "id": 5038,
+    "buildNumber": "20261116.1",
+    "status": "completed",
+    "queueTime": "2026-11-16T01:32:40.0000000Z",
+    "startTime": "2026-11-16T01:33:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "3fe12e47ae9bec3635c7936c5b9962c6e61fecc0",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T01:47:55.0000000Z"
+   },
+   {
+    "id": 5039,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T18:33:40.0000000Z",
+    "startTime": "2026-11-15T18:34:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "dd56cc943c9ad14cee0caeb5ecfedb992790cebd",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T18:42:39.0000000Z"
+   },
+   {
+    "id": 5040,
+    "buildNumber": "20261115.3",
+    "status": "completed",
+    "queueTime": "2026-11-15T15:28:40.0000000Z",
+    "startTime": "2026-11-15T15:29:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "ab7f089acd5f4822696608aaee49f329c84a7b28",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T15:33:47.0000000Z"
+   },
+   {
+    "id": 5041,
+    "buildNumber": "20261115.4",
+    "status": "completed",
+    "queueTime": "2026-11-15T11:39:40.0000000Z",
+    "startTime": "2026-11-15T11:40:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "38f16a81787f2425dbccc47709e9db0adf465290",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T11:53:06.0000000Z"
+   },
+   {
+    "id": 5042,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T06:10:40.0000000Z",
+    "startTime": "2026-11-15T06:11:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "6601ddd03170f437a8f7ef5a060edf5b39118497",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-15T06:25:55.0000000Z"
+   },
+   {
+    "id": 5043,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T02:40:40.0000000Z",
+    "startTime": "2026-11-15T02:41:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "d7fa2d8dfb2ca025adf4e62d6651529e8268690b",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T02:47:22.0000000Z"
+   },
+   {
+    "id": 5044,
+    "buildNumber": "20261114.5",
+    "status": "completed",
+    "queueTime": "2026-11-14T22:22:40.0000000Z",
+    "startTime": "2026-11-14T22:23:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "1bc044fc09cb394243f59a85fbc9f87af668a617",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T22:29:11.0000000Z"
+   },
+   {
+    "id": 5045,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T14:43:40.0000000Z",
+    "startTime": "2026-11-14T14:44:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "629c2ae31d9af65982ec9f2dfbf6e16f9b3080d5",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-14T14:58:20.0000000Z"
+   },
+   {
+    "id": 5046,
+    "buildNumber": "20261114.1",
+    "status": "completed",
+    "queueTime": "2026-11-14T10:27:40.0000000Z",
+    "startTime": "2026-11-14T10:28:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "afd5dea589d7fd6cce777f00ecf27e7685197ff4",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T10:41:27.0000000Z"
+   },
+   {
+    "id": 5047,
+    "buildNumber": "20261114.3",
+    "status": "completed",
+    "queueTime": "2026-11-14T04:25:40.0000000Z",
+    "startTime": "2026-11-14T04:26:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "1fe771d6d9178793a9d3c2e6505cc6869f871ce7",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T04:38:58.0000000Z"
+   },
+   {
+    "id": 5048,
+    "buildNumber": "20261113.4",
+    "status": "completed",
+    "queueTime": "2026-11-13T23:47:40.0000000Z",
+    "startTime": "2026-11-13T23:48:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "311c6eb62095eef68dedf9fb4bb00f20b27c4026",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 104,
+     "name": "DDDB.Iz.Anm.KrediSkor_Container-CD"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-13T23:56:20.0000000Z"
+   }
+  ]
+ },
+ "105": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5049,
+    "buildNumber": "20261116.5",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:57:40.0000000Z",
+    "startTime": "2026-11-16T06:58:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "c04a96c4f3b63fe1d184332417e8392a55cee5db",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T07:10:40.0000000Z"
+   },
+   {
+    "id": 5050,
+    "buildNumber": "20261116.1",
+    "status": "completed",
+    "queueTime": "2026-11-16T02:38:40.0000000Z",
+    "startTime": "2026-11-16T02:39:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "9c7c737779a28903fbe33b243eae00320bd4a990",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T02:44:09.0000000Z"
+   },
+   {
+    "id": 5051,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T19:33:40.0000000Z",
+    "startTime": "2026-11-15T19:34:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "664fa6637e8f8095624c69b6b24445a7b7e58481",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-15T19:46:36.0000000Z"
+   },
+   {
+    "id": 5052,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T17:32:40.0000000Z",
+    "startTime": "2026-11-15T17:33:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "cdda24ba2d06e8cf3805f9076cd66193c7468f59",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T17:47:55.0000000Z"
+   },
+   {
+    "id": 5053,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T12:54:40.0000000Z",
+    "startTime": "2026-11-15T12:55:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "aae65fc176f2dbfecd29a36f222282e174daaebf",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-15T13:00:58.0000000Z"
+   },
+   {
+    "id": 5054,
+    "buildNumber": "20261115.4",
+    "status": "completed",
+    "queueTime": "2026-11-15T04:09:40.0000000Z",
+    "startTime": "2026-11-15T04:10:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "81392443e45b712eb8225688d0a444329cd6c852",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-15T04:24:57.0000000Z"
+   },
+   {
+    "id": 5055,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T23:32:40.0000000Z",
+    "startTime": "2026-11-14T23:33:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "d701410d3f4b1a70c074718e425a609f7337c599",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-14T23:37:47.0000000Z"
+   },
+   {
+    "id": 5056,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T18:49:40.0000000Z",
+    "startTime": "2026-11-14T18:50:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "458f1f193c07c57449257af1b6aae05b13d5f2f7",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-14T18:55:17.0000000Z"
+   },
+   {
+    "id": 5057,
+    "buildNumber": "20261114.2",
+    "status": "completed",
+    "queueTime": "2026-11-14T13:24:40.0000000Z",
+    "startTime": "2026-11-14T13:25:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "36c59dacb4d7e28e271e3ee2b1a6b1f1620e99d3",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T13:29:09.0000000Z"
+   },
+   {
+    "id": 5058,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T09:08:40.0000000Z",
+    "startTime": "2026-11-14T09:09:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "63b4c08b6b8e869fd5385b0e34f3193c0ff0a55c",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-14T09:19:29.0000000Z"
+   },
+   {
+    "id": 5059,
+    "buildNumber": "20261114.3",
+    "status": "completed",
+    "queueTime": "2026-11-14T03:05:40.0000000Z",
+    "startTime": "2026-11-14T03:06:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "e4429ebbda7b909563d62a39c0e3befd4c71e0fe",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T03:15:00.0000000Z"
+   },
+   {
+    "id": 5060,
+    "buildNumber": "20261113.2",
+    "status": "completed",
+    "queueTime": "2026-11-13T21:38:40.0000000Z",
+    "startTime": "2026-11-13T21:39:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "7c5308bf6f92f25e45df16b6382c043f7cfc9b79",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 105,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-13T21:50:57.0000000Z"
+   }
+  ]
+ },
+ "107": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5061,
+    "buildNumber": "20261116.6",
+    "status": "completed",
+    "queueTime": "2026-11-16T07:15:40.0000000Z",
+    "startTime": "2026-11-16T07:16:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "3f4df561f319c12507f194f9c1156d6d0a4e5b70",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-16T07:28:04.0000000Z"
+   },
+   {
+    "id": 5062,
+    "buildNumber": "20261116.4",
+    "status": "completed",
+    "queueTime": "2026-11-16T00:20:40.0000000Z",
+    "startTime": "2026-11-16T00:21:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "37cc863bf2a0345990604f621d48a071ab61a7b1",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T00:26:08.0000000Z"
+   },
+   {
+    "id": 5063,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T21:19:40.0000000Z",
+    "startTime": "2026-11-15T21:20:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "29ec8e49d1bdb8c0c71d5e601d5206abb7e6427c",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T21:31:38.0000000Z"
+   },
+   {
+    "id": 5064,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T14:28:40.0000000Z",
+    "startTime": "2026-11-15T14:29:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "f1043785658b252360141de9f54ad0a2e87466d7",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T14:35:36.0000000Z"
+   },
+   {
+    "id": 5065,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T08:45:40.0000000Z",
+    "startTime": "2026-11-15T08:46:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "af2b99b4d9acd1584d3485c5c5c14eb4b27b3d90",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T08:58:15.0000000Z"
+   },
+   {
+    "id": 5066,
+    "buildNumber": "20261115.5",
+    "status": "completed",
+    "queueTime": "2026-11-15T03:39:40.0000000Z",
+    "startTime": "2026-11-15T03:40:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "8186a57611a726095eddbbbfa95976636daa2e68",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T03:42:22.0000000Z"
+   },
+   {
+    "id": 5067,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T23:37:40.0000000Z",
+    "startTime": "2026-11-14T23:38:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "d4262982e43e4288a2b5b4985cb85aedf5f62c97",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T23:47:06.0000000Z"
+   },
+   {
+    "id": 5068,
+    "buildNumber": "20261114.6",
+    "status": "completed",
+    "queueTime": "2026-11-14T19:18:40.0000000Z",
+    "startTime": "2026-11-14T19:19:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "89c5b31aeb6c1016cee624d09dac6e8345241ea6",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T19:32:33.0000000Z"
+   },
+   {
+    "id": 5069,
+    "buildNumber": "20261114.3",
+    "status": "completed",
+    "queueTime": "2026-11-14T13:37:40.0000000Z",
+    "startTime": "2026-11-14T13:38:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "ef43613cd4aac9a33ed8c56cda09dfa052828d80",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-14T13:51:37.0000000Z"
+   },
+   {
+    "id": 5070,
+    "buildNumber": "20261114.5",
+    "status": "completed",
+    "queueTime": "2026-11-14T09:14:40.0000000Z",
+    "startTime": "2026-11-14T09:15:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "0758e201561e16d16105716bab0e664e9c3eb2d5",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T09:29:29.0000000Z"
+   },
+   {
+    "id": 5071,
+    "buildNumber": "20261114.3",
+    "status": "completed",
+    "queueTime": "2026-11-14T05:58:40.0000000Z",
+    "startTime": "2026-11-14T05:59:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "b380c73a989d9d4ae15ca6664797b2c957207246",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T06:04:22.0000000Z"
+   },
+   {
+    "id": 5072,
+    "buildNumber": "20261114.2",
+    "status": "completed",
+    "queueTime": "2026-11-14T01:56:40.0000000Z",
+    "startTime": "2026-11-14T01:57:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "c21714298e2007247d137018680bac63b856d035",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 107,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-14T02:02:05.0000000Z"
+   }
+  ]
+ },
+ "108": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5073,
+    "buildNumber": "20261116.4",
+    "status": "completed",
+    "queueTime": "2026-11-16T05:48:40.0000000Z",
+    "startTime": "2026-11-16T05:49:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "38ba8abc4b5305e517d2582e046a0df5cafda613",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T06:02:31.0000000Z"
+   },
+   {
+    "id": 5074,
+    "buildNumber": "20261116.4",
+    "status": "completed",
+    "queueTime": "2026-11-16T01:47:40.0000000Z",
+    "startTime": "2026-11-16T01:48:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "ff233d5f6cedd15d58007c0287ea7ff58db06746",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T01:59:23.0000000Z"
+   },
+   {
+    "id": 5075,
+    "buildNumber": "20261115.3",
+    "status": "completed",
+    "queueTime": "2026-11-15T20:45:40.0000000Z",
+    "startTime": "2026-11-15T20:46:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "314d3441b8a6171f1ee34dc43b048a8b405bfdc9",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T20:55:17.0000000Z"
+   },
+   {
+    "id": 5076,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T13:41:40.0000000Z",
+    "startTime": "2026-11-15T13:42:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "b97e670346c8adfe7bf47042bd1531c83764fbda",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T13:55:11.0000000Z"
+   },
+   {
+    "id": 5077,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T09:11:40.0000000Z",
+    "startTime": "2026-11-15T09:12:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "4d6168bd2defe1935c62b3a23a3c563e4bd6cee6",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-15T09:15:53.0000000Z"
+   },
+   {
+    "id": 5078,
+    "buildNumber": "20261115.5",
+    "status": "completed",
+    "queueTime": "2026-11-15T07:12:40.0000000Z",
+    "startTime": "2026-11-15T07:13:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "a34b6cf62053da42f1afdb65b289f2244ac9778d",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-15T07:15:03.0000000Z"
+   },
+   {
+    "id": 5079,
+    "buildNumber": "20261115.4",
+    "status": "completed",
+    "queueTime": "2026-11-15T02:53:40.0000000Z",
+    "startTime": "2026-11-15T02:54:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "0d270659f72ada9b2f32751e5738811d70c2903f",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T03:00:30.0000000Z"
+   },
+   {
+    "id": 5080,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T21:37:40.0000000Z",
+    "startTime": "2026-11-14T21:38:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "0db95301afbb411aa1235a8c93b7a88612f70c97",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-14T21:41:25.0000000Z"
+   },
+   {
+    "id": 5081,
+    "buildNumber": "20261114.1",
+    "status": "completed",
+    "queueTime": "2026-11-14T13:10:40.0000000Z",
+    "startTime": "2026-11-14T13:11:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "989bc4da9b37a22b6a8a616fc3b290d08edddfcd",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T13:14:15.0000000Z"
+   },
+   {
+    "id": 5082,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T08:05:40.0000000Z",
+    "startTime": "2026-11-14T08:06:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "6dc7cac7fd72b05096a9954fdc33e1f94c1f55ab",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T08:15:58.0000000Z"
+   },
+   {
+    "id": 5083,
+    "buildNumber": "20261114.2",
+    "status": "completed",
+    "queueTime": "2026-11-14T02:42:40.0000000Z",
+    "startTime": "2026-11-14T02:43:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "14c8b3b4a911d19243bfd9313605bf54a021c0ca",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T02:46:48.0000000Z"
+   },
+   {
+    "id": 5084,
+    "buildNumber": "20261114.1",
+    "status": "completed",
+    "queueTime": "2026-11-14T00:54:40.0000000Z",
+    "startTime": "2026-11-14T00:55:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "784c2f29980402a2b07aa066735435ea68949b8d",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 108,
+     "name": "DDDB.Iz.Anm.RaporPortal_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T00:58:10.0000000Z"
+   }
+  ]
+ },
+ "109": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5085,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:22:40.0000000Z",
+    "startTime": "2026-11-16T06:23:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "801ef1da45b1ed25f1533ae8670acc5cb321bf21",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T06:32:44.0000000Z"
+   },
+   {
+    "id": 5086,
+    "buildNumber": "20261116.4",
+    "status": "completed",
+    "queueTime": "2026-11-16T01:24:40.0000000Z",
+    "startTime": "2026-11-16T01:25:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "069f14f140181c6e9a8cfa3c5283aac7bc0a6a5d",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-16T01:36:02.0000000Z"
+   },
+   {
+    "id": 5087,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T18:52:40.0000000Z",
+    "startTime": "2026-11-15T18:53:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "c35b1c8c0a4c9f7f9384ec2b44feacaed248a9a7",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T18:55:48.0000000Z"
+   },
+   {
+    "id": 5088,
+    "buildNumber": "20261115.3",
+    "status": "completed",
+    "queueTime": "2026-11-15T13:48:40.0000000Z",
+    "startTime": "2026-11-15T13:49:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "a28140446f96288295d82980ff37d19c2e76128b",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-15T13:58:58.0000000Z"
+   },
+   {
+    "id": 5089,
+    "buildNumber": "20261115.3",
+    "status": "completed",
+    "queueTime": "2026-11-15T10:07:40.0000000Z",
+    "startTime": "2026-11-15T10:08:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "546e035a292bd156db9465701ac70ec0ab8ddeb4",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T10:16:21.0000000Z"
+   },
+   {
+    "id": 5090,
+    "buildNumber": "20261115.5",
+    "status": "completed",
+    "queueTime": "2026-11-15T05:47:40.0000000Z",
+    "startTime": "2026-11-15T05:48:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "409d360250843242168b1625746f78910964fbbf",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-15T05:56:52.0000000Z"
+   },
+   {
+    "id": 5091,
+    "buildNumber": "20261114.1",
+    "status": "completed",
+    "queueTime": "2026-11-14T23:34:40.0000000Z",
+    "startTime": "2026-11-14T23:35:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "69ca97d2764414fd8ae769edde8ede0ba85c6e4a",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T23:45:52.0000000Z"
+   },
+   {
+    "id": 5092,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T18:06:40.0000000Z",
+    "startTime": "2026-11-14T18:07:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "341c64940d366dfcc28ebd7071299889a01ac992",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T18:18:48.0000000Z"
+   },
+   {
+    "id": 5093,
+    "buildNumber": "20261114.6",
+    "status": "completed",
+    "queueTime": "2026-11-14T15:30:40.0000000Z",
+    "startTime": "2026-11-14T15:31:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "a14923c2f920264c0763fcd01f15c7b67c16128d",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-14T15:37:28.0000000Z"
+   },
+   {
+    "id": 5094,
+    "buildNumber": "20261114.5",
+    "status": "completed",
+    "queueTime": "2026-11-14T11:10:40.0000000Z",
+    "startTime": "2026-11-14T11:11:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "d7665cdafe0490593985fb6217dc8eff687213f9",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T11:21:00.0000000Z"
+   },
+   {
+    "id": 5095,
+    "buildNumber": "20261114.6",
+    "status": "completed",
+    "queueTime": "2026-11-14T06:48:40.0000000Z",
+    "startTime": "2026-11-14T06:49:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "6a5d932b45ff2c83b495db4e82456fb44ab7706e",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-14T06:53:31.0000000Z"
+   },
+   {
+    "id": 5096,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T01:00:40.0000000Z",
+    "startTime": "2026-11-14T01:01:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "bf0d073d821c13369970cf60ebff8d1530cbd755",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 109,
+     "name": "DDDB.Iz.Anm.VeriKalite_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-14T01:11:09.0000000Z"
+   }
+  ]
+ },
+ "110": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5097,
+    "buildNumber": "20261116.2",
+    "status": "inProgress",
+    "queueTime": "2026-11-16T05:05:40.0000000Z",
+    "startTime": "2026-11-16T05:06:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "517400f80b2c782a69288e92c68a152fdb23aa8c",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    }
+   },
+   {
+    "id": 5098,
+    "buildNumber": "20261116.6",
+    "status": "completed",
+    "queueTime": "2026-11-16T00:47:40.0000000Z",
+    "startTime": "2026-11-16T00:48:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "097a1e10f6febc0e7ecddbaf26f05fcffb16e5db",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-16T01:02:52.0000000Z"
+   },
+   {
+    "id": 5099,
+    "buildNumber": "20261115.4",
+    "status": "completed",
+    "queueTime": "2026-11-15T19:08:40.0000000Z",
+    "startTime": "2026-11-15T19:09:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "03edd1f874f93d17e912b4bf86a4bae41986b4b2",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-15T19:12:55.0000000Z"
+   },
+   {
+    "id": 5100,
+    "buildNumber": "20261115.3",
+    "status": "completed",
+    "queueTime": "2026-11-15T17:25:40.0000000Z",
+    "startTime": "2026-11-15T17:26:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "a65bb1f265c17795b15516bc9f8ded9756abf2f1",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-15T17:35:50.0000000Z"
+   },
+   {
+    "id": 5101,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T09:05:40.0000000Z",
+    "startTime": "2026-11-15T09:06:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "8a80068ddf547e507cea2045c268283ee32f2e63",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T09:13:40.0000000Z"
+   },
+   {
+    "id": 5102,
+    "buildNumber": "20261115.3",
+    "status": "completed",
+    "queueTime": "2026-11-15T06:49:40.0000000Z",
+    "startTime": "2026-11-15T06:50:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "6f18c1081723199dbf2c14a03a3c8a71ff574e2b",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T07:02:58.0000000Z"
+   },
+   {
+    "id": 5103,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T00:19:40.0000000Z",
+    "startTime": "2026-11-15T00:20:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "4b1a269b0e5dd462cbd00ef2530a37df0bc61066",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T00:33:19.0000000Z"
+   },
+   {
+    "id": 5104,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T19:20:40.0000000Z",
+    "startTime": "2026-11-14T19:21:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "2b840c672e183554cae28e66ae8a781390e0a95b",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T19:26:33.0000000Z"
+   },
+   {
+    "id": 5105,
+    "buildNumber": "20261114.6",
+    "status": "completed",
+    "queueTime": "2026-11-14T12:34:40.0000000Z",
+    "startTime": "2026-11-14T12:35:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "24a35cf29549c931e9af299d7f671eec3da70577",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T12:43:39.0000000Z"
+   },
+   {
+    "id": 5106,
+    "buildNumber": "20261114.1",
+    "status": "completed",
+    "queueTime": "2026-11-14T10:00:40.0000000Z",
+    "startTime": "2026-11-14T10:01:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "49a23a89e6b5a92c771ad655cdfc6ee0e61ede90",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-14T10:07:42.0000000Z"
+   },
+   {
+    "id": 5107,
+    "buildNumber": "20261114.3",
+    "status": "completed",
+    "queueTime": "2026-11-14T07:01:40.0000000Z",
+    "startTime": "2026-11-14T07:02:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "40066ff2b0b862ef6c9f82b9f6478986a3917c99",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T07:09:37.0000000Z"
+   },
+   {
+    "id": 5108,
+    "buildNumber": "20261114.2",
+    "status": "completed",
+    "queueTime": "2026-11-14T01:05:40.0000000Z",
+    "startTime": "2026-11-14T01:06:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "4bbe4aff9326dffd5be4bf519269869861a11729",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 110,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T01:15:06.0000000Z"
+   }
+  ]
+ },
+ "111": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5109,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T08:36:40.0000000Z",
+    "startTime": "2026-11-16T08:37:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "c73f6e1baf908e3cdd750e9890e0b95f0212b554",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T08:49:25.0000000Z"
+   },
+   {
+    "id": 5110,
+    "buildNumber": "20261116.5",
+    "status": "completed",
+    "queueTime": "2026-11-16T01:40:40.0000000Z",
+    "startTime": "2026-11-16T01:41:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "30ac7d7ba2f963a33810ae665a31b4cccd4b69a9",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-16T01:55:14.0000000Z"
+   },
+   {
+    "id": 5111,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T21:49:40.0000000Z",
+    "startTime": "2026-11-15T21:50:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "70d9c9f8c9e260744f1639a00a17991ea5769411",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T21:53:57.0000000Z"
+   },
+   {
+    "id": 5112,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T17:24:40.0000000Z",
+    "startTime": "2026-11-15T17:25:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "c958e75e21d53971336749b52cf6bf756a5e6920",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T17:31:20.0000000Z"
+   },
+   {
+    "id": 5113,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T08:57:40.0000000Z",
+    "startTime": "2026-11-15T08:58:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "7b5a611af1b64afed31edf1ae9ff1cae41c8ca8c",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T09:04:53.0000000Z"
+   },
+   {
+    "id": 5114,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T08:00:40.0000000Z",
+    "startTime": "2026-11-15T08:01:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "fadd7ea3aca5e2fdb966442aad238d36dc322c97",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T08:04:09.0000000Z"
+   },
+   {
+    "id": 5115,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T01:24:40.0000000Z",
+    "startTime": "2026-11-15T01:25:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "5e5ba13d746cdb771fa382e8895ccd9943b38eb4",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-15T01:39:25.0000000Z"
+   },
+   {
+    "id": 5116,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T20:23:40.0000000Z",
+    "startTime": "2026-11-14T20:24:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "8fb864e4f1738856e25d36eb9e9a9f83066803ee",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-14T20:36:14.0000000Z"
+   },
+   {
+    "id": 5117,
+    "buildNumber": "20261114.6",
+    "status": "completed",
+    "queueTime": "2026-11-14T16:49:40.0000000Z",
+    "startTime": "2026-11-14T16:50:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "23c86d301dde7969688613dba6348e784d5c55c7",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T16:59:58.0000000Z"
+   },
+   {
+    "id": 5118,
+    "buildNumber": "20261114.2",
+    "status": "completed",
+    "queueTime": "2026-11-14T09:58:40.0000000Z",
+    "startTime": "2026-11-14T09:59:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "7421ff46637e4b0122bae10e899ca782e3236d1a",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T10:02:06.0000000Z"
+   },
+   {
+    "id": 5119,
+    "buildNumber": "20261114.2",
+    "status": "completed",
+    "queueTime": "2026-11-14T03:52:40.0000000Z",
+    "startTime": "2026-11-14T03:53:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "d56ce8ea19597b5aa7a8f6366a35df59e2aa7a5d",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-14T04:06:46.0000000Z"
+   },
+   {
+    "id": 5120,
+    "buildNumber": "20261114.2",
+    "status": "completed",
+    "queueTime": "2026-11-14T00:27:40.0000000Z",
+    "startTime": "2026-11-14T00:28:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "dafec8a93c71e0bef357956071d7966571818dcf",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 111,
+     "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-14T00:41:23.0000000Z"
+   }
+  ]
+ },
+ "112": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5121,
+    "buildNumber": "20261116.4",
+    "status": "completed",
+    "queueTime": "2026-11-16T08:42:40.0000000Z",
+    "startTime": "2026-11-16T08:43:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "1beaf6ac97fa7f04836390075cae9610c72c1fe3",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-16T08:46:30.0000000Z"
+   },
+   {
+    "id": 5122,
+    "buildNumber": "20261116.6",
+    "status": "completed",
+    "queueTime": "2026-11-16T02:50:40.0000000Z",
+    "startTime": "2026-11-16T02:51:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "f6ca6b8ba4b1f991754246464d37a539857dd3b3",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-16T02:53:46.0000000Z"
+   },
+   {
+    "id": 5123,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T19:35:40.0000000Z",
+    "startTime": "2026-11-15T19:36:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "718d4d05e8e22743b65feea97d8242641ba362e7",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T19:44:27.0000000Z"
+   },
+   {
+    "id": 5124,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T15:51:40.0000000Z",
+    "startTime": "2026-11-15T15:52:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "8c61165495da75c1a21150f99fd34579466772ce",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T15:56:04.0000000Z"
+   },
+   {
+    "id": 5125,
+    "buildNumber": "20261115.5",
+    "status": "completed",
+    "queueTime": "2026-11-15T08:56:40.0000000Z",
+    "startTime": "2026-11-15T08:57:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "b3a7d0e0cb08587d1963c26d6e218b099afd4015",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-15T09:03:29.0000000Z"
+   },
+   {
+    "id": 5126,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T07:02:40.0000000Z",
+    "startTime": "2026-11-15T07:03:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "66132e6974188109d3d1bf0f56c438e469efafb1",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-15T07:12:56.0000000Z"
+   },
+   {
+    "id": 5127,
+    "buildNumber": "20261115.3",
+    "status": "completed",
+    "queueTime": "2026-11-15T01:02:40.0000000Z",
+    "startTime": "2026-11-15T01:03:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "ec48bf55afd380c42713582cf41ea3ac5fd23109",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T01:10:42.0000000Z"
+   },
+   {
+    "id": 5128,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T21:36:40.0000000Z",
+    "startTime": "2026-11-14T21:37:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "cfd01cbd5f65c8cebd21bc11be9d61ee18b87245",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T21:40:05.0000000Z"
+   },
+   {
+    "id": 5129,
+    "buildNumber": "20261114.3",
+    "status": "completed",
+    "queueTime": "2026-11-14T16:52:40.0000000Z",
+    "startTime": "2026-11-14T16:53:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "dfa4bb9f5a856750692ac1391f4a8ca1ab85fd59",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-14T17:03:35.0000000Z"
+   },
+   {
+    "id": 5130,
+    "buildNumber": "20261114.1",
+    "status": "completed",
+    "queueTime": "2026-11-14T09:51:40.0000000Z",
+    "startTime": "2026-11-14T09:52:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "a81fdec3279c658a36760ce581e5c9f693f277cc",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T09:58:22.0000000Z"
+   },
+   {
+    "id": 5131,
+    "buildNumber": "20261114.1",
+    "status": "completed",
+    "queueTime": "2026-11-14T07:07:40.0000000Z",
+    "startTime": "2026-11-14T07:08:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "cea60f4c39e58ff092f837d447503f1dc33a1f6c",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T07:18:23.0000000Z"
+   },
+   {
+    "id": 5132,
+    "buildNumber": "20261113.5",
+    "status": "completed",
+    "queueTime": "2026-11-13T21:50:40.0000000Z",
+    "startTime": "2026-11-13T21:51:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "d4578ad9a867a096edd877c89be7173706b89231",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 112,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CI"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-13T22:03:41.0000000Z"
+   }
+  ]
+ },
+ "113": {
+  "count": 12,
+  "value": [
+   {
+    "id": 5133,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T09:18:40.0000000Z",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "2e7098380190262059dcabd056febfb9ebe9e207",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T09:25:44.0000000Z"
+   },
+   {
+    "id": 5134,
+    "buildNumber": "20261116.1",
+    "status": "completed",
+    "queueTime": "2026-11-16T04:20:40.0000000Z",
+    "startTime": "2026-11-16T04:21:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "604e46cb3712f2d187cdb6a1bf012e32177d6e7e",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-16T04:34:40.0000000Z"
+   },
+   {
+    "id": 5135,
+    "buildNumber": "20261115.6",
+    "status": "completed",
+    "queueTime": "2026-11-15T21:19:40.0000000Z",
+    "startTime": "2026-11-15T21:20:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "98a21f1c914dcfaef10013a7c6deb2f0530ac1c7",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-15T21:27:19.0000000Z"
+   },
+   {
+    "id": 5136,
+    "buildNumber": "20261115.1",
+    "status": "completed",
+    "queueTime": "2026-11-15T17:19:40.0000000Z",
+    "startTime": "2026-11-15T17:20:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "a974d079716fda0a45a8882914e286e5ac8936bc",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T17:34:39.0000000Z"
+   },
+   {
+    "id": 5137,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T09:01:40.0000000Z",
+    "startTime": "2026-11-15T09:02:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "6e0ed1e8585d3f861d2324e6832920b7c143f426",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-15T09:10:17.0000000Z"
+   },
+   {
+    "id": 5138,
+    "buildNumber": "20261115.3",
+    "status": "completed",
+    "queueTime": "2026-11-15T03:58:40.0000000Z",
+    "startTime": "2026-11-15T03:59:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "996d5c50fc04a168652ffb493873e57f0ba078e8",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T04:09:42.0000000Z"
+   },
+   {
+    "id": 5139,
+    "buildNumber": "20261115.2",
+    "status": "completed",
+    "queueTime": "2026-11-15T02:10:40.0000000Z",
+    "startTime": "2026-11-15T02:11:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "1eb74b5653ffd3a24a1935014169b9fcc3a00c6f",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-15T02:16:49.0000000Z"
+   },
+   {
+    "id": 5140,
+    "buildNumber": "20261114.5",
+    "status": "completed",
+    "queueTime": "2026-11-14T19:18:40.0000000Z",
+    "startTime": "2026-11-14T19:19:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "d556b37d8f0881ee8011316b3ae88926b423ccde",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-14T19:23:24.0000000Z"
+   },
+   {
+    "id": 5141,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T13:34:40.0000000Z",
+    "startTime": "2026-11-14T13:35:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "dcb33df313eecdc6ebd14d2c75b2745504cc3ede",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T13:48:02.0000000Z"
+   },
+   {
+    "id": 5142,
+    "buildNumber": "20261114.4",
+    "status": "completed",
+    "queueTime": "2026-11-14T08:04:40.0000000Z",
+    "startTime": "2026-11-14T08:05:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "f758dce20556daea67b032831d7c00984a1dab32",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-14T08:18:40.0000000Z"
+   },
+   {
+    "id": 5143,
+    "buildNumber": "20261114.3",
+    "status": "completed",
+    "queueTime": "2026-11-14T03:00:40.0000000Z",
+    "startTime": "2026-11-14T03:01:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "3e49fd091b19d8b8d83020816fcc57dd168fae12",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-14T03:14:58.0000000Z"
+   },
+   {
+    "id": 5144,
+    "buildNumber": "20261113.3",
+    "status": "completed",
+    "queueTime": "2026-11-13T22:24:40.0000000Z",
+    "startTime": "2026-11-13T22:25:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "c77444cb5543fc3c38b8f24e56ea57b3beed10b6",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "definition": {
+     "id": 113,
+     "name": "DDDB.Iz.Anm.DokumanArama_Container-CD"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-13T22:33:55.0000000Z"
+   }
+  ]
+ }
+}

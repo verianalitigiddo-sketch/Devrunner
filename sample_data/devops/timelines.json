@@ -1,0 +1,2292 @@
+{
+ "default": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": []
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5003": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5005": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5010": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5024": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5025": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5037": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5045": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5058": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5098": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5100": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5116": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5120": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5125": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5134": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5142": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ },
+ "5144": {
+  "records": [
+   {
+    "id": "t1",
+    "type": "Task",
+    "name": "Initialize job",
+    "order": 1,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:11:00.0000000Z",
+    "finishTime": "2026-11-16T09:12:00.0000000Z",
+    "log": {
+     "id": 1
+    },
+    "issues": []
+   },
+   {
+    "id": "t2",
+    "type": "Task",
+    "name": "Checkout",
+    "order": 2,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:12:00.0000000Z",
+    "finishTime": "2026-11-16T09:13:00.0000000Z",
+    "log": {
+     "id": 2
+    },
+    "issues": []
+   },
+   {
+    "id": "t3",
+    "type": "Task",
+    "name": "Python kurulumu",
+    "order": 3,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:13:00.0000000Z",
+    "finishTime": "2026-11-16T09:14:00.0000000Z",
+    "log": {
+     "id": 3
+    },
+    "issues": []
+   },
+   {
+    "id": "t4",
+    "type": "Task",
+    "name": "Bağımlılıklar",
+    "order": 4,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:14:00.0000000Z",
+    "finishTime": "2026-11-16T09:15:00.0000000Z",
+    "log": {
+     "id": 4
+    },
+    "issues": []
+   },
+   {
+    "id": "t5",
+    "type": "Task",
+    "name": "Testler",
+    "order": 5,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:15:00.0000000Z",
+    "finishTime": "2026-11-16T09:16:00.0000000Z",
+    "log": {
+     "id": 5
+    },
+    "issues": []
+   },
+   {
+    "id": "t6",
+    "type": "Task",
+    "name": "Docker build",
+    "order": 6,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:16:00.0000000Z",
+    "finishTime": "2026-11-16T09:17:00.0000000Z",
+    "log": {
+     "id": 6
+    },
+    "issues": []
+   },
+   {
+    "id": "t7",
+    "type": "Task",
+    "name": "Docker push",
+    "order": 7,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:17:00.0000000Z",
+    "finishTime": "2026-11-16T09:18:00.0000000Z",
+    "log": {
+     "id": 7
+    },
+    "issues": []
+   },
+   {
+    "id": "t8",
+    "type": "Task",
+    "name": "Imaj taraması",
+    "order": 8,
+    "state": "completed",
+    "result": "failed",
+    "startTime": "2026-11-16T09:18:00.0000000Z",
+    "finishTime": "2026-11-16T09:19:00.0000000Z",
+    "log": {
+     "id": 8
+    },
+    "issues": [
+     {
+      "type": "error",
+      "message": "Process completed with exit code 1."
+     }
+    ]
+   },
+   {
+    "id": "t9",
+    "type": "Task",
+    "name": "Finalize Job",
+    "order": 9,
+    "state": "completed",
+    "result": "succeeded",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "finishTime": "2026-11-16T09:20:00.0000000Z",
+    "log": {
+     "id": 9
+    },
+    "issues": []
+   }
+  ]
+ }
+}

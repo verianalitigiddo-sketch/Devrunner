@@ -1,0 +1,423 @@
+{
+ "count": 12,
+ "value": [
+  {
+   "id": 101,
+   "name": "DDDB.Iz.Anm.Musteri360_Container-CI",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5001,
+    "buildNumber": "20261116.2",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:08:40.0000000Z",
+    "startTime": "2026-11-16T06:09:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "17be31111a2a73ed562b0f79c37459eef50bea63",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T06:15:09.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5001,
+    "buildNumber": "20261116.2",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:08:40.0000000Z",
+    "startTime": "2026-11-16T06:09:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "17be31111a2a73ed562b0f79c37459eef50bea63",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T06:15:09.0000000Z"
+   }
+  },
+  {
+   "id": 102,
+   "name": "DDDB.Iz.Anm.Musteri360_Container-CD",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5013,
+    "buildNumber": "20261116.6",
+    "status": "completed",
+    "queueTime": "2026-11-16T08:00:40.0000000Z",
+    "startTime": "2026-11-16T08:01:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "2dbc2134c30ff46e8026695ff8cda88b436d76e2",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T08:03:46.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5013,
+    "buildNumber": "20261116.6",
+    "status": "completed",
+    "queueTime": "2026-11-16T08:00:40.0000000Z",
+    "startTime": "2026-11-16T08:01:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "2dbc2134c30ff46e8026695ff8cda88b436d76e2",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T08:03:46.0000000Z"
+   }
+  },
+  {
+   "id": 103,
+   "name": "DDDB.Iz.Anm.KrediSkor_Container-CI",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5025,
+    "buildNumber": "20261116.2",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:20:40.0000000Z",
+    "startTime": "2026-11-16T06:21:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "8acd4e10bc594585944528c00ef8c2d6f7fd5646",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-16T06:26:18.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5025,
+    "buildNumber": "20261116.2",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:20:40.0000000Z",
+    "startTime": "2026-11-16T06:21:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "8acd4e10bc594585944528c00ef8c2d6f7fd5646",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-16T06:26:18.0000000Z"
+   }
+  },
+  {
+   "id": 104,
+   "name": "DDDB.Iz.Anm.KrediSkor_Container-CD",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5037,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T07:55:40.0000000Z",
+    "startTime": "2026-11-16T07:56:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "20a045026e06809725e979778d7248e2951f58d0",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-16T07:58:53.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5037,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T07:55:40.0000000Z",
+    "startTime": "2026-11-16T07:56:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "20a045026e06809725e979778d7248e2951f58d0",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-16T07:58:53.0000000Z"
+   }
+  },
+  {
+   "id": 105,
+   "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CI",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5049,
+    "buildNumber": "20261116.5",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:57:40.0000000Z",
+    "startTime": "2026-11-16T06:58:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "c04a96c4f3b63fe1d184332417e8392a55cee5db",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T07:10:40.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5049,
+    "buildNumber": "20261116.5",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:57:40.0000000Z",
+    "startTime": "2026-11-16T06:58:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "c04a96c4f3b63fe1d184332417e8392a55cee5db",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T07:10:40.0000000Z"
+   }
+  },
+  {
+   "id": 107,
+   "name": "DDDB.Iz.Anm.RaporPortal_Container-CI",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5061,
+    "buildNumber": "20261116.6",
+    "status": "completed",
+    "queueTime": "2026-11-16T07:15:40.0000000Z",
+    "startTime": "2026-11-16T07:16:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "3f4df561f319c12507f194f9c1156d6d0a4e5b70",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-16T07:28:04.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5061,
+    "buildNumber": "20261116.6",
+    "status": "completed",
+    "queueTime": "2026-11-16T07:15:40.0000000Z",
+    "startTime": "2026-11-16T07:16:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "3f4df561f319c12507f194f9c1156d6d0a4e5b70",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "result": "partiallySucceeded",
+    "finishTime": "2026-11-16T07:28:04.0000000Z"
+   }
+  },
+  {
+   "id": 108,
+   "name": "DDDB.Iz.Anm.RaporPortal_Container-CD",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5073,
+    "buildNumber": "20261116.4",
+    "status": "completed",
+    "queueTime": "2026-11-16T05:48:40.0000000Z",
+    "startTime": "2026-11-16T05:49:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "38ba8abc4b5305e517d2582e046a0df5cafda613",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T06:02:31.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5073,
+    "buildNumber": "20261116.4",
+    "status": "completed",
+    "queueTime": "2026-11-16T05:48:40.0000000Z",
+    "startTime": "2026-11-16T05:49:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "38ba8abc4b5305e517d2582e046a0df5cafda613",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T06:02:31.0000000Z"
+   }
+  },
+  {
+   "id": 109,
+   "name": "DDDB.Iz.Anm.VeriKalite_Container-CI",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5085,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:22:40.0000000Z",
+    "startTime": "2026-11-16T06:23:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "801ef1da45b1ed25f1533ae8670acc5cb321bf21",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T06:32:44.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5085,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T06:22:40.0000000Z",
+    "startTime": "2026-11-16T06:23:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "801ef1da45b1ed25f1533ae8670acc5cb321bf21",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T06:32:44.0000000Z"
+   }
+  },
+  {
+   "id": 110,
+   "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CI",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5097,
+    "buildNumber": "20261116.2",
+    "status": "inProgress",
+    "queueTime": "2026-11-16T05:05:40.0000000Z",
+    "startTime": "2026-11-16T05:06:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "517400f80b2c782a69288e92c68a152fdb23aa8c",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    }
+   },
+   "latestCompletedBuild": {
+    "id": 5098,
+    "buildNumber": "20261116.6",
+    "status": "completed",
+    "queueTime": "2026-11-16T00:47:40.0000000Z",
+    "startTime": "2026-11-16T00:48:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "097a1e10f6febc0e7ecddbaf26f05fcffb16e5db",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "result": "failed",
+    "finishTime": "2026-11-16T01:02:52.0000000Z"
+   }
+  },
+  {
+   "id": 111,
+   "name": "DDDB.Iz.Anm.ChurnTahmin_Container-CD",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5109,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T08:36:40.0000000Z",
+    "startTime": "2026-11-16T08:37:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "c73f6e1baf908e3cdd750e9890e0b95f0212b554",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T08:49:25.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5109,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T08:36:40.0000000Z",
+    "startTime": "2026-11-16T08:37:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "c73f6e1baf908e3cdd750e9890e0b95f0212b554",
+    "requestedFor": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T08:49:25.0000000Z"
+   }
+  },
+  {
+   "id": 112,
+   "name": "DDDB.Iz.Anm.DokumanArama_Container-CI",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5121,
+    "buildNumber": "20261116.4",
+    "status": "completed",
+    "queueTime": "2026-11-16T08:42:40.0000000Z",
+    "startTime": "2026-11-16T08:43:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "1beaf6ac97fa7f04836390075cae9610c72c1fe3",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-16T08:46:30.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5121,
+    "buildNumber": "20261116.4",
+    "status": "completed",
+    "queueTime": "2026-11-16T08:42:40.0000000Z",
+    "startTime": "2026-11-16T08:43:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "1beaf6ac97fa7f04836390075cae9610c72c1fe3",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "result": "canceled",
+    "finishTime": "2026-11-16T08:46:30.0000000Z"
+   }
+  },
+  {
+   "id": 113,
+   "name": "DDDB.Iz.Anm.DokumanArama_Container-CD",
+   "path": "\\",
+   "type": "build",
+   "queueStatus": "enabled",
+   "latestBuild": {
+    "id": 5133,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T09:18:40.0000000Z",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "2e7098380190262059dcabd056febfb9ebe9e207",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T09:25:44.0000000Z"
+   },
+   "latestCompletedBuild": {
+    "id": 5133,
+    "buildNumber": "20261116.3",
+    "status": "completed",
+    "queueTime": "2026-11-16T09:18:40.0000000Z",
+    "startTime": "2026-11-16T09:19:00.0000000Z",
+    "sourceBranch": "refs/heads/master",
+    "sourceVersion": "2e7098380190262059dcabd056febfb9ebe9e207",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "result": "succeeded",
+    "finishTime": "2026-11-16T09:25:44.0000000Z"
+   }
+  }
+ ]
+}

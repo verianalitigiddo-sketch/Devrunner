@@ -1,0 +1,19 @@
+# İsteğe bağlı: yerelde ortak PostgreSQL yerine kendi PostgreSQL'inizle denemek için.
+#   docker compose up -d        başlat
+#   docker compose down         durdur (veriler korunur)
+#   docker compose down -v      durdur ve verileri sil
+# Sonra Devrunner'da Ayarlar → PostgreSQL: Sunucu=localhost Port=5432 Veritabanı=app Kullanıcı=app Parola=app
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

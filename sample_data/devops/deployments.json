@@ -1,0 +1,255 @@
+{
+ "106": {
+  "count": 8,
+  "value": [
+   {
+    "id": 900,
+    "deploymentStatus": "inProgress",
+    "operationStatus": "Approved",
+    "queuedOn": "2026-11-16T08:30:00.0000000Z",
+    "startedOn": "2026-11-16T08:30:30.0000000Z",
+    "completedOn": null,
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "release": {
+     "id": 300,
+     "name": "Release-120",
+     "artifacts": [
+      {
+       "definitionReference": {
+        "branch": {
+         "name": "refs/heads/master"
+        }
+       }
+      }
+     ]
+    },
+    "releaseDefinition": {
+     "id": 106,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CD"
+    },
+    "releaseEnvironment": {
+     "name": "Dev"
+    }
+   },
+   {
+    "id": 901,
+    "deploymentStatus": "succeeded",
+    "operationStatus": "Approved",
+    "queuedOn": "2026-11-15T23:30:00.0000000Z",
+    "startedOn": "2026-11-15T23:30:30.0000000Z",
+    "completedOn": "2026-11-15T23:36:00.0000000Z",
+    "requestedFor": {
+     "displayName": "Elif Demir"
+    },
+    "release": {
+     "id": 301,
+     "name": "Release-119",
+     "artifacts": [
+      {
+       "definitionReference": {
+        "branch": {
+         "name": "refs/heads/master"
+        }
+       }
+      }
+     ]
+    },
+    "releaseDefinition": {
+     "id": 106,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CD"
+    },
+    "releaseEnvironment": {
+     "name": "Test"
+    }
+   },
+   {
+    "id": 902,
+    "deploymentStatus": "succeeded",
+    "operationStatus": "Approved",
+    "queuedOn": "2026-11-15T14:30:00.0000000Z",
+    "startedOn": "2026-11-15T14:30:30.0000000Z",
+    "completedOn": "2026-11-15T14:36:00.0000000Z",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "release": {
+     "id": 302,
+     "name": "Release-118",
+     "artifacts": [
+      {
+       "definitionReference": {
+        "branch": {
+         "name": "refs/heads/master"
+        }
+       }
+      }
+     ]
+    },
+    "releaseDefinition": {
+     "id": 106,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CD"
+    },
+    "releaseEnvironment": {
+     "name": "Prod"
+    }
+   },
+   {
+    "id": 903,
+    "deploymentStatus": "succeeded",
+    "operationStatus": "Approved",
+    "queuedOn": "2026-11-15T05:30:00.0000000Z",
+    "startedOn": "2026-11-15T05:30:30.0000000Z",
+    "completedOn": "2026-11-15T05:36:00.0000000Z",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "release": {
+     "id": 303,
+     "name": "Release-117",
+     "artifacts": [
+      {
+       "definitionReference": {
+        "branch": {
+         "name": "refs/heads/master"
+        }
+       }
+      }
+     ]
+    },
+    "releaseDefinition": {
+     "id": 106,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CD"
+    },
+    "releaseEnvironment": {
+     "name": "Dev"
+    }
+   },
+   {
+    "id": 904,
+    "deploymentStatus": "succeeded",
+    "operationStatus": "Approved",
+    "queuedOn": "2026-11-14T20:30:00.0000000Z",
+    "startedOn": "2026-11-14T20:30:30.0000000Z",
+    "completedOn": "2026-11-14T20:36:00.0000000Z",
+    "requestedFor": {
+     "displayName": "Can Öztürk"
+    },
+    "release": {
+     "id": 304,
+     "name": "Release-116",
+     "artifacts": [
+      {
+       "definitionReference": {
+        "branch": {
+         "name": "refs/heads/master"
+        }
+       }
+      }
+     ]
+    },
+    "releaseDefinition": {
+     "id": 106,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CD"
+    },
+    "releaseEnvironment": {
+     "name": "Test"
+    }
+   },
+   {
+    "id": 905,
+    "deploymentStatus": "succeeded",
+    "operationStatus": "Approved",
+    "queuedOn": "2026-11-14T11:30:00.0000000Z",
+    "startedOn": "2026-11-14T11:30:30.0000000Z",
+    "completedOn": "2026-11-14T11:36:00.0000000Z",
+    "requestedFor": {
+     "displayName": "Mehmet Kaya"
+    },
+    "release": {
+     "id": 305,
+     "name": "Release-115",
+     "artifacts": [
+      {
+       "definitionReference": {
+        "branch": {
+         "name": "refs/heads/master"
+        }
+       }
+      }
+     ]
+    },
+    "releaseDefinition": {
+     "id": 106,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CD"
+    },
+    "releaseEnvironment": {
+     "name": "Prod"
+    }
+   },
+   {
+    "id": 906,
+    "deploymentStatus": "succeeded",
+    "operationStatus": "Approved",
+    "queuedOn": "2026-11-14T02:30:00.0000000Z",
+    "startedOn": "2026-11-14T02:30:30.0000000Z",
+    "completedOn": "2026-11-14T02:36:00.0000000Z",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "release": {
+     "id": 306,
+     "name": "Release-114",
+     "artifacts": [
+      {
+       "definitionReference": {
+        "branch": {
+         "name": "refs/heads/master"
+        }
+       }
+      }
+     ]
+    },
+    "releaseDefinition": {
+     "id": 106,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CD"
+    },
+    "releaseEnvironment": {
+     "name": "Dev"
+    }
+   },
+   {
+    "id": 907,
+    "deploymentStatus": "succeeded",
+    "operationStatus": "Approved",
+    "queuedOn": "2026-11-13T17:30:00.0000000Z",
+    "startedOn": "2026-11-13T17:30:30.0000000Z",
+    "completedOn": "2026-11-13T17:36:00.0000000Z",
+    "requestedFor": {
+     "displayName": "Zeynep Arslan"
+    },
+    "release": {
+     "id": 307,
+     "name": "Release-113",
+     "artifacts": [
+      {
+       "definitionReference": {
+        "branch": {
+         "name": "refs/heads/master"
+        }
+       }
+      }
+     ]
+    },
+    "releaseDefinition": {
+     "id": 106,
+     "name": "DDDB.Iz.Anm.KampanyaTakip_Container-CD"
+    },
+    "releaseEnvironment": {
+     "name": "Test"
+    }
+   }
+  ]
+ }
+}

@@ -1,0 +1,1005 @@
+{
+ "deployments": {
+  "items": [
+   {
+    "metadata": {
+     "name": "musteri360",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "musteri360"
+     },
+     "creationTimestamp": "2026-10-16T09:30:00.0000000Z"
+    },
+    "spec": {
+     "replicas": 2,
+     "selector": {
+      "matchLabels": {
+       "app": "musteri360"
+      }
+     },
+     "template": {
+      "spec": {
+       "containers": [
+        {
+         "name": "musteri360",
+         "image": "registry.local/verianalitigi/musteri360:1.1.2"
+        }
+       ]
+      }
+     }
+    },
+    "status": {
+     "replicas": 2,
+     "readyReplicas": 2,
+     "availableReplicas": 2,
+     "updatedReplicas": 2
+    }
+   },
+   {
+    "metadata": {
+     "name": "krediskor",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "krediskor"
+     },
+     "creationTimestamp": "2026-10-15T09:30:00.0000000Z"
+    },
+    "spec": {
+     "replicas": 1,
+     "selector": {
+      "matchLabels": {
+       "app": "krediskor"
+      }
+     },
+     "template": {
+      "spec": {
+       "containers": [
+        {
+         "name": "krediskor",
+         "image": "registry.local/verianalitigi/krediskor:1.2.3"
+        }
+       ]
+      }
+     }
+    },
+    "status": {
+     "replicas": 1,
+     "readyReplicas": 0,
+     "availableReplicas": 0,
+     "updatedReplicas": 1
+    }
+   },
+   {
+    "metadata": {
+     "name": "kampanyatakip",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "kampanyatakip"
+     },
+     "creationTimestamp": "2026-10-14T09:30:00.0000000Z"
+    },
+    "spec": {
+     "replicas": 2,
+     "selector": {
+      "matchLabels": {
+       "app": "kampanyatakip"
+      }
+     },
+     "template": {
+      "spec": {
+       "containers": [
+        {
+         "name": "kampanyatakip",
+         "image": "registry.local/verianalitigi/kampanyatakip:1.3.19"
+        }
+       ]
+      }
+     }
+    },
+    "status": {
+     "replicas": 2,
+     "readyReplicas": 2,
+     "availableReplicas": 2,
+     "updatedReplicas": 2
+    }
+   },
+   {
+    "metadata": {
+     "name": "raporportal",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "raporportal"
+     },
+     "creationTimestamp": "2026-10-13T09:30:00.0000000Z"
+    },
+    "spec": {
+     "replicas": 1,
+     "selector": {
+      "matchLabels": {
+       "app": "raporportal"
+      }
+     },
+     "template": {
+      "spec": {
+       "containers": [
+        {
+         "name": "raporportal",
+         "image": "registry.local/verianalitigi/raporportal:1.4.18"
+        }
+       ]
+      }
+     }
+    },
+    "status": {
+     "replicas": 1,
+     "readyReplicas": 1,
+     "availableReplicas": 1,
+     "updatedReplicas": 1
+    }
+   },
+   {
+    "metadata": {
+     "name": "verikalite",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "verikalite"
+     },
+     "creationTimestamp": "2026-10-12T09:30:00.0000000Z"
+    },
+    "spec": {
+     "replicas": 2,
+     "selector": {
+      "matchLabels": {
+       "app": "verikalite"
+      }
+     },
+     "template": {
+      "spec": {
+       "containers": [
+        {
+         "name": "verikalite",
+         "image": "registry.local/verianalitigi/verikalite:1.5.4"
+        }
+       ]
+      }
+     }
+    },
+    "status": {
+     "replicas": 2,
+     "readyReplicas": 2,
+     "availableReplicas": 2,
+     "updatedReplicas": 2
+    }
+   },
+   {
+    "metadata": {
+     "name": "churntahmin",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "churntahmin"
+     },
+     "creationTimestamp": "2026-10-11T09:30:00.0000000Z"
+    },
+    "spec": {
+     "replicas": 1,
+     "selector": {
+      "matchLabels": {
+       "app": "churntahmin"
+      }
+     },
+     "template": {
+      "spec": {
+       "containers": [
+        {
+         "name": "churntahmin",
+         "image": "registry.local/verianalitigi/churntahmin:1.6.16"
+        }
+       ]
+      }
+     }
+    },
+    "status": {
+     "replicas": 1,
+     "readyReplicas": 1,
+     "availableReplicas": 1,
+     "updatedReplicas": 1
+    }
+   },
+   {
+    "metadata": {
+     "name": "dokumanarama",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "dokumanarama"
+     },
+     "creationTimestamp": "2026-10-09T09:30:00.0000000Z"
+    },
+    "spec": {
+     "replicas": 1,
+     "selector": {
+      "matchLabels": {
+       "app": "dokumanarama"
+      }
+     },
+     "template": {
+      "spec": {
+       "containers": [
+        {
+         "name": "dokumanarama",
+         "image": "registry.local/verianalitigi/dokumanarama:1.8.1"
+        }
+       ]
+      }
+     }
+    },
+    "status": {
+     "replicas": 1,
+     "readyReplicas": 1,
+     "availableReplicas": 1,
+     "updatedReplicas": 1
+    }
+   }
+  ]
+ },
+ "pods": {
+  "items": [
+   {
+    "metadata": {
+     "name": "musteri360-82af085c-a21b0",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "musteri360"
+     },
+     "creationTimestamp": "2026-11-15T02:30:00.0000000Z"
+    },
+    "spec": {
+     "nodeName": "node-2",
+     "containers": [
+      {
+       "name": "musteri360",
+       "image": "registry.local/verianalitigi/musteri360:1.1.2"
+      }
+     ]
+    },
+    "status": {
+     "phase": "Running",
+     "podIP": "10.0.1.10",
+     "containerStatuses": [
+      {
+       "name": "musteri360",
+       "image": "registry.local/verianalitigi/musteri360:1.1.2",
+       "ready": true,
+       "restartCount": 1,
+       "state": {
+        "running": {
+         "startedAt": "2026-11-16T06:30:00.0000000Z"
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "musteri360-59e1ac09-ba358",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "musteri360"
+     },
+     "creationTimestamp": "2026-11-09T10:30:00.0000000Z"
+    },
+    "spec": {
+     "nodeName": "node-2",
+     "containers": [
+      {
+       "name": "musteri360",
+       "image": "registry.local/verianalitigi/musteri360:1.1.2"
+      }
+     ]
+    },
+    "status": {
+     "phase": "Running",
+     "podIP": "10.0.1.11",
+     "containerStatuses": [
+      {
+       "name": "musteri360",
+       "image": "registry.local/verianalitigi/musteri360:1.1.2",
+       "ready": true,
+       "restartCount": 0,
+       "state": {
+        "running": {
+         "startedAt": "2026-11-16T06:30:00.0000000Z"
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "krediskor-257d5e52-41872",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "krediskor"
+     },
+     "creationTimestamp": "2026-11-14T05:30:00.0000000Z"
+    },
+    "spec": {
+     "nodeName": "node-2",
+     "containers": [
+      {
+       "name": "krediskor",
+       "image": "registry.local/verianalitigi/krediskor:1.2.3"
+      }
+     ]
+    },
+    "status": {
+     "phase": "Running",
+     "podIP": "10.0.2.10",
+     "containerStatuses": [
+      {
+       "name": "krediskor",
+       "image": "registry.local/verianalitigi/krediskor:1.2.3",
+       "ready": false,
+       "restartCount": 17,
+       "state": {
+        "waiting": {
+         "reason": "CrashLoopBackOff"
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "kampanyatakip-2722796e-c29d7",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "kampanyatakip"
+     },
+     "creationTimestamp": "2026-11-08T05:30:00.0000000Z"
+    },
+    "spec": {
+     "nodeName": "node-1",
+     "containers": [
+      {
+       "name": "kampanyatakip",
+       "image": "registry.local/verianalitigi/kampanyatakip:1.3.19"
+      }
+     ]
+    },
+    "status": {
+     "phase": "Running",
+     "podIP": "10.0.3.10",
+     "containerStatuses": [
+      {
+       "name": "kampanyatakip",
+       "image": "registry.local/verianalitigi/kampanyatakip:1.3.19",
+       "ready": true,
+       "restartCount": 0,
+       "state": {
+        "running": {
+         "startedAt": "2026-11-16T06:30:00.0000000Z"
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "kampanyatakip-f387e1bd-c5d95",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "kampanyatakip"
+     },
+     "creationTimestamp": "2026-11-09T15:30:00.0000000Z"
+    },
+    "spec": {
+     "nodeName": "node-4",
+     "containers": [
+      {
+       "name": "kampanyatakip",
+       "image": "registry.local/verianalitigi/kampanyatakip:1.3.19"
+      }
+     ]
+    },
+    "status": {
+     "phase": "Running",
+     "podIP": "10.0.3.11",
+     "containerStatuses": [
+      {
+       "name": "kampanyatakip",
+       "image": "registry.local/verianalitigi/kampanyatakip:1.3.19",
+       "ready": true,
+       "restartCount": 1,
+       "state": {
+        "running": {
+         "startedAt": "2026-11-16T06:30:00.0000000Z"
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "raporportal-c2874f06-94580",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "raporportal"
+     },
+     "creationTimestamp": "2026-11-11T13:30:00.0000000Z"
+    },
+    "spec": {
+     "nodeName": "node-3",
+     "containers": [
+      {
+       "name": "raporportal",
+       "image": "registry.local/verianalitigi/raporportal:1.4.18"
+      }
+     ]
+    },
+    "status": {
+     "phase": "Running",
+     "podIP": "10.0.4.10",
+     "containerStatuses": [
+      {
+       "name": "raporportal",
+       "image": "registry.local/verianalitigi/raporportal:1.4.18",
+       "ready": true,
+       "restartCount": 1,
+       "state": {
+        "running": {
+         "startedAt": "2026-11-16T06:30:00.0000000Z"
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "verikalite-70944bdb-117b3",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "verikalite"
+     },
+     "creationTimestamp": "2026-11-11T07:30:00.0000000Z"
+    },
+    "spec": {
+     "nodeName": "node-4",
+     "containers": [
+      {
+       "name": "verikalite",
+       "image": "registry.local/verianalitigi/verikalite:1.5.4"
+      }
+     ]
+    },
+    "status": {
+     "phase": "Running",
+     "podIP": "10.0.5.10",
+     "containerStatuses": [
+      {
+       "name": "verikalite",
+       "image": "registry.local/verianalitigi/verikalite:1.5.4",
+       "ready": true,
+       "restartCount": 1,
+       "state": {
+        "running": {
+         "startedAt": "2026-11-16T06:30:00.0000000Z"
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "verikalite-cbdc4318-46510",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "verikalite"
+     },
+     "creationTimestamp": "2026-11-10T00:30:00.0000000Z"
+    },
+    "spec": {
+     "nodeName": "node-1",
+     "containers": [
+      {
+       "name": "verikalite",
+       "image": "registry.local/verianalitigi/verikalite:1.5.4"
+      }
+     ]
+    },
+    "status": {
+     "phase": "Running",
+     "podIP": "10.0.5.11",
+     "containerStatuses": [
+      {
+       "name": "verikalite",
+       "image": "registry.local/verianalitigi/verikalite:1.5.4",
+       "ready": true,
+       "restartCount": 1,
+       "state": {
+        "running": {
+         "startedAt": "2026-11-16T06:30:00.0000000Z"
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "churntahmin-12fe28bf-4f76e",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "churntahmin"
+     },
+     "creationTimestamp": "2026-11-11T09:30:00.0000000Z"
+    },
+    "spec": {
+     "nodeName": "node-4",
+     "containers": [
+      {
+       "name": "churntahmin",
+       "image": "registry.local/verianalitigi/churntahmin:1.6.16"
+      }
+     ]
+    },
+    "status": {
+     "phase": "Running",
+     "podIP": "10.0.6.10",
+     "containerStatuses": [
+      {
+       "name": "churntahmin",
+       "image": "registry.local/verianalitigi/churntahmin:1.6.16",
+       "ready": true,
+       "restartCount": 0,
+       "state": {
+        "running": {
+         "startedAt": "2026-11-16T06:30:00.0000000Z"
+        }
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "dokumanarama-5e659654-d4ea1",
+     "namespace": "verianalitigi",
+     "labels": {
+      "app": "dokumanarama"
+     },
+     "creationTimestamp": "2026-11-13T06:30:00.0000000Z"
+    },
+    "spec": {
+     "nodeName": "node-1",
+     "containers": [
+      {
+       "name": "dokumanarama",
+       "image": "registry.local/verianalitigi/dokumanarama:1.8.1"
+      }
+     ]
+    },
+    "status": {
+     "phase": "Running",
+     "podIP": "10.0.8.10",
+     "containerStatuses": [
+      {
+       "name": "dokumanarama",
+       "image": "registry.local/verianalitigi/dokumanarama:1.8.1",
+       "ready": true,
+       "restartCount": 0,
+       "state": {
+        "running": {
+         "startedAt": "2026-11-16T06:30:00.0000000Z"
+        }
+       }
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "ingresses": {
+  "items": [
+   {
+    "metadata": {
+     "name": "musteri360-ing"
+    },
+    "spec": {
+     "rules": [
+      {
+       "host": "musteri360.dk8s.gentest.hqtest.local",
+       "http": {
+        "paths": [
+         {
+          "backend": {
+           "service": {
+            "name": "musteri360-svc"
+           }
+          }
+         }
+        ]
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "krediskor-ing"
+    },
+    "spec": {
+     "rules": [
+      {
+       "host": "krediskor.dk8s.gentest.hqtest.local",
+       "http": {
+        "paths": [
+         {
+          "backend": {
+           "service": {
+            "name": "krediskor-svc"
+           }
+          }
+         }
+        ]
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "kampanyatakip-ing"
+    },
+    "spec": {
+     "rules": [
+      {
+       "host": "kampanyatakip.dk8s.gentest.hqtest.local",
+       "http": {
+        "paths": [
+         {
+          "backend": {
+           "service": {
+            "name": "kampanyatakip-svc"
+           }
+          }
+         }
+        ]
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "raporportal-ing"
+    },
+    "spec": {
+     "rules": [
+      {
+       "host": "raporportal.dk8s.gentest.hqtest.local",
+       "http": {
+        "paths": [
+         {
+          "backend": {
+           "service": {
+            "name": "raporportal-svc"
+           }
+          }
+         }
+        ]
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "verikalite-ing"
+    },
+    "spec": {
+     "rules": [
+      {
+       "host": "verikalite.dk8s.gentest.hqtest.local",
+       "http": {
+        "paths": [
+         {
+          "backend": {
+           "service": {
+            "name": "verikalite-svc"
+           }
+          }
+         }
+        ]
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "churntahmin-ing"
+    },
+    "spec": {
+     "rules": [
+      {
+       "host": "churntahmin.dk8s.gentest.hqtest.local",
+       "http": {
+        "paths": [
+         {
+          "backend": {
+           "service": {
+            "name": "churntahmin-svc"
+           }
+          }
+         }
+        ]
+       }
+      }
+     ]
+    }
+   },
+   {
+    "metadata": {
+     "name": "dokumanarama-ing"
+    },
+    "spec": {
+     "rules": [
+      {
+       "host": "dokumanarama.dk8s.gentest.hqtest.local",
+       "http": {
+        "paths": [
+         {
+          "backend": {
+           "service": {
+            "name": "dokumanarama-svc"
+           }
+          }
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "services": {
+  "items": [
+   {
+    "metadata": {
+     "name": "musteri360-svc"
+    },
+    "spec": {
+     "selector": {
+      "app": "musteri360"
+     }
+    }
+   },
+   {
+    "metadata": {
+     "name": "krediskor-svc"
+    },
+    "spec": {
+     "selector": {
+      "app": "krediskor"
+     }
+    }
+   },
+   {
+    "metadata": {
+     "name": "kampanyatakip-svc"
+    },
+    "spec": {
+     "selector": {
+      "app": "kampanyatakip"
+     }
+    }
+   },
+   {
+    "metadata": {
+     "name": "raporportal-svc"
+    },
+    "spec": {
+     "selector": {
+      "app": "raporportal"
+     }
+    }
+   },
+   {
+    "metadata": {
+     "name": "verikalite-svc"
+    },
+    "spec": {
+     "selector": {
+      "app": "verikalite"
+     }
+    }
+   },
+   {
+    "metadata": {
+     "name": "churntahmin-svc"
+    },
+    "spec": {
+     "selector": {
+      "app": "churntahmin"
+     }
+    }
+   },
+   {
+    "metadata": {
+     "name": "dokumanarama-svc"
+    },
+    "spec": {
+     "selector": {
+      "app": "dokumanarama"
+     }
+    }
+   }
+  ]
+ },
+ "events": {
+  "items": [
+   {
+    "metadata": {
+     "name": "musteri360-82af085c-a21b0.pulled"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "musteri360-82af085c-a21b0"
+    },
+    "type": "Normal",
+    "reason": "Pulled",
+    "count": 1,
+    "message": "Container image \"registry.local/verianalitigi/musteri360:1.1.2\" already present on machine",
+    "lastTimestamp": "2026-11-16T06:30:00.0000000Z"
+   },
+   {
+    "metadata": {
+     "name": "musteri360-59e1ac09-ba358.pulled"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "musteri360-59e1ac09-ba358"
+    },
+    "type": "Normal",
+    "reason": "Pulled",
+    "count": 1,
+    "message": "Container image \"registry.local/verianalitigi/musteri360:1.1.2\" already present on machine",
+    "lastTimestamp": "2026-11-16T06:30:00.0000000Z"
+   },
+   {
+    "metadata": {
+     "name": "krediskor-257d5e52-41872.ev"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "krediskor-257d5e52-41872"
+    },
+    "type": "Warning",
+    "reason": "BackOff",
+    "count": 63,
+    "message": "Back-off restarting failed container",
+    "lastTimestamp": "2026-11-16T09:28:00.0000000Z"
+   },
+   {
+    "metadata": {
+     "name": "krediskor-257d5e52-41872.pulled"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "krediskor-257d5e52-41872"
+    },
+    "type": "Normal",
+    "reason": "Pulled",
+    "count": 1,
+    "message": "Container image \"registry.local/verianalitigi/krediskor:1.2.3\" already present on machine",
+    "lastTimestamp": "2026-11-16T06:30:00.0000000Z"
+   },
+   {
+    "metadata": {
+     "name": "kampanyatakip-2722796e-c29d7.pulled"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "kampanyatakip-2722796e-c29d7"
+    },
+    "type": "Normal",
+    "reason": "Pulled",
+    "count": 1,
+    "message": "Container image \"registry.local/verianalitigi/kampanyatakip:1.3.19\" already present on machine",
+    "lastTimestamp": "2026-11-16T06:30:00.0000000Z"
+   },
+   {
+    "metadata": {
+     "name": "kampanyatakip-f387e1bd-c5d95.pulled"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "kampanyatakip-f387e1bd-c5d95"
+    },
+    "type": "Normal",
+    "reason": "Pulled",
+    "count": 1,
+    "message": "Container image \"registry.local/verianalitigi/kampanyatakip:1.3.19\" already present on machine",
+    "lastTimestamp": "2026-11-16T06:30:00.0000000Z"
+   },
+   {
+    "metadata": {
+     "name": "raporportal-c2874f06-94580.pulled"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "raporportal-c2874f06-94580"
+    },
+    "type": "Normal",
+    "reason": "Pulled",
+    "count": 1,
+    "message": "Container image \"registry.local/verianalitigi/raporportal:1.4.18\" already present on machine",
+    "lastTimestamp": "2026-11-16T06:30:00.0000000Z"
+   },
+   {
+    "metadata": {
+     "name": "verikalite-70944bdb-117b3.pulled"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "verikalite-70944bdb-117b3"
+    },
+    "type": "Normal",
+    "reason": "Pulled",
+    "count": 1,
+    "message": "Container image \"registry.local/verianalitigi/verikalite:1.5.4\" already present on machine",
+    "lastTimestamp": "2026-11-16T06:30:00.0000000Z"
+   },
+   {
+    "metadata": {
+     "name": "verikalite-cbdc4318-46510.pulled"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "verikalite-cbdc4318-46510"
+    },
+    "type": "Normal",
+    "reason": "Pulled",
+    "count": 1,
+    "message": "Container image \"registry.local/verianalitigi/verikalite:1.5.4\" already present on machine",
+    "lastTimestamp": "2026-11-16T06:30:00.0000000Z"
+   },
+   {
+    "metadata": {
+     "name": "churntahmin-12fe28bf-4f76e.pulled"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "churntahmin-12fe28bf-4f76e"
+    },
+    "type": "Normal",
+    "reason": "Pulled",
+    "count": 1,
+    "message": "Container image \"registry.local/verianalitigi/churntahmin:1.6.16\" already present on machine",
+    "lastTimestamp": "2026-11-16T06:30:00.0000000Z"
+   },
+   {
+    "metadata": {
+     "name": "dokumanarama-5e659654-d4ea1.pulled"
+    },
+    "involvedObject": {
+     "kind": "Pod",
+     "name": "dokumanarama-5e659654-d4ea1"
+    },
+    "type": "Normal",
+    "reason": "Pulled",
+    "count": 1,
+    "message": "Container image \"registry.local/verianalitigi/dokumanarama:1.8.1\" already present on machine",
+    "lastTimestamp": "2026-11-16T06:30:00.0000000Z"
+   }
+  ]
+ }
+}

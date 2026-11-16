@@ -1,0 +1,10 @@
+PySide6==6.8.1                  # masaüstü arayüz (Qt)
+requests==2.34.2                # DevOps REST, erişilebilirlik yoklaması
+truststore==0.10.5              # DevOps için Windows sertifika deposu (kurum içi CA)
+SQLAlchemy==2.1.8               # ortak PostgreSQL
+psycopg2-binary==2.9.13         # PostgreSQL sürücüsü
+python-dotenv==1.2.4            # .env okuma / yazma (ayarlar ekranı)
+kubernetes==37.0.2              # pod, log, exec (kubectl kurulu olmasını gerektirmez)
+PyYAML==6.0.3                   # kubernetes kullanıyor
+PyNaCl==1.6.2                   # sohbet: uçtan uca şifreleme (libsodium)
+tzdata==2026.6; sys_platform == "win32"   # Windows'ta Europe/Istanbul saat dilimi (freeze tarihleri)

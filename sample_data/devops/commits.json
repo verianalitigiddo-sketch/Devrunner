@@ -1,0 +1,402 @@
+{
+ "00000001-aaaa-4bbb-8ccc-000000000001": {
+  "count": 5,
+  "value": [
+   {
+    "commitId": "46685257bdd640fb06671ad11c80317fa3b1799d",
+    "comment": "Sorgu performansı iyileştirildi",
+    "author": {
+     "name": "Mehmet Kaya",
+     "date": "2026-11-16T08:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.Musteri360/commit/x"
+   },
+   {
+    "commitId": "bd9c66b3ad3c2d6d1a3d1fa7bc8960a923b8c1e9",
+    "comment": "Bağımlılıklar güncellendi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-16T03:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.Musteri360/commit/x"
+   },
+   {
+    "commitId": "17fc695a07a0ca6e0822e8f36c031199972a8469",
+    "comment": "Hata düzeltmesi: tarih filtresi",
+    "author": {
+     "name": "Mehmet Kaya",
+     "date": "2026-11-15T20:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.Musteri360/commit/x"
+   },
+   {
+    "commitId": "32e706298fadc1a606cb0fb39a1de644815ef6d1",
+    "comment": "Yeni rapor sekmesi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T12:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.Musteri360/commit/x"
+   },
+   {
+    "commitId": "cf36d58b4737819096da1dac72ff5d2a386ecbe0",
+    "comment": "README güncellendi",
+    "author": {
+     "name": "Ayşe Yılmaz",
+     "date": "2026-11-15T08:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.Musteri360/commit/x"
+   }
+  ]
+ },
+ "00000002-aaaa-4bbb-8ccc-000000000002": {
+  "count": 5,
+  "value": [
+   {
+    "commitId": "d605e7708a63f881ffd0f9d5a6f2f7b80cf35b58",
+    "comment": "Sorgu performansı iyileştirildi",
+    "author": {
+     "name": "Ayşe Yılmaz",
+     "date": "2026-11-16T09:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KrediSkor/commit/x"
+   },
+   {
+    "commitId": "2a935d623c835dc0d9441fa5c0e9ab30ed2662e9",
+    "comment": "Bağımlılıklar güncellendi",
+    "author": {
+     "name": "Can Öztürk",
+     "date": "2026-11-16T00:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KrediSkor/commit/x"
+   },
+   {
+    "commitId": "e7067ef466aa9385dd59ba7136b824817b3a4e3e",
+    "comment": "Hata düzeltmesi: tarih filtresi",
+    "author": {
+     "name": "Ayşe Yılmaz",
+     "date": "2026-11-15T20:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KrediSkor/commit/x"
+   },
+   {
+    "commitId": "43e458fc63f2ae24fc3d3348008d4127610461e3",
+    "comment": "Yeni rapor sekmesi",
+    "author": {
+     "name": "Can Öztürk",
+     "date": "2026-11-15T13:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KrediSkor/commit/x"
+   },
+   {
+    "commitId": "fed4057dbb026576f512c4c3b253d2186c4a37ea",
+    "comment": "README güncellendi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T04:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KrediSkor/commit/x"
+   }
+  ]
+ },
+ "00000003-aaaa-4bbb-8ccc-000000000003": {
+  "count": 5,
+  "value": [
+   {
+    "commitId": "bf85bf0ead64b56c610faa3ff0bbac67aa38d0a1",
+    "comment": "Sorgu performansı iyileştirildi",
+    "author": {
+     "name": "Mehmet Kaya",
+     "date": "2026-11-16T05:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KampanyaTakip/commit/x"
+   },
+   {
+    "commitId": "d56f03508c459ce267f48ad54d0b0d1a91b0e1d9",
+    "comment": "Bağımlılıklar güncellendi",
+    "author": {
+     "name": "Ayşe Yılmaz",
+     "date": "2026-11-16T01:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KampanyaTakip/commit/x"
+   },
+   {
+    "commitId": "9479e1e6c9277d9b6e0d264835ce884149732d6c",
+    "comment": "Hata düzeltmesi: tarih filtresi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T16:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KampanyaTakip/commit/x"
+   },
+   {
+    "commitId": "acf5e81e713162697118e36477097749527eecfa",
+    "comment": "Yeni rapor sekmesi",
+    "author": {
+     "name": "Mehmet Kaya",
+     "date": "2026-11-15T11:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KampanyaTakip/commit/x"
+   },
+   {
+    "commitId": "cbc84759f5b78cc7e6b3c944cb323e357922bac2",
+    "comment": "README güncellendi",
+    "author": {
+     "name": "Mehmet Kaya",
+     "date": "2026-11-15T04:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.KampanyaTakip/commit/x"
+   }
+  ]
+ },
+ "00000004-aaaa-4bbb-8ccc-000000000004": {
+  "count": 5,
+  "value": [
+   {
+    "commitId": "907bfe36978648f864de82e6e82c7d7b06e745f9",
+    "comment": "Sorgu performansı iyileştirildi",
+    "author": {
+     "name": "Ayşe Yılmaz",
+     "date": "2026-11-16T09:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.RaporPortal/commit/x"
+   },
+   {
+    "commitId": "7631de9ddde9f86322bd33886db99102a48b3dbe",
+    "comment": "Bağımlılıklar güncellendi",
+    "author": {
+     "name": "Mehmet Kaya",
+     "date": "2026-11-16T03:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.RaporPortal/commit/x"
+   },
+   {
+    "commitId": "74672cd9362f5e5c53cd6268610cf37342999aa4",
+    "comment": "Hata düzeltmesi: tarih filtresi",
+    "author": {
+     "name": "Elif Demir",
+     "date": "2026-11-15T19:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.RaporPortal/commit/x"
+   },
+   {
+    "commitId": "c083b73a473bd358610e6a64e1301617c2dff335",
+    "comment": "Yeni rapor sekmesi",
+    "author": {
+     "name": "Can Öztürk",
+     "date": "2026-11-15T13:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.RaporPortal/commit/x"
+   },
+   {
+    "commitId": "bfc00dc804f64d867866076514f7ce8dd5bcb8d0",
+    "comment": "README güncellendi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T09:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.RaporPortal/commit/x"
+   }
+  ]
+ },
+ "00000005-aaaa-4bbb-8ccc-000000000005": {
+  "count": 5,
+  "value": [
+   {
+    "commitId": "48603b32b4fb0eb949c13de73b4206c5085b15fb",
+    "comment": "Sorgu performansı iyileştirildi",
+    "author": {
+     "name": "Can Öztürk",
+     "date": "2026-11-16T09:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.VeriKalite/commit/x"
+   },
+   {
+    "commitId": "c9af18f843b9da13ec856f373bc1a987aff8754d",
+    "comment": "Bağımlılıklar güncellendi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T22:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.VeriKalite/commit/x"
+   },
+   {
+    "commitId": "1d61fac36cd5e85932a447b2ef04e57dcdccc33a",
+    "comment": "Hata düzeltmesi: tarih filtresi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T20:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.VeriKalite/commit/x"
+   },
+   {
+    "commitId": "d39e198b44007d5ae88da71926242b40a5cb63a2",
+    "comment": "Yeni rapor sekmesi",
+    "author": {
+     "name": "Mehmet Kaya",
+     "date": "2026-11-15T15:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.VeriKalite/commit/x"
+   },
+   {
+    "commitId": "9854ce4e4ebfa5c3cae9b4a72a79ea680f44704f",
+    "comment": "README güncellendi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T07:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.VeriKalite/commit/x"
+   }
+  ]
+ },
+ "00000006-aaaa-4bbb-8ccc-000000000006": {
+  "count": 5,
+  "value": [
+   {
+    "commitId": "ca3dd859c5ce099c46b8265911df12d7dd30de89",
+    "comment": "Sorgu performansı iyileştirildi",
+    "author": {
+     "name": "Can Öztürk",
+     "date": "2026-11-16T07:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.ChurnTahmin/commit/x"
+   },
+   {
+    "commitId": "d20f87d044656d6b81fb18b3c9a7d91fef2ae713",
+    "comment": "Bağımlılıklar güncellendi",
+    "author": {
+     "name": "Ayşe Yılmaz",
+     "date": "2026-11-16T01:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.ChurnTahmin/commit/x"
+   },
+   {
+    "commitId": "9475dbc996418cedd664d2644c6e27ffb9de7a3a",
+    "comment": "Hata düzeltmesi: tarih filtresi",
+    "author": {
+     "name": "Can Öztürk",
+     "date": "2026-11-15T20:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.ChurnTahmin/commit/x"
+   },
+   {
+    "commitId": "551ac8ea585a0afa7bfdcc1289e06ab37250ee18",
+    "comment": "Yeni rapor sekmesi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T11:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.ChurnTahmin/commit/x"
+   },
+   {
+    "commitId": "de9e37575260001eeecf67d2749176f46090d697",
+    "comment": "README güncellendi",
+    "author": {
+     "name": "Mehmet Kaya",
+     "date": "2026-11-15T04:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.ChurnTahmin/commit/x"
+   }
+  ]
+ },
+ "00000007-aaaa-4bbb-8ccc-000000000007": {
+  "count": 5,
+  "value": [
+   {
+    "commitId": "8b621d415e09a9eeaf88bdecfb1e143b196f4dfa",
+    "comment": "Sorgu performansı iyileştirildi",
+    "author": {
+     "name": "Elif Demir",
+     "date": "2026-11-16T09:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.SubeAnaliz/commit/x"
+   },
+   {
+    "commitId": "1f45dbfdf7dc67e030974b2b46a02a9b65ec7acd",
+    "comment": "Bağımlılıklar güncellendi",
+    "author": {
+     "name": "Can Öztürk",
+     "date": "2026-11-16T03:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.SubeAnaliz/commit/x"
+   },
+   {
+    "commitId": "98de8ebba3b5cecea446be72364c911aa9ab364a",
+    "comment": "Hata düzeltmesi: tarih filtresi",
+    "author": {
+     "name": "Ayşe Yılmaz",
+     "date": "2026-11-15T21:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.SubeAnaliz/commit/x"
+   },
+   {
+    "commitId": "203c8c25fd235def3e5a87e35560db22c96b5edb",
+    "comment": "Yeni rapor sekmesi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T14:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.SubeAnaliz/commit/x"
+   },
+   {
+    "commitId": "350843f08de08fc2c3e15a85d46ef10411906f50",
+    "comment": "README güncellendi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T08:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.SubeAnaliz/commit/x"
+   }
+  ]
+ },
+ "00000008-aaaa-4bbb-8ccc-000000000008": {
+  "count": 5,
+  "value": [
+   {
+    "commitId": "c63d04ee541c7a863ba5cd2fdea45c19d0243d72",
+    "comment": "Sorgu performansı iyileştirildi",
+    "author": {
+     "name": "Mehmet Kaya",
+     "date": "2026-11-16T05:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.DokumanArama/commit/x"
+   },
+   {
+    "commitId": "250a4578fbe94499dbc080fd46fb7bf300b9d4a3",
+    "comment": "Bağımlılıklar güncellendi",
+    "author": {
+     "name": "Mehmet Kaya",
+     "date": "2026-11-15T23:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.DokumanArama/commit/x"
+   },
+   {
+    "commitId": "a93b12cd1c24220e2cabd7e7cc6b66e5402adf9c",
+    "comment": "Hata düzeltmesi: tarih filtresi",
+    "author": {
+     "name": "Ayşe Yılmaz",
+     "date": "2026-11-15T20:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.DokumanArama/commit/x"
+   },
+   {
+    "commitId": "3ce915e7c9d6a63bca3c6f5f5bb5c40c03cde2e3",
+    "comment": "Yeni rapor sekmesi",
+    "author": {
+     "name": "Zeynep Arslan",
+     "date": "2026-11-15T13:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.DokumanArama/commit/x"
+   },
+   {
+    "commitId": "20733f6d0d6a05b343ef20162c9b662e040a3aae",
+    "comment": "README güncellendi",
+    "author": {
+     "name": "Can Öztürk",
+     "date": "2026-11-15T05:30:00.0000000Z"
+    },
+    "remoteUrl": "https://devops.halkbank.com.tr/DefaultCollection/Halkbank/_git/DDDB.Iz.Anm.DokumanArama/commit/x"
+   }
+  ]
+ }
+}

@@ -1,0 +1,64 @@
+{
+ "00000001-aaaa-4bbb-8ccc-000000000001": {
+  "count": 1,
+  "value": []
+ },
+ "00000002-aaaa-4bbb-8ccc-000000000002": {
+  "count": 1,
+  "value": []
+ },
+ "00000003-aaaa-4bbb-8ccc-000000000003": {
+  "count": 1,
+  "value": [
+   {
+    "pullRequestId": 43,
+    "title": "Yeni KPI kartları",
+    "isDraft": true,
+    "createdBy": {
+     "displayName": "Ayşe Yılmaz"
+    },
+    "creationDate": "2026-11-15T09:30:00.0000000Z",
+    "sourceRefName": "refs/heads/feature/kpi",
+    "targetRefName": "refs/heads/master",
+    "repository": {
+     "name": "DDDB.Iz.Anm.KampanyaTakip"
+    }
+   }
+  ]
+ },
+ "00000004-aaaa-4bbb-8ccc-000000000004": {
+  "count": 1,
+  "value": []
+ },
+ "00000005-aaaa-4bbb-8ccc-000000000005": {
+  "count": 1,
+  "value": []
+ },
+ "00000006-aaaa-4bbb-8ccc-000000000006": {
+  "count": 1,
+  "value": [
+   {
+    "pullRequestId": 46,
+    "title": "Yeni KPI kartları",
+    "isDraft": false,
+    "createdBy": {
+     "displayName": "Mehmet Kaya"
+    },
+    "creationDate": "2026-11-15T09:30:00.0000000Z",
+    "sourceRefName": "refs/heads/feature/kpi",
+    "targetRefName": "refs/heads/master",
+    "repository": {
+     "name": "DDDB.Iz.Anm.ChurnTahmin"
+    }
+   }
+  ]
+ },
+ "00000007-aaaa-4bbb-8ccc-000000000007": {
+  "count": 1,
+  "value": []
+ },
+ "00000008-aaaa-4bbb-8ccc-000000000008": {
+  "count": 1,
+  "value": []
+ }
+}
