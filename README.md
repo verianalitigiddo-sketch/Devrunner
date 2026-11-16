@@ -15,7 +15,9 @@ Veri Analitiği geliştiricileri için modüler masaüstü uygulaması (PySide6)
 | **Sohbet** | Çevrimiçi geliştiricilerle P2P, uçtan uca şifreli sohbet | eşler PostgreSQL'den bulunur, mesajlar doğrudan gider |
 | **Ayarlar** | Tüm ayarlar ve secret'lar; `.env`'e yazılır, yeniden başlatma gerekmez | `scripts/config.py` |
 
-Temalar: **Aydınlık, Karanlık, Cyberpunk, Dracula, 90'lar** (başlık çubuğundan anında değişir).
+Temalar: **Modern** (varsayılan, webterminal görünümü), **Aydınlık, Karanlık, Cyberpunk, Dracula, 90'lar, BIOS**
+(başlık çubuğundan anında değişir). Yerleşim Discord'dan esinlenir: solda simge şeridi, sağda yuvarlak köşeli sayfa kartı.
+Inter ve JetBrains Mono yazı tipleri `assets/fonts/` altında gelir (SIL OFL), ağ gerekmez.
 
 LDAP girişi yoktur: ilk açılışta adınız sorulur. Servislere kendi PAT'iniz ve token'ınızla erişilir.
 
@@ -160,7 +162,9 @@ Durumlar: *Çalışıyor* (yanıt var), *Yavaş* (eşik üstü), *Kapalı* (5xx,
 ardışık yoklamada aynı çıkınca değişmiş sayılır. Sistem proxy'si varsayılan olarak kullanılmaz.
 
 **Kubernetes.** Kubeconfig şablonu (`K8sAPI.KUBECONFIG_TEMPLATE`) verilen yapıyla birebir aynıdır; kullanıcı
-yalnızca adres ve token girer. Terminal'de `kubectl` için `.local/kube/<ortam>.yaml` üretilir ve seçilen
+yalnızca adres ve token girer. İstemci webterminal'deki gibidir: REST API'ye doğrudan `Bearer` token ile gidilir,
+**sistem / ortam proxy'si kullanılmaz** (Windows'taki kurumsal proxy cluster bağlantısını bozuyordu); gerekirse
+`K8S_PROXY` verilir. Adreste port yoksa `K8S_DEFAULT_PORT` (5443, CCE) eklenir. Exec, `pods/exec` ucuna WebSocket ile. Terminal'de `kubectl` için `.local/kube/<ortam>.yaml` üretilir ve seçilen
 ortamda `KUBECONFIG` ayarlanır. Uygulama → iş yükü eşlemesi: elle tanımlı → `<ad>.` ile başlayan Ingress'in
 servisi → `<ad>` adlı deployment → `app=<ad>` etiketi. Servis hesabının yetkisi olmayan kaynaklar "yetki yok"
 gösterilir, sayfanın kalanı çalışır. Prod'da komut çalıştırmak onay ister ve geçmişe yazılır.
@@ -219,6 +223,7 @@ Geliştirme ortamında (Linux) doğrulanamayan, ilk kurulumda bakılması gereke
 | DevOps "Sertifika doğrulanamadı" | Kurum CA'sı Windows deposunda mı? Son çare: "Sertifikayı doğrula" kapalı |
 | Notlar / Freeze / Sohbet kapalı | Ayarlar → PostgreSQL → Bağlantıyı sına; durum çubuğundaki "PostgreSQL" yazısının ipucu |
 | Sohbette kişi var ama "bağlantı kurulamadı" | Güvenlik duvarı / VLAN; Ayarlar → Sohbet → Yayınlanacak IP |
+| K8s "ulaşılamadı / zaman aşımı" | Adres ve port (CCE: 5443); proxy gerekiyorsa Ayarlar → Kubernetes → Proxy. Bağlantıyı sına mesajı denenen adresi yazar |
 | K8s "yetki yok (403)" | Servis hesabının RBAC yetkisi (pods, pods/log, pods/exec, ingresses, services, events) |
 | Uygulama açılmıyor | `.local/logs/devrunner.log`, `.local/logs/baslatma_hatasi.log`; `python app.py` ile konsollu açın |
 

@@ -49,7 +49,7 @@ class Page(ui.Page):
         self.view.setOpenExternalLinks(True)
         rl.addWidget(self.view, 1)
         self.input = QLineEdit()
-        self.input.setPlaceholderText("Mesaj yazın, Enter ile gönderin")
+        self.input.setPlaceholderText("Mesaj gönder…  (Enter)")
         self.input.returnPressed.connect(self.send)
         self.send_btn = ui.button("Gönder", "primary", self.send)
         rl.addLayout(ui.hbox(self.input, self.send_btn))
@@ -158,17 +158,26 @@ class Page(ui.Page):
 
     # ---- mesajlar
     def _render_messages(self) -> None:
+        """Discord tarzı: aynı kişinin art arda (5 dk içinde) mesajları tek başlık altında toplanır."""
         chat = self.chat()
         msgs = chat.history.get(self.room, []) if chat else []
         c = theme.palette()
-        html = []
+        name_colors = [c["accent"], c["accent2"], c["info"], c["success"], c["warning"], c["danger"]]
+        html, last = [], None
         for m in msgs[-500:]:
-            when = datetime.fromtimestamp(m["ts"]).strftime("%H:%M")
-            color = c["accent"] if m["mine"] else c["info"]
-            html.append(f"<p style='margin:4px 0'><span style='color:{c['muted']}'>{when}</span> "
-                        f"<b style='color:{color}'>{esc(m['name'])}</b>: {esc(m['text']).replace(chr(10), '<br>')}</p>")
+            when = datetime.fromtimestamp(m["ts"])
+            text = esc(m["text"]).replace(chr(10), "<br>")
+            if last and last["from"] == m["from"] and m["ts"] - last["ts"] < 300:
+                html.append(f"<div style='margin:0 0 2px 0'>{text}</div>")
+            else:
+                color = c["heading"] if m["mine"] else name_colors[sum(map(ord, m["from"])) % len(name_colors)]
+                html.append(f"<div style='margin-top:14px'><b style='color:{color}; font-size:11pt'>{esc(m['name'])}</b>"
+                            f"&nbsp;&nbsp;<span style='color:{c['muted']}; font-size:8pt'>{when:%H:%M}</span></div>"
+                            f"<div style='margin:2px 0'>{text}</div>")
+            last = m
         if not msgs:
-            html.append(f"<p style='color:{c['muted']}'>Henüz mesaj yok.</p>")
+            room = "Genel" if self.room == GENERAL else "bu sohbet"
+            html.append(f"<p style='color:{c['muted']}'>#{esc(room)} için henüz mesaj yok. İlk mesajı siz yazın 👋</p>")
         self.view.setHtml("".join(html))
         bar = self.view.verticalScrollBar()
         bar.setValue(bar.maximum())

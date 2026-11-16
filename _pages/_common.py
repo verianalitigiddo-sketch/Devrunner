@@ -152,6 +152,7 @@ class Page(QWidget):
     def __init__(self, title: str, subtitle: str = ""):
         super().__init__()
         self.setObjectName("PageRoot")
+        self.setAttribute(Qt.WA_StyledBackground, True)   # QSS arka planı ve köşe yarıçapı çizilsin
         root = QVBoxLayout(self)
         root.setContentsMargins(18, 14, 18, 12)
         root.setSpacing(10)

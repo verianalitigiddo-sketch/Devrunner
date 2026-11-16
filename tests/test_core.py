@@ -48,7 +48,7 @@ def test_every_theme_has_all_keys_and_builds():
         assert set(pal) == keys, name
         qss = theme.build_qss(name)
         assert "$" not in qss, f"{name}: doldurulmamış yer tutucu"
-    assert [k for k, _ in theme.names()] == ["light", "dark", "cyberpunk", "dracula", "nineties"]
+    assert [k for k, _ in theme.names()] == ["modern", "light", "dark", "cyberpunk", "dracula", "nineties", "bios"]
 
 
 def test_naming_rules():

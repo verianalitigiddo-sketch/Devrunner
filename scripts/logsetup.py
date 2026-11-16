@@ -45,7 +45,7 @@ def setup_logging(level=logging.INFO) -> None:
         stream.setFormatter(fmt)
         stream.addFilter(RedactFilter())
         root.addHandler(stream)
-    for noisy in ("urllib3", "kubernetes"):
+    for noisy in ("urllib3", "websockets"):
         logging.getLogger(noisy).setLevel(logging.WARNING)
 
 

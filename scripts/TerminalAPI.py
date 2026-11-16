@@ -118,11 +118,18 @@ def build_command(shell: Shell, command: str) -> tuple[str, list[str], str | Non
 
 def process_env(kube_env: str = "") -> dict[str, str]:
     """Alt süreç ortamı. KUBECONFIG seçili cluster'a ayarlanır. Uygulama secret'ları EKLENMEZ."""
-    from scripts.K8sAPI import kubeconfig_path
+    from urllib.parse import urlsplit
+
+    from scripts.K8sAPI import env_settings, kubeconfig_path
     env = dict(os.environ)
     env["PYTHONIOENCODING"] = "utf-8"
     if kube_env:
         env["KUBECONFIG"] = str(kubeconfig_path(kube_env))
+        # kubectl ortamdaki HTTPS_PROXY'yi kullanır; cluster iç ağda olduğu için proxy'yi atla
+        host = urlsplit(env_settings(kube_env)[0]).hostname
+        if host:
+            for key in ("NO_PROXY", "no_proxy"):
+                env[key] = ",".join(x for x in (env.get(key, ""), host) if x)
     return env
 
 

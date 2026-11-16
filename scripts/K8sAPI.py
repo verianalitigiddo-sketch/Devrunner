@@ -2,13 +2,17 @@
 Kubernetes: deployment, pod, log, olay ve tek seferlik komut (exec).
 
 Kubeconfig şablonu uygulamaya gömülüdür (KUBECONFIG_TEMPLATE); kullanıcı ortam başına yalnızca
-cluster adresini ve servis hesabı token'ını girer (Ayarlar → Kubernetes). Python istemcisi
-yapılandırmayı bellekten yükler; Terminal'de kubectl kullanılabilsin diye .local/kube/<ortam>.yaml
-de üretilir.
+cluster adresini ve servis hesabı token'ını girer (Ayarlar → Kubernetes). Terminal'de kubectl
+kullanılabilsin diye .local/kube/<ortam>.yaml de üretilir.
 
-Hiçbir ortam tanımlı değilse sample_data/k8s.json'dan yanıt verilir (demo). Gerçek nesneler
-sanitize_for_serialization ile API JSON'una (camelCase) çevrilir; demo verisi de aynı biçimdedir,
-böylece aynı ayrıştırma kodu çalışır.
+İSTEMCİ (webterminal/kube/client.py ile aynı yaklaşım): Kubernetes REST API'ye doğrudan istek,
+"Authorization: Bearer <token>". Sistem / ortam proxy'si KULLANILMAZ (trust_env=False): cluster iç
+ağdadır ve Windows'taki kurumsal proxy ayarı bağlantıyı bozar. Proxy gerekiyorsa K8S_PROXY ile
+verilir. Exec, pods/exec ucuna WebSocket (channel.k8s.io) ile yapılır. Adreste port yoksa
+K8S_DEFAULT_PORT (CCE: 5443) eklenir.
+
+Hiçbir ortam tanımlı değilse sample_data/k8s.json'dan yanıt verilir (demo). Gerçek yanıtlar ve demo
+verisi aynı API JSON biçimindedir; aynı ayrıştırma kodu çalışır.
 
 Servis hesabının yetkisi dar olabilir: 403 alınan kaynak K8sForbidden olarak döner, çağıran taraf
 o bölümü "yetki yok" gösterir. Bu dosya arayüz import etmez.
@@ -17,9 +21,14 @@ from __future__ import annotations
 
 import json
 import logging
+import ssl
 import sys
 import threading
 from dataclasses import dataclass, field
+from urllib.parse import quote, urlencode, urlsplit
+
+import requests
+import urllib3
 
 from scripts.apps import ENV_TITLES, AppRef
 from scripts.config import ENV, LOCAL_DIR, SAMPLE_DIR, redact
@@ -57,22 +66,38 @@ class K8sError(Exception):
 
 
 class K8sForbidden(K8sError):
-    pass
+    """Servis hesabının o kaynağa yetkisi yok (403): yalnızca ilgili bölüm boş kalır."""
+
+
+class K8sAuthError(K8sError):
+    """Token geçersiz / süresi dolmuş (401)."""
 
 
 def normalize_server(value: str) -> str:
+    """ip, ip:port, host veya https://… -> https://host:port (port yoksa K8S_DEFAULT_PORT)."""
     value = value.strip().rstrip("/")
     if not value:
         return ""
     if "://" not in value:
         value = "https://" + value
+    parts = urlsplit(value)
+    if parts.port is None and parts.hostname:
+        port = ENV.K8S_DEFAULT_PORT
+        if port:
+            value = f"{parts.scheme}://{parts.netloc}:{port}{parts.path}"
     return value
+
+
+def clean_token(value: str) -> str:
+    """Kopyala-yapıştırda gelen boşluk, satır sonu ve 'Bearer ' önekini temizler."""
+    value = "".join(value.split())
+    return value[len("Bearer"):] if value.lower().startswith("bearer") and len(value) > 40 else value
 
 
 def env_settings(env: str) -> tuple[str, str]:
     key = env.upper()
     from scripts import config
-    return normalize_server(config.get(f"K8S_{key}_SERVER")), config.get(f"K8S_{key}_TOKEN")
+    return normalize_server(config.get(f"K8S_{key}_SERVER")), clean_token(config.get(f"K8S_{key}_TOKEN"))
 
 
 def configured_envs() -> list[str]:
@@ -126,84 +151,163 @@ def write_kubeconfigs() -> list[str]:
 
 
 # ---------------------------------------------------------------------------
-# İstemciler
+# İstemci (webterminal/kube/client.py yaklaşımı: doğrudan REST, proxy yok)
 # ---------------------------------------------------------------------------
-_clients: dict[str, object] = {}
+_sessions: dict[str, requests.Session] = {}
 _lock = threading.Lock()
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+WS_SUBPROTOCOLS = ["v5.channel.k8s.io", "v4.channel.k8s.io", "channel.k8s.io"]
 
 
 def reset_clients() -> None:
     with _lock:
-        _clients.clear()
+        for s in _sessions.values():
+            s.close()
+        _sessions.clear()
 
 
-def _api_client(env: str):
-    from kubernetes import config as kconfig
+def _proxies() -> dict | None:
+    proxy = ENV.K8S_PROXY
+    return {"http": proxy, "https": proxy} if proxy else None
+
+
+def _session(env: str) -> requests.Session:
     with _lock:
-        if env not in _clients:
-            if env not in configured_envs():
+        if env not in _sessions:
+            server, token = env_settings(env)
+            if not (server and token):
                 raise K8sError(f"{ENV_TITLES.get(env, env)} cluster'ı tanımlı değil (Ayarlar → Kubernetes).")
-            client = kconfig.new_client_from_config_dict(kubeconfig_dict(env))
-            client.configuration.verify_ssl = False
-            _clients[env] = client
-        return _clients[env]
+            s = requests.Session()
+            s.trust_env = False          # ortam / Windows sistem proxy'si KULLANILMAZ
+            s.verify = False             # kubeconfig: insecure-skip-tls-verify: true
+            s.proxies = _proxies() or {}
+            s.headers.update({"Authorization": f"Bearer {token}", "Accept": "application/json",
+                              "User-Agent": "Devrunner"})
+            _sessions[env] = s
+        return _sessions[env]
+
+
+def _api_message(r: requests.Response) -> str:
+    try:
+        return (r.json().get("message") or r.text)[:300]
+    except ValueError:
+        return (r.text or r.reason or "")[:300]
 
 
 class Cluster:
     """Bir ortamın cluster'ı. Tüm yanıtlar API JSON sözlüğüdür."""
 
     def __init__(self, env: str):
-        from kubernetes import client as k
         self.env = env
         self.ns = ENV.K8S_NAMESPACE
-        self.api = _api_client(env)
-        self.core = k.CoreV1Api(self.api)
-        self.apps = k.AppsV1Api(self.api)
-        self.net = k.NetworkingV1Api(self.api)
+        self.server, self._token = env_settings(env)
+        self.session = _session(env)
 
-    def _call(self, kind: str, fn, *args, **kwargs):
-        from kubernetes.client.exceptions import ApiException
+    def _get(self, kind: str, path: str, params: dict | None = None, text: bool = False):
+        url = self.server + path
         try:
-            result = fn(*args, _request_timeout=TIMEOUT, **kwargs)
-        except ApiException as e:
-            if e.status in (401, 403):
-                raise K8sForbidden(f"{kind}: servis hesabının yetkisi yok ({e.status}).") from None
-            raise K8sError(f"{kind}: {e.status} {e.reason}") from None
-        except Exception as e:   # noqa: BLE001 - ağ hataları
-            raise K8sError(f"{kind}: cluster'a ulaşılamadı ({type(e).__name__}: {redact(str(e))[:200]})") from None
-        return result if isinstance(result, str) else self.api.sanitize_for_serialization(result)
+            r = self.session.get(url, params=params, timeout=TIMEOUT)
+        except requests.exceptions.ConnectTimeout:
+            raise K8sError(f"{kind}: {self.server} zaman aşımı. Adres / port doğru mu? (proxy kullanılmıyor"
+                           f"{', K8S_PROXY: ' + ENV.K8S_PROXY if ENV.K8S_PROXY else ''})") from None
+        except requests.exceptions.SSLError as e:
+            raise K8sError(f"{kind}: TLS hatası ({self.server}): {redact(str(e))[:200]}") from None
+        except requests.exceptions.ConnectionError as e:
+            reason = "bağlantı reddedildi" if "refused" in str(e).lower() else "ulaşılamadı"
+            raise K8sError(f"{kind}: {self.server} {reason}. Adres / port doğru mu? (proxy kullanılmıyor)") from None
+        except requests.RequestException as e:
+            raise K8sError(f"{kind}: {type(e).__name__}: {redact(str(e))[:200]}") from None
+        if r.status_code == 401:
+            raise K8sAuthError(f"{kind}: token geçersiz ya da süresi dolmuş (401).")
+        if r.status_code == 403:
+            raise K8sForbidden(f"{kind}: servis hesabının yetkisi yok (403). {_api_message(r)}")
+        if r.status_code == 404:
+            raise K8sError(f"{kind}: bulunamadı (404). {_api_message(r)}")
+        if r.status_code >= 400:
+            raise K8sError(f"{kind}: {r.status_code} {_api_message(r)}")
+        return r.text if text else r.json()
+
+    def _ns(self, tail: str, group: str = "api/v1") -> str:
+        return f"/{group}/namespaces/{quote(self.ns)}/{tail}"
+
+    def version(self) -> dict:
+        return self._get("Sürüm", "/version")
 
     def deployments(self) -> list[dict]:
-        return self._call("Deployment", self.apps.list_namespaced_deployment, self.ns).get("items", [])
+        return self._get("Deployment", self._ns("deployments", "apis/apps/v1")).get("items", [])
 
     def pods(self, selector: str = "") -> list[dict]:
-        return self._call("Pod", self.core.list_namespaced_pod, self.ns, label_selector=selector or None).get("items", [])
+        params = {"labelSelector": selector} if selector else None
+        return self._get("Pod", self._ns("pods"), params).get("items", [])
 
     def ingresses(self) -> list[dict]:
-        return self._call("Ingress", self.net.list_namespaced_ingress, self.ns).get("items", [])
+        return self._get("Ingress", self._ns("ingresses", "apis/networking.k8s.io/v1")).get("items", [])
 
     def services(self) -> list[dict]:
-        return self._call("Service", self.core.list_namespaced_service, self.ns).get("items", [])
+        return self._get("Service", self._ns("services")).get("items", [])
 
     def events(self, pod: str) -> list[dict]:
-        return self._call("Event", self.core.list_namespaced_event, self.ns,
-                          field_selector=f"involvedObject.name={pod}").get("items", [])
+        return self._get("Event", self._ns("events"),
+                         {"fieldSelector": f"involvedObject.name={pod}"}).get("items", [])
 
     def logs(self, pod: str, container: str, lines: int, previous: bool = False) -> str:
-        return self._call("Log", self.core.read_namespaced_pod_log, pod, self.ns, container=container,
-                          tail_lines=lines, previous=previous, timestamps=False)
+        params = {"container": container, "tailLines": lines}
+        if previous:
+            params["previous"] = "true"
+        return self._get("Log", self._ns(f"pods/{quote(pod)}/log"), params, text=True)
 
-    def exec(self, pod: str, container: str, command: str) -> str:
-        from kubernetes.stream import stream
+    def exec(self, pod: str, container: str, command: str, timeout: float = 60) -> str:
+        """pods/exec ucuna WebSocket (kubectl exec karşılığı, TTY'siz). stdout + stderr döner."""
+        from websockets.exceptions import ConnectionClosed, InvalidStatus, WebSocketException
+        from websockets.sync.client import connect
+
+        query = [("stdout", "true"), ("stderr", "true"), ("container", container),
+                 ("command", "/bin/sh"), ("command", "-c"), ("command", command)]
+        base = self.server.replace("https://", "wss://", 1).replace("http://", "ws://", 1)
+        url = base + self._ns(f"pods/{quote(pod)}/exec") + "?" + urlencode(query)
+        ctx = None
+        if url.startswith("wss://"):
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+        out: list[str] = []
+        status: dict = {}
         try:
-            return stream(self.core.connect_get_namespaced_pod_exec, pod, self.ns, container=container,
-                          command=["/bin/sh", "-c", command], stderr=True, stdout=True, stdin=False, tty=False,
-                          _request_timeout=60)
-        except Exception as e:   # noqa: BLE001
-            status = getattr(e, "status", None)
-            if status in (401, 403):
-                raise K8sForbidden("Komut çalıştırma (pods/exec) yetkisi yok.") from None
-            raise K8sError(f"Komut çalıştırılamadı: {redact(str(e))[:300]}") from None
+            with connect(url, ssl=ctx, subprotocols=WS_SUBPROTOCOLS, proxy=ENV.K8S_PROXY or None,
+                         additional_headers={"Authorization": f"Bearer {self._token}"},
+                         user_agent_header="Devrunner", open_timeout=TIMEOUT, close_timeout=3,
+                         max_size=None) as ws:
+                while True:
+                    try:
+                        msg = ws.recv(timeout=timeout)
+                    except TimeoutError:
+                        out.append(f"\n[{timeout:.0f} sn içinde bitmedi; bağlantı kapatıldı]")
+                        break
+                    if isinstance(msg, str) or not msg:
+                        continue
+                    channel, payload = msg[0], msg[1:]
+                    if channel in (1, 2):
+                        out.append(payload.decode("utf-8", "replace"))
+                    elif channel == 3:
+                        try:
+                            status = json.loads(payload.decode("utf-8", "replace"))
+                        except ValueError:
+                            status = {"message": payload.decode("utf-8", "replace")}
+        except ConnectionClosed:
+            pass
+        except InvalidStatus as e:
+            code = e.response.status_code
+            if code == 401:
+                raise K8sAuthError("Komut: token geçersiz (401).") from None
+            if code == 403:
+                raise K8sForbidden("Komut çalıştırma (pods/exec) yetkisi yok (403).") from None
+            raise K8sError(f"Komut reddedildi ({code}).") from None
+        except (OSError, WebSocketException) as e:
+            raise K8sError(f"Komut: cluster'a bağlanılamadı ({type(e).__name__}: {redact(str(e))[:200]})") from None
+        text = "".join(out)
+        if status and status.get("status") != "Success":
+            text += f"\n[{status.get('message') or 'komut hata ile bitti'}]"
+        return text
 
 
 class DemoCluster(Cluster):
@@ -413,11 +517,21 @@ def test_connection() -> tuple[bool, str]:
         return False, "Hiçbir ortam için cluster adresi ve token girilmemiş: örnek veri gösteriliyor."
     reset_clients()
     lines, ok = [], True
+    proxy = f"proxy: {ENV.K8S_PROXY}" if ENV.K8S_PROXY else "proxy yok"
     for env in envs:
+        c = None
         try:
-            n = len(Cluster(env).pods())
-            lines.append(f"{ENV_TITLES[env]}: bağlandı, '{ENV.K8S_NAMESPACE}' içinde {n} pod.")
+            c = Cluster(env)
+            try:
+                ver = c.version().get("gitVersion", "?")
+            except K8sAuthError:
+                raise
+            except K8sError:
+                ver = "?"              # /version kapalı olabilir; pod listesi asıl sınav
+            n = len(c.pods())
+            lines.append(f"{ENV_TITLES[env]}: bağlandı ({c.server}, Kubernetes {ver}, {proxy}). "
+                         f"'{ENV.K8S_NAMESPACE}' içinde {n} pod.")
         except K8sError as e:
             ok = False
-            lines.append(f"{ENV_TITLES[env]}: {e}")
+            lines.append(f"{ENV_TITLES[env]} ({c.server if c else env_settings(env)[0]}): {e}")
     return ok, "\n".join(lines)

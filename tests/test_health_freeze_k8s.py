@@ -138,3 +138,66 @@ def test_terminal_helpers(tmp_path):
 def test_detect_shells_runs():
     shells = TerminalAPI.detect_shells()
     assert shells and all(s.path for s in shells)
+
+
+def test_server_default_port_and_token_cleanup():
+    assert K8sAPI.normalize_server("10.1.2.3") == "https://10.1.2.3:5443"
+    assert K8sAPI.normalize_server("https://10.1.2.3:6443/") == "https://10.1.2.3:6443"
+    config.save({"K8S_DEFAULT_PORT": ""})
+    assert K8sAPI.normalize_server("10.1.2.3") == "https://10.1.2.3"
+    assert K8sAPI.clean_token(" eyJhbGc\n.abc.def \n") == "eyJhbGc.abc.def"
+
+
+def test_cluster_client_ignores_env_proxy_and_maps_errors(monkeypatch):
+    import responses as rsps
+    monkeypatch.setenv("HTTPS_PROXY", "http://kurumsal-proxy.invalid:8080")
+    config.save({"K8S_DEV_SERVER": "10.9.9.9", "K8S_DEV_TOKEN": "tok-abc"})
+    K8sAPI.reset_clients()
+    base = "https://10.9.9.9:5443/api/v1/namespaces/verianalitigi"
+    with rsps.RequestsMock() as m:
+        m.get(base + "/pods", json={"items": [{"metadata": {"name": "p1"}}]})
+        m.get(base + "/services", status=403, json={"message": "forbidden"})
+        c = K8sAPI.Cluster("dev")
+        assert c.session.trust_env is False and not c.session.proxies
+        assert [p["metadata"]["name"] for p in c.pods()] == ["p1"]
+        assert m.calls[0].request.headers["Authorization"] == "Bearer tok-abc"
+        import pytest
+        with pytest.raises(K8sAPI.K8sForbidden):
+            c.services()
+    with rsps.RequestsMock() as m:
+        m.get(base + "/pods", status=401)
+        import pytest
+        with pytest.raises(K8sAPI.K8sAuthError):
+            K8sAPI.Cluster("dev").pods()
+    env = TerminalAPI.process_env("dev")
+    assert "10.9.9.9" in env["NO_PROXY"]
+    K8sAPI.reset_clients()
+
+
+def test_exec_over_websocket(monkeypatch):
+    """Sahte pods/exec ucu: alt protokol, Bearer token, kanal 1/2 çıktısı ve kanal 3 durumu."""
+    import json as _json
+    from websockets.sync.server import serve
+
+    seen = {}
+
+    def handler(ws):
+        seen["path"] = ws.request.path
+        seen["auth"] = ws.request.headers.get("Authorization")
+        seen["proto"] = ws.subprotocol
+        ws.send(b"\x01merhaba\n")
+        ws.send(b"\x02uyari\n")
+        ws.send(b"\x03" + _json.dumps({"status": "Success"}).encode())
+        ws.close()
+
+    with serve(handler, "127.0.0.1", 0, subprotocols=K8sAPI.WS_SUBPROTOCOLS) as server:
+        port = server.socket.getsockname()[1]
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        config.save({"K8S_DEV_SERVER": f"http://127.0.0.1:{port}", "K8S_DEV_TOKEN": "tok-ws"})
+        K8sAPI.reset_clients()
+        out = K8sAPI.Cluster("dev").exec("pod-1", "app", "echo merhaba")
+        server.shutdown()
+    assert out == "merhaba\nuyari\n"
+    assert seen["auth"] == "Bearer tok-ws" and seen["proto"] == "v5.channel.k8s.io"
+    assert "/namespaces/verianalitigi/pods/pod-1/exec" in seen["path"] and "container=app" in seen["path"]
+    K8sAPI.reset_clients()

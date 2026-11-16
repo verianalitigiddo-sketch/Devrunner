@@ -16,7 +16,7 @@ import logging
 import sys
 from dataclasses import dataclass
 
-from PySide6.QtCore import QObject, QSettings, Qt, QTimer, Signal
+from PySide6.QtCore import QObject, QSettings, QSize, Qt, QTimer, Signal
 from PySide6.QtGui import QAction, QColor, QFont, QIcon, QPainter, QPixmap
 from PySide6.QtNetwork import QLocalServer, QLocalSocket
 from PySide6.QtWidgets import (QApplication, QComboBox, QFrame, QHBoxLayout, QInputDialog, QLabel, QLineEdit,
@@ -108,26 +108,22 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(app_icon())
         self.resize(1360, 860)
 
+        # Yerleşim (Discord gibi): solda tam boy simge şeridi | sağda başlık + sayfa kartı
         central = QWidget()
-        root = QVBoxLayout(central)
-        root.setContentsMargins(0, 0, 0, 0)
-        root.setSpacing(0)
-        root.addWidget(self._build_header())
-
-        split = QHBoxLayout()
-        split.setContentsMargins(0, 0, 0, 0)
-        split.setSpacing(0)
-        self.nav = QListWidget()
-        self.nav.setObjectName("NavList")
-        self.nav.setFixedWidth(200)
-        for pd in PAGES:
-            it = QListWidgetItem(f"{pd.glyph}   {pd.title}")
-            it.setData(Qt.UserRole, pd.id)
-            self.nav.addItem(it)
+        central.setObjectName("Central")
+        outer = QHBoxLayout(central)
+        outer.setContentsMargins(0, 0, 0, 0)
+        outer.setSpacing(0)
+        outer.addWidget(self._build_rail())
+        right = QVBoxLayout()
+        right.setContentsMargins(0, 0, 0, 0)
+        right.setSpacing(0)
+        right.addWidget(self._build_header())
         self.stack = QStackedWidget()
-        split.addWidget(self.nav)
-        split.addWidget(self.stack, 1)
-        root.addLayout(split, 1)
+        self.stack.setObjectName("Stack")
+        self.stack.setContentsMargins(10, 4, 12, 10)
+        right.addWidget(self.stack, 1)
+        outer.addLayout(right, 1)
         self.setCentralWidget(central)
         self._build_statusbar()
         self._build_tray()
@@ -152,6 +148,37 @@ class MainWindow(QMainWindow):
         self._status_timer = QTimer(self)
         self._status_timer.timeout.connect(self._update_status)
         self._status_timer.start(30_000)
+
+    # ------------------------------------------------------------------ simge şeridi
+    def _build_rail(self) -> QWidget:
+        rail = QFrame()
+        rail.setObjectName("Rail")
+        rail.setFixedWidth(76)
+        lay = QVBoxLayout(rail)
+        lay.setContentsMargins(0, 10, 0, 10)
+        lay.setSpacing(8)
+        logo = QLabel("D")
+        logo.setObjectName("RailLogo")
+        logo.setToolTip(f"{APP_NAME} v{__version__}")
+        lay.addWidget(logo, 0, Qt.AlignHCenter)
+        line = QFrame()
+        line.setObjectName("Separator")
+        line.setFixedWidth(32)
+        lay.addWidget(line, 0, Qt.AlignHCenter)
+        self.nav = QListWidget()
+        self.nav.setObjectName("NavList")
+        self.nav.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.nav.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.nav.setCursor(Qt.PointingHandCursor)
+        for pd in PAGES:
+            it = QListWidgetItem(pd.glyph)
+            it.setData(Qt.UserRole, pd.id)
+            it.setToolTip(pd.title)
+            it.setTextAlignment(Qt.AlignCenter)
+            it.setSizeHint(QSize(76, 54))
+            self.nav.addItem(it)
+        lay.addWidget(self.nav, 1)
+        return rail
 
     # ------------------------------------------------------------------ başlık
     def _build_header(self) -> QWidget:
@@ -182,6 +209,11 @@ class MainWindow(QMainWindow):
         self.online_label.mousePressEvent = lambda _e: self.open_page("chat")
         lay.addWidget(self.online_label)
 
+        self.avatar = QLabel()
+        self.avatar.setObjectName("Avatar")
+        self.avatar.setCursor(Qt.PointingHandCursor)
+        self.avatar.mousePressEvent = lambda _e: self.open_page("settings")
+        lay.addWidget(self.avatar)
         self.user_label = QLabel()
         self.user_label.setObjectName("HeaderUser")
         self.user_label.setCursor(Qt.PointingHandCursor)
@@ -199,7 +231,9 @@ class MainWindow(QMainWindow):
 
     def _update_user(self) -> None:
         u = user_mod.current_user()
-        self.user_label.setText(f"● {u.name}")
+        self.user_label.setText(u.name)
+        self.avatar.setText("".join(w[0] for w in u.name.split()[:2]).upper() or "?")
+        self.avatar.setToolTip(u.name)
         self.user_label.setToolTip(f"Kullanıcı kimliği: {u.id}\nAdı değiştirmek için Ayarlar → Genel")
 
     def _change_theme(self) -> None:
@@ -423,6 +457,7 @@ def main(argv=None) -> int:
         log.info("Devrunner zaten açık; mevcut pencere öne getirildi.")
         return 0
 
+    theme.load_fonts()
     theme.apply(app, QSettings().value("ui/theme", theme.DEFAULT_THEME))
     user_mod.ensure_identity()
     if not ask_name():

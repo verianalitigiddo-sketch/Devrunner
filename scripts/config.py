@@ -107,12 +107,17 @@ SETTINGS: tuple[Group, ...] = (
 
     Group("k8s", "Kubernetes", (
         Setting("K8S_NAMESPACE", "Namespace", "verianalitigi"),
-        Setting("K8S_DEV_SERVER", "Dev cluster adresi", help="ip, ip:port veya https://… kabul edilir. Boşsa Dev kapalı."),
+        Setting("K8S_DEV_SERVER", "Dev cluster adresi",
+                help="ip, ip:port veya https://… kabul edilir; port yazılmazsa varsayılan port eklenir. Boşsa Dev kapalı."),
         Setting("K8S_DEV_TOKEN", "Dev token", secret=True),
         Setting("K8S_TEST_SERVER", "Test cluster adresi"),
         Setting("K8S_TEST_TOKEN", "Test token", secret=True),
         Setting("K8S_PROD_SERVER", "Prod cluster adresi"),
         Setting("K8S_PROD_TOKEN", "Prod token", secret=True),
+        Setting("K8S_DEFAULT_PORT", "Varsayılan API portu", "5443",
+                help="Adreste port yoksa kullanılır (CCE API sunucusu: 5443)."),
+        Setting("K8S_PROXY", "Proxy (isteğe bağlı)",
+                help="Boşsa cluster'a doğrudan gidilir; sistem proxy'si KULLANILMAZ. Gerekirse http://proxy:port"),
         Setting("K8S_LOG_LINES", "Log satır sayısı", "300", kind="int"),
     ), "Kubeconfig uygulamaya gömülüdür; yalnızca cluster adresi ve servis hesabı token'ı girilir. "
        "Hiçbir ortam girilmemişse örnek veri gösterilir.", testable=True),

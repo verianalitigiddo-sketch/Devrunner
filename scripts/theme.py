@@ -5,19 +5,33 @@ Temalar: tek QSS şablonu (themes/base.qss) + her tema için bir palet.
     theme.color("success")      # durum renkleri koda gömülmez, buradan alınır
 
 Yeni tema eklemek: PALETTES'e bir sözlük ekleyin (tüm anahtarlar dolu olmalı; testler kontrol eder).
-Yeni widget stili eklemek: yalnızca base.qss'e yazın, beş temada birden geçerli olur.
+Yeni widget stili eklemek: yalnızca base.qss'e yazın, tüm temalarda birden geçerli olur.
+"modern" teması webterminal'in (kubeterm) görünümünden alındı: koyu cam yüzeyler, mor → camgöbeği.
 """
 from __future__ import annotations
 
 from string import Template
 
-from PySide6.QtGui import QColor, QFont, QPalette
+from PySide6.QtGui import QColor, QFont, QFontDatabase, QPalette
 
-from scripts.config import THEME_DIR
+from scripts.config import ASSET_DIR, THEME_DIR
 
 _FLAT = {"radius": "6px", "border_w": "1px", "button_border": "", "input_border": "", "panel_border": ""}
 
 PALETTES: dict[str, dict[str, str]] = {
+    "modern": {
+        "title": "Modern",
+        "bg": "#07080d", "surface": "#10121b", "surface_alt": "#1a1d2a", "input_bg": "#0b0d14",
+        "text": "#eceef5", "muted": "#81869c", "border": "#20233a",
+        "accent": "#8b5cf6", "accent_hover": "#a78bfa", "accent2": "#22d3ee", "accent_text": "#ffffff",
+        "success": "#34d399", "warning": "#fbbf24", "danger": "#fb7185", "info": "#60a5fa", "missing": "#5f6478",
+        "header_bg": "#07080d", "header_text": "#eceef5", "rail_bg": "#05060a", "heading": "#ffffff",
+        "selection": "#2b2350", "selection_text": "#ffffff",
+        "font": "Inter, 'Segoe UI Variable Text', 'Segoe UI', 'Noto Sans', Arial",
+        "mono": "'JetBrains Mono', 'Cascadia Mono', Consolas, monospace",
+        "heading_font": "Inter, 'Segoe UI Variable Display', 'Segoe UI', Arial", "font_size": "10pt",
+        **_FLAT, "radius": "10px", "rail_radius": "16px",
+    },
     "light": {
         "title": "Aydınlık",
         "bg": "#f5f6f8", "surface": "#ffffff", "surface_alt": "#eef0f3", "input_bg": "#ffffff",
@@ -82,9 +96,44 @@ PALETTES: dict[str, dict[str, str]] = {
         "input_border": "border: 2px inset #808080; border-right-color: #ffffff; border-bottom-color: #ffffff;",
         "panel_border": "border: 2px groove #ffffff;",
     },
+    "bios": {
+        "title": "BIOS",
+        "bg": "#0000aa", "surface": "#0000aa", "surface_alt": "#0000aa", "input_bg": "#000080",
+        "text": "#aaaaaa", "muted": "#8a8ad8", "border": "#aaaaaa",
+        "accent": "#ffff55", "accent_hover": "#ffffff", "accent2": "#ffff55", "accent_text": "#0000aa",
+        "success": "#55ff55", "warning": "#ffff55", "danger": "#ff5555", "info": "#55ffff", "missing": "#8a8ad8",
+        "header_bg": "#0000aa", "header_text": "#ffffff", "rail_bg": "#0000aa", "heading": "#ffff55",
+        "selection": "#aa0000", "selection_text": "#ffffff",
+        "font": "'Perfect DOS VGA 437', 'Px437 IBM VGA8', Fixedsys, 'JetBrains Mono', 'Courier New', monospace",
+        "mono": "'Perfect DOS VGA 437', 'Px437 IBM VGA8', Fixedsys, 'JetBrains Mono', 'Courier New', monospace",
+        "heading_font": "'Perfect DOS VGA 437', 'Px437 IBM VGA8', Fixedsys, 'JetBrains Mono', monospace",
+        "font_size": "10pt", "radius": "0px", "border_w": "2px", "rail_radius": "0px",
+        # Award BIOS: çift çizgili kutular, düz düğmeler
+        "button_border": "border: 1px solid #aaaaaa;",
+        "input_border": "border: 1px solid #aaaaaa;",
+        "panel_border": "border: 3px double #aaaaaa;",
+    },
 }
 
-DEFAULT_THEME = "dark"
+# Sonradan eklenen anahtarlar: eski temaların görünümü değişmesin diye varsayılandan türetilir
+for _p in PALETTES.values():
+    _p.setdefault("accent2", _p["accent_hover"])
+    _p.setdefault("rail_bg", _p["header_bg"])
+    _p.setdefault("heading", _p["text"])
+    _p.setdefault("rail_radius", "0px" if _p["radius"] == "0px" else "16px")
+
+DEFAULT_THEME = "modern"
+FONT_DIR = ASSET_DIR / "fonts"
+
+
+def load_fonts() -> list[str]:
+    """assets/fonts altındaki yazı tiplerini (Inter, JetBrains Mono) uygulamaya yükler; ağ gerekmez."""
+    families: set[str] = set()
+    for path in sorted(FONT_DIR.glob("*.woff2")) + sorted(FONT_DIR.glob("*.ttf")):
+        fid = QFontDatabase.addApplicationFont(str(path))
+        if fid >= 0:
+            families.update(QFontDatabase.applicationFontFamilies(fid))
+    return sorted(families)
 _current = DEFAULT_THEME
 
 STATE_ROLE = {   # sağlık / pipeline / pod durumu -> palet rengi
@@ -154,8 +203,8 @@ def apply(app, name: str) -> None:
     _current = name if name in PALETTES else DEFAULT_THEME
     p = palette()
     app.setPalette(_qpalette(p))
-    family = p["font"].split(",")[0].strip("' ")
-    font = QFont(family)
+    font = QFont()
+    font.setFamilies([f.strip().strip("'") for f in p["font"].split(",")])   # ilk bulunan kullanılır
     font.setPointSizeF(float(p["font_size"].rstrip("pt")))
     app.setFont(font)
     app.setStyleSheet(build_qss(_current))
