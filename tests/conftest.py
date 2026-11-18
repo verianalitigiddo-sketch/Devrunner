@@ -2,7 +2,8 @@
 Testler ekransız çalışır (QT_QPA_PLATFORM=offscreen) ve geliştiricinin .env'ine dokunmaz
 (DEVRUNNER_PROFILE=pytest + geçici .env).
 
-Veritabanı testleri için yerel PostgreSQL:  TEST_DB_HOST=localhost TEST_DB=app TEST_DB_USER=app TEST_DB_PW=app
+Veritabanı testleri için yerel PostgreSQL (AYRI bir test veritabanı; her testte sıfırlanır):
+    TEST_DB_HOST=localhost TEST_DB=app_test TEST_DB_USER=app TEST_DB_PW=app
 Tanımlı değilse veritabanı testleri atlanır.
 """
 import os
@@ -51,8 +52,12 @@ def db():
     from scripts import database
     config.save(settings)
     database.reset_engine()
+    # Yalnızca TEST veritabanında: her test temiz şemayla başlar. Yer imi tabloları (web çatalı,
+    # scripts/BookmarkAPI.py) dr_bilge_requests'e bağlı olduğu için önce onlar kaldırılır.
+    bookmark_tables = ["dr_bilge_stars", "dr_bilge_bookmarks", "dr_bilge_folders"]
     with database.transaction() as conn:
-        conn.execute(database.text("DROP TABLE IF EXISTS " + ", ".join(t.name for t in database.metadata.sorted_tables)))
+        conn.execute(database.text("DROP TABLE IF EXISTS " + ", ".join(
+            bookmark_tables + [t.name for t in database.metadata.sorted_tables])))
     database.init_db()
     yield database
     database.reset_engine()
