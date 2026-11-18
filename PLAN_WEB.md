@@ -5,6 +5,20 @@ Temel: Devrunner `main` (commit `4d5e134`). Önce o deponun `README.md` ve `PLAN
 okuyun; bu belge yalnızca farkları anlatır. Kararlar gerekçeleriyle yazıldı; emin olunamayan noktalar
 [Bölüm 12](#12-açık-sorular-ve-varsayımlar)'de varsayım olarak işaretli.
 
+## 0. Durum (uygulandı)
+
+Plan `DevrunnerWeb` dalında uygulandı; Faz 0–6'nın tamamı. Ayrıntı ve kullanım: [README.md](README.md).
+Uygulama sırasında plandan bilinçli sapmalar:
+
+| Konu | Plan | Uygulanan | Gerekçe |
+|---|---|---|---|
+| Kapanış | Kabuk `POST /api/shutdown` gönderir | Kabuk backend'in **stdin**'ini kapatır; backend kendini düzgün kapatır (`/api/shutdown` geliştirme için duruyor) | Kabuk çerezsiz HTTP isteği atmak zorunda kalmaz; kabuk çökse de aynı yol çalışır |
+| CSP | `default-src 'self'` | Ek olarak `style-src 'self' 'unsafe-inline'`, `img-src 'self' data:` | Satır içi `style` yalnızca görünüm (genişlik, renk); betik hâlâ yalnız `'self'` |
+| Klasör adı sorma | htmx `hx-prompt` | Kendi küçük JS'imiz (`data-prompt-post`), değer form gövdesinde | `hx-prompt` değeri HTTP başlığında gönderir; başlıklar Türkçe karakter taşıyamaz |
+| Olay adları | Bus sinyalleri | Ek: `pods_updated`, `terminal_output`, `terminal_done` | Pod özeti arka planda hesaplanır; terminal çıktısı SSE ile akar |
+| Test veritabanı | — | `TEST_DB=app_test` (her testte sıfırlanır) | Geliştirme veritabanıyla karışmasın |
+| `tests/conftest.py` | — | `db` fikstürü yer imi tablolarını da sıfırlar | Yabancı anahtarlar sıfırlamayı engelliyordu |
+
 ## 1. Amaç
 
 Aynı uygulama, aynı backend; arayüz değişiyor:

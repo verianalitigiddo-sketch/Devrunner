@@ -1,185 +1,152 @@
-# Devrunner
+# Devrunner Web
 
-Veri Analitiği geliştiricileri için modüler masaüstü uygulaması (PySide6). Tek pencereden:
+Devrunner'ın web arayüzlü çatalı: **aynı backend** (`scripts/`, Devrunner `main` ile birebir), arayüz
+ise yerel bir **Flask** sunucusunun ürettiği HTML ve bunu gösteren bir **PyQt6** tarayıcı penceresi.
+Kullanıcı için hâlâ çift tıklanan bir masaüstü uygulamasıdır. Tasarım ve gerekçeler: [PLAN_WEB.md](PLAN_WEB.md).
 
-| Modül | Ne yapar | Nereden |
-|---|---|---|
-| **Uygulamalar** | Tüm `DDDB.Iz.Anm.*` uygulamalarının özeti: CI/CD, Dev/Test/Prod erişimi, pod, not, talep, değişiklik geçmişi | tüm modüller (`relations.py`) |
-| **DevOps** | Repolar, `…_Container-CI` / `…_Container-CD` pipeline'ları, build geçmişi, düşen adım ve log'u, commit'ler, açık PR'lar | Azure DevOps (kişisel PAT) |
-| **Kubernetes** | Deployment, pod, container log'u (canlı izleme), olaylar, tek seferlik komut | gömülü kubeconfig + kullanıcının cluster adresi / token'ı |
-| **Erişilebilirlik** | Uygulama adreslerine düzenli HTTP isteği, yanıt süresi, son 1 saatin grafiği, durum değişince bildirim | `https://<ad>.dk8s… / tk8s… / pk8s…` |
-| **Terminal** | nslookup, curl, ping, kubectl; hangi kabuğun çalıştığı (ad, sürüm, yol) her zaman görünür | PowerShell / CMD / bash |
-| **Notlar** | Ekibin ortak notları, genel veya uygulamaya bağlı, Markdown | ortak PostgreSQL |
-| **Bilge Talepleri** | Bilge'de açılan taleplerin başlık + link listesi | ortak PostgreSQL |
-| **Freeze** | Freeze dönemleri; içindeysek sağ üstte **FREEZE** rozeti | ortak PostgreSQL |
-| **Sohbet** | Çevrimiçi geliştiricilerle P2P, uçtan uca şifreli sohbet | eşler PostgreSQL'den bulunur, mesajlar doğrudan gider |
-| **Ayarlar** | Tüm ayarlar ve secret'lar; `.env`'e yazılır, yeniden başlatma gerekmez | `scripts/config.py` |
+| Modül | Ne yapar |
+|---|---|
+| **Uygulamalar** | Tüm `DDDB.Iz.Anm.*` uygulamaları: CI/CD, Dev/Test/Prod erişimi, pod, not ve talep sayısı; ayrıntıda pipeline, adresler, K8s, notlar, yer imleri, değişiklik geçmişi |
+| **DevOps** | CI/CD geçmişi, düşen adım ve log'u (indirilebilir), commit'ler, açık PR'lar; freeze'de CD uyarısı |
+| **Kubernetes** | Ortam / uygulama seçimi, pod ve deployment, log (canlı izleme), olaylar, komut; Prod komutu sunucuda onay ister |
+| **Erişilebilirlik** | Uygulama × ortam tablosu, son 1 saatin süre grafiği, sessize alma, ekip geneli olay geçmişi |
+| **Terminal** | nslookup / curl / ping / kubectl; etkin kabuğun adı, sürümü ve yolu her zaman görünür; çıktı canlı akar |
+| **Notlar** | Ortak notlar, Markdown (güvenli), not geçmişi |
+| **Bilge** | Talep linkleri **yer imi** gibi: klasörler, etiketler, kişisel ★ çubuğu, hızlı ekleme, toplu yapıştırma, sürükle-bırak, Edge/Chrome yer imi dosyası içe/dışa aktarma |
+| **Freeze** | Ay takvimi, dönem ekle / sil; içindeysek sağ üstte **FREEZE** rozeti |
+| **Sohbet** | Çevrimiçi geliştiricilerle P2P, uçtan uca şifreli sohbet (Discord tarzı) |
+| **Ayarlar** | Tüm ayarlar `.env`'e; secret'lar asla geri gösterilmez |
 
-Temalar: **Modern** (varsayılan, webterminal görünümü), **Aydınlık, Karanlık, Cyberpunk, Dracula, 90'lar, BIOS**
-(başlık çubuğundan anında değişir). Yerleşim Discord'dan esinlenir: solda simge şeridi, sağda yuvarlak köşeli sayfa kartı.
-Inter ve JetBrains Mono yazı tipleri `assets/fonts/` altında gelir (SIL OFL), ağ gerekmez.
-
-LDAP girişi yoktur: ilk açılışta adınız sorulur. Servislere kendi PAT'iniz ve token'ınızla erişilir.
-
-Servis ayarı girilmemiş modüller **örnek veriyle** açılır (sayfada "örnek veri" şeridi görünür). Böylece
-banka ağına erişim olmadan da uygulama denenebilir ve geliştirilebilir.
+Görünüm: Discord tarzı yerleşim (simge şeridi, başlık çubuğu, sayfa kartı), **Ctrl+K komut paleti**, canlı
+bildirim balonları ve sistem bildirimleri, sayfa geçiş animasyonları, iskelet yükleyiciler. Yedi tema korunur ve
+anında değişir: **Modern** (varsayılan), Aydınlık, Karanlık, Cyberpunk, Dracula, 90'lar, BIOS. Modern / Karanlık /
+Dracula / Cyberpunk cam yüzey ve hareket kullanır; 90'lar ve BIOS bilinçli olarak düz kalır. Yazı tipleri (Inter,
+JetBrains Mono) ve htmx depoda gelir: ağ / CDN gerekmez.
 
 ## Kurulum (Windows)
 
 Python 3.10 veya üzeri gerekir.
 
-1. Depoyu klonlayın.
+1. Depoyu klonlayın, `DevrunnerWeb` dalına geçin.
 2. `kur.bat`'a çift tıklayın: `.venv` oluşturur, bağımlılıkları kurar, masaüstüne **Devrunner** kısayolu koyar.
-3. Kısayolla açın (`pythonw Devrunner.pyw`, konsol penceresi açılmaz). İlk açılışta adınızı yazın.
-4. **Ayarlar** sayfasında doldurun ve her grupta **Bağlantıyı sına**'ya basın:
-   * **Azure DevOps**: Personal Access Token. Adres (`https://devops.halkbank.com.tr/DefaultCollection`) ve proje (`Halkbank`) hazır gelir.
-     PAT yetkileri: *Code (Read)*, *Build (Read)*, *Release (Read)*.
-   * **PostgreSQL**: ortak veritabanı (notlar, talepler, freeze, sohbet buluşması, değişiklik geçmişi).
-   * **Kubernetes**: Dev / Test / Prod için cluster adresi (`ip`, `ip:port` veya `https://…`) ve servis hesabı token'ı.
-     Boş bırakılan ortam kapalıdır.
+3. Kısayolla açın. İlk açılışta adınızı yazın; sonra **Ayarlar**'dan Azure DevOps PAT'i, PostgreSQL ve
+   Kubernetes bilgilerini girip her grupta **Bağlantıyı sına**'ya basın (ayrıntılar masaüstü sürümle aynı).
 
-Elle kurulum veya Linux / macOS:
+Pencereyi kapatmak tepsiye küçültür (yoklama ve sohbet sürer); çıkmak için tepsi simgesi → **Çıkış**.
+Aynı makinede ikinci kopya: `Devrunner.pyw --profile ikinci`. Hata ayıklama: `python Devrunner.pyw --debug`
+(F12 geliştirici araçları). VDI / ekran kartı sürücüsü sorunlu makinelerde: `DEVRUNNER_DISABLE_GPU=1`.
 
-```bash
-python -m venv .venv
-```
+### Geliştirme (normal tarayıcıda)
 
 ```bash
-.venv/bin/pip install -r requirements.txt        # Windows: .venv\Scripts\pip ...
+python -m web.server --dev
 ```
 
-```bash
-.venv/bin/python app.py                          # konsollu açılış (hata ayıklama)
-```
+Konsola yazılan `http://127.0.0.1:<port>/auth?t=…` adresini tarayıcıda açın. Kabuk olmadan her şey çalışır
+(tepsi hariç). Şablon değişikliği için sunucuyu yeniden başlatın.
 
-Açılış hataları ve log: `.local/logs/devrunner.log`. Uygulama zaten açıksa ikinci açılış mevcut pencereyi öne getirir.
-Pencereyi kapatmak uygulamayı sistem tepsisine küçültür (yoklama ve sohbet sürer); çıkmak için tepsi simgesi → **Çıkış**.
-
-### Aynı makinede ikinci kopya (ör. sohbeti denemek)
-
-```bash
-.venv/bin/python Devrunner.pyw --profile ikinci
-```
-
-Bu kopya `.env.ikinci` ve `.local/ikinci/` kullanır (ayrı kimlik, ayrı sohbet anahtarı). Sohbet portunu
-ikinci kopyada farklı verin (Ayarlar → Sohbet) ya da boş port otomatik seçilir.
-
-## Ayarlar ve secret'lar
-
-Tüm ayarlar `scripts/config.py` içindeki `SETTINGS` listesinde tanımlıdır; değerler uygulama klasöründeki
-`.env` dosyasına yazılır (`.gitignore`'da, depoya girmez). Ayarlar ekranı bu listeden kendiliğinden oluşur.
-Tam liste ve açıklamalar: `.env.example`.
-
-* İşletim sistemi ortamında tanımlı bir değişken `.env`'deki değeri ezer (ekranda belirtilir).
-* PAT, token ve parolalar log'a, hata pencerelerine ve değişiklik geçmişine yazılmaz (`config.redact`).
-  Geçmişe yalnızca "DEVOPS_PAT değişti" bilgisi düşer.
-* Pencere konumu, tema, terminal geçmişi gibi kişisel arayüz durumu `QSettings`'te tutulur.
-
-## Adlandırma kuralları
+## Mimari: iki süreç
 
 ```
-repo            DDDB.Iz.Anm.<ad>
-CI pipeline     DDDB.Iz.Anm.<ad>_Container-CI
-CD pipeline     DDDB.Iz.Anm.<ad>_Container-CD       (YAML pipeline yoksa klasik Release tanımlarında aranır)
-Dev             https://<ad>.dk8s.gentest.hqtest.local/
-Test            https://<ad>.tk8s.gentest.hqtest.local/
-Prod            https://<ad>.pk8s.gen.halkbank.local/
+Devrunner.pyw ─► KABUK (PyQt6: shell/)                    BACKEND (PySide6 QtCore + Flask: web/, scripts/)
+                 QWebEngineView ── HTTP + SSE ──► 127.0.0.1:<rastgele port>
+                 tepsi, bildirim, tek kopya          ana iş parçacığı: QCoreApplication + relations.start_services()
+                 backend'i başlatır / kapatır        Flask iş parçacığı: web/pages/* → scripts/*API.py, relations.py
 ```
 
-Önek, sonekler ve adres kalıpları ayardır. Adreste ad küçük harfe çevrilir. Kurala uymayan bir uygulamanın
-adresi veya Kubernetes iş yükü adı **Uygulamalar → adres / eşleme düzenle** ile ezilebilir (ekip geneli,
-`dr_app_overrides`). Öneki `DDDB.Iz.Anm.` olan **tüm** repolar listelenir; pipeline'ı olmayanlar
-"pipeline yok" olarak görünür.
-
-## Mimari
+Backend PySide6 kullanır, tarayıcı PyQt6'dır; iki Qt bağlamı aynı süreçte çakıştığı için ayrı süreçlerde
+çalışırlar. `shell/` yalnızca PyQt6, `web/` ve `scripts/` yalnızca PySide6 import eder (testle denetlenir).
+Kabuk backend'i `python -m web.server` ile başlatır, oturum belirtecini **stdin**'den verir, `READY <port>`
+satırını bekler. Kabuk kapanınca stdin kapanır ve backend kendini düzgün kapatır (sohbet çevrimiçi kaydı silinir).
 
 ```
-Devrunner/
-├── Devrunner.pyw          Konsolsuz giriş: --profile, başlatma hatasını pencereyle gösterir
-├── app.py                 Ana pencere, PAGES listesi, başlık çubuğu (tema, çevrimiçi, kullanıcı, FREEZE), tepsi
-├── _pages/                Arayüz: her dosya soldaki menüde bir sayfa (Page sınıfı)
-│   ├── _common.py         Ortak parçalar: Page iskeleti, Banner, tablo, ui.on(...)
-│   └── devops.py, k8s.py, health.py, terminal.py, notes.py, bilge.py, freeze.py, chat.py, home.py, settings.py
-├── scripts/               Arka uç (widget import etmez, arayüzsüz test edilir)
-│   ├── config.py          Tüm ayarlar: tanım, okuma, .env'e yazma, secret arındırma
-│   ├── relations.py       Modüller arası TEK bağlantı noktası (iç API) + arka plan servisleri
-│   ├── bus.py             Uygulama geneli olaylar (Qt sinyalleri)
-│   ├── worker.py          run_async / Poller: ağ ve veritabanı işleri arayüzü dondurmaz
-│   ├── database.py        PostgreSQL: tablolar, şema sürümü, audit()
-│   ├── apps.py            Uygulama kataloğu ve adlandırma kuralları
-│   ├── theme.py           Beş tema paleti; themes/base.qss tek şablon
-│   ├── user.py, fmt.py, logsetup.py
-│   └── DevopsAPI.py, K8sAPI.py, HealthAPI.py, TerminalAPI.py, NotesAPI.py, BilgeAPI.py, FreezeAPI.py, ChatAPI.py
-├── sample_data/           Demo verisi (gerçek API yanıt biçiminde); tools/make_sample_data.py üretir
-├── tests/                 pytest + pytest-qt (ekransız)
-└── .local/                Üretilen dosyalar: log, kubeconfig, sohbet anahtarı, katalog önbelleği (.gitignore)
+DevrunnerWeb/
+├── Devrunner.pyw        konsolsuz giriş -> shell.main
+├── shell/               KABUK (PyQt6): main.py, backend_process.py, window.py
+├── web/                 ARAYÜZ SUNUCUSU (Flask)
+│   ├── server.py        backend süreci girişi
+│   ├── app.py           create_app(), PAGES listesi, ortak rotalar, hata kartı
+│   ├── qt_bridge.py     qt.call(): Flask iş parçacığından Qt ana iş parçacığına güvenli çağrı
+│   ├── events.py        scripts.bus olayları -> Server-Sent Events
+│   ├── security.py      belirteç çerezi, Host / Origin denetimi, CSP
+│   ├── terminal_runner.py, ui_state.py (.local/ui.json), theme_css.py (PALETTES -> CSS), common.py
+│   ├── pages/           her sayfa bir blueprint
+│   ├── templates/       Jinja2 (tam sayfa + htmx parçaları)
+│   └── static/          css/app.css, js/ (app, terminal, bilge, chat), vendor/htmx
+├── scripts/             DONDURULMUŞ backend (Devrunner main) + BookmarkAPI.py (yeni)
+└── tests/               backend testleri (değişmedi) + test_web*.py + test_bookmarks.py
 ```
 
-**Kurallar**
+### Kurallar
 
-* Bir modül başka bir modülün sayfasını veya API'sini **import etmez**. Başka modülden bilgi / eylem
-  gerekiyorsa `scripts/relations.py`'ye fonksiyon eklenir; olaylar `scripts/bus.py` üzerinden yayınlanır.
-  İlişkilerin tamamı `relations.py`'nin başındaki tabloda.
-* Ağ ve veritabanı çağrıları arayüz iş parçacığında yapılmaz: `run_async(fn, on_done=..., owner=self)`.
-* Sayfalar global olaylara `ui.on(bus.olay, self, fn)` ile bağlanır (sayfa silinirse bağlantı kopar).
-* `os.getenv` yalnızca `config.py`'de. Renk koda yazılmaz: `theme.color("success")` / palet anahtarı.
-* SQL'de değerler yalnızca `:isim` parametresiyle. Veritabanına yazan her fonksiyon aynı transaction'da
-  `audit()` çağırır; ortak kayıtlar silinmez, `deleted_at` ile işaretlenir.
-* Şema değişiklikleri yalnızca ekleyicidir (yeni tablo / nullable kolon): farklı sürümler aynı veritabanını
-  kullanır. Yeni adım: `database.SCHEMA_VERSION`'ı artırıp `MIGRATIONS`'a fonksiyon ekleyin.
+* **Backend dondurulmuştur.** `scripts/` altındaki mevcut dosyalar değiştirilmez; yalnızca yeni dosya eklenir
+  (`tests/test_web_infra.py::test_backend_is_frozen`). Böylece Devrunner'daki backend düzeltmeleri çakışmasız alınır.
+  Web'e özgü tercihler (tema, son sayfa, terminal geçmişi) `.local/ui.json`'da, `.env`'de değil.
+* **İş parçacıkları.** Flask istekleri ayrı iş parçacıklarında çalışır. Engelleyen düz backend çağrıları
+  (`DevopsAPI`, `K8sAPI`, `NotesAPI`…) doğrudan çağrılır. Qt nesnesine dokunan her şey (`relations.save_settings`,
+  `refresh_*`, sohbet, `bus` olayları) `qt.call(fn, …)` ile ana iş parçacığına taşınır. `web/` içinde
+  `worker.run_async` kullanılmaz.
+* **Canlı güncelleme.** Tarayıcıda tek `EventSource`; her olay `body` üzerinde aynı adlı DOM olayı olur.
+  Parçalar `hx-trigger="health_updated from:body"` ile kendini yeniler. Olay verisine secret yazılmaz.
+* **Sayfalar** yalnızca kendi API'lerini ve `relations.py`'yi kullanır (testle denetlenir).
+* **Arayüz** sunucuda üretilen HTML + htmx; derleme zinciri (npm) yok. Renk CSS'e yazılmaz: tema değişkenleri.
 
-### Yeni modül eklemek
+### Yeni sayfa eklemek
 
-1. `scripts/XAPI.py` (arka uç, Qt widget'sız) ve `_pages/x.py` (`class Page(_common.Page)`) yazın.
-2. `app.py` → `PAGES` listesine `PageDef("x", "Başlık", "_pages.x", "⚑")` ekleyin.
-3. Ayarı varsa `scripts/config.py` → `SETTINGS`'e bir `Group` ekleyin; sonra `python -m scripts.config`
-   ile `.env.example`'ı güncelleyin. Ayarlar ekranı kendiliğinden oluşur.
-4. Diğer modüllerle ilişkisini `scripts/relations.py`'ye yazın (gerekirse `bus.py`'ye olay ekleyin).
+1. Gerekirse `scripts/XAPI.py` (yeni dosya; mevcut backend'e dokunmayın).
+2. `web/pages/x.py`: `bp = Blueprint("x", __name__)`, `@bp.get("/")` sayfası, parçalar.
+3. `web/templates/x/page.html` (`{% extends "base.html" %}`) ve parçalar; ortak makrolar `_macros.html`.
+4. `web/app.py` → `PAGES` listesine `PageDef("x", "Başlık", "web.pages.x", "simge")`; simgeler `templates/_icons.html`.
+5. Durum değiştiren istekler `hx-post` ile (htmx `X-Devrunner` başlığını ekler); yanıta `trigger(…)` ile olay /
+   bildirim balonu eklenir.
 
-Bir modülün içe aktarma / kurulum hatası uygulamayı düşürmez: o sayfanın yerine hata kartı gösterilir.
+İçe aktarılamayan sayfa uygulamayı düşürmez; yerinde hata kartı gösterilir.
 
-## Ortak veri (PostgreSQL, `dr_` önekli tablolar)
+### Yukarı akıştan (Devrunner) backend güncellemesi almak
 
-| Tablo | İçerik |
-|---|---|
-| `dr_meta` | `schema_version` |
-| `dr_users` | kullanıcı kimliği, görünen ad, işletim sistemi kullanıcısı, makine, sürüm |
-| `dr_presence` | sohbet için IP, port, açık anahtar, `last_seen` |
-| `dr_notes` | notlar (uygulama / ortam bağlantılı, sabitleme, yumuşak silme) |
-| `dr_bilge_requests` | Bilge talepleri (başlık, adres, uygulama, durum) |
-| `dr_freezes` | freeze dönemleri (başlangıç ve bitiş dahil) |
-| `dr_health_events` | erişilebilirlik durum değişimleri (birden çok istemci aynı değişimi tek kayıt yazar) |
-| `dr_app_overrides` | uygulama bazında adres / iş yükü ezmesi, sessize alınan ortamlar |
-| `dr_audit_log` | tüm değişikliklerin geçmişi (kim, ne zaman, hangi modül, hangi uygulama) |
+Backend dosyaları değişmediği için Devrunner `main`'deki `scripts/` değişiklikleri doğrudan alınabilir
+(ör. `git checkout <devrunner-main> -- scripts/` sonra testler). `tests/test_web_infra.py`'deki `BASE_COMMIT`
+yeni taban commit'e güncellenir. `BookmarkAPI.py` yalnızca bu çatalda vardır.
 
-Tablolar ilk bağlantıda kendiliğinden oluşur. Veritabanı kullanıcısının yetkisini `dr_*` tablolarıyla sınırlayın.
+## Güvenlik modeli
 
-## Modül ayrıntıları
+Yerel HTTP sunucusu komut çalıştırabilen ve secret yazabilen bir arayüzü açar; masaüstü sürümde olmayan iki
+tehdit doğar: makinedeki başka bir süreç veya tarayıcıdaki bir web sayfası sunucuya istek atabilir; arayüz HTML
+olduğu için ekip arkadaşından / uzak sistemden gelen metin betik olarak çalışabilir. Önlemler (hepsi testli):
 
-**Erişilebilirlik.** HTTP GET (ICMP değil), başlık gelince süre ölçülür, gövde indirilmez, sertifika doğrulanmaz.
-Durumlar: *Çalışıyor* (yanıt var), *Yavaş* (eşik üstü), *Kapalı* (5xx, zaman aşımı, bağlantı reddi),
-*Yok* (DNS çözülmüyor ve hiç yanıt alınmamış: o ortama aktarılmamış sayılır, bildirim üretmez). Durum iki
-ardışık yoklamada aynı çıkınca değişmiş sayılır. Sistem proxy'si varsayılan olarak kullanılmaz.
+* Yalnızca `127.0.0.1`, rastgele port. Her açılışta yeni belirteç; `/auth?t=…` doğru belirteçle `HttpOnly`,
+  `SameSite=Strict` çerez kurar (çerezde belirtecin kendisi değil HMAC'i). `/static`, `/fonts`, `/theme.css` dışında
+  **her** istek çerez ister. Erişim log'u kapalı (adres belirteç içerir).
+* `Host` başlığı yalnızca `127.0.0.1:<port>` / `localhost:<port>` (DNS rebinding). Durum değiştiren istekler:
+  `Origin` kendi kökenimiz olmalı ve `X-Devrunner: 1` başlığı bulunmalı. CORS başlığı yok.
+* CSP: `script-src 'self'`, `object-src 'none'`, `frame-ancestors 'none'`; satır içi betik ve `eval` yok
+  (htmx `allowEval=false`). Satır içi `style` izinlidir (yalnızca görünüm).
+* Dışarıdan gelen her metin kaçışlanır (Jinja2 otomatik kaçışlama, JS'te yalnızca `textContent`). Notlarda Markdown
+  ham HTML kapalı, bağlantılar yalnızca `http/https`. Yer imlerinde yalnızca `http/https` adres.
+* Secret'lar hiçbir HTML / JSON / SSE / log'a girmez; Ayarlar "kayıtlı / boş" gösterir, boş gönderim değiştirmez.
+* Prod'da K8s komutu sunucuda **tek kullanımlık, komuta bağlı** onay belirteci ister; doğrudan API çağrısıyla atlanamaz.
+* "Terminalde dene" bağlantıları komutu kutuya yazar, **çalıştırmaz**.
+* Kabuk yalnızca kendi kökenini yükler; diğer her adres (Bilge, DevOps…) sistem tarayıcısında açılır. Bildirim izni
+  yalnızca kendi kökenimize verilir.
 
-**Kubernetes.** Kubeconfig şablonu (`K8sAPI.KUBECONFIG_TEMPLATE`) verilen yapıyla birebir aynıdır; kullanıcı
-yalnızca adres ve token girer. İstemci webterminal'deki gibidir: REST API'ye doğrudan `Bearer` token ile gidilir,
-**sistem / ortam proxy'si kullanılmaz** (Windows'taki kurumsal proxy cluster bağlantısını bozuyordu); gerekirse
-`K8S_PROXY` verilir. Adreste port yoksa `K8S_DEFAULT_PORT` (5443, CCE) eklenir. Exec, `pods/exec` ucuna WebSocket ile. Terminal'de `kubectl` için `.local/kube/<ortam>.yaml` üretilir ve seçilen
-ortamda `KUBECONFIG` ayarlanır. Uygulama → iş yükü eşlemesi: elle tanımlı → `<ad>.` ile başlayan Ingress'in
-servisi → `<ad>` adlı deployment → `app=<ad>` etiketi. Servis hesabının yetkisi olmayan kaynaklar "yetki yok"
-gösterilir, sayfanın kalanı çalışır. Prod'da komut çalıştırmak onay ister ve geçmişe yazılır.
+## Bilge yer imleri
 
-**Terminal.** Her komut ayrı süreçte çalışır (kalıcı oturum yok); `cd` uygulama tarafından izlenir. Çıktı
-UTF-8'e sabitlenir. Windows PowerShell 5.1'de `curl` yazılırsa `curl.exe` önerilir. **Durdur** komutu alt
-süreçleriyle birlikte sonlandırır. Komutlar veritabanına yazılmaz (içlerinde secret olabilir).
+Linkin kendisi `dr_bilge_requests`'te kalır ve `BilgeAPI` ile yazılır; masaüstü sürüm aynı talepleri görür
+(web'de klasöre konmamış talepler "Klasörsüz"de). Düzen yan tablolardadır (`scripts/BookmarkAPI.py`):
 
-**Sohbet.** Ayrıntılı tasarım `scripts/ChatAPI.py`'nin başında. Özet: eşler PostgreSQL'deki `dr_presence`
-üzerinden buluşur; mesajlar doğrudan TCP ile gider; kalıcı X25519 anahtarlarıyla kimliği doğrulanmış geçici
-anahtar değişimi + `Box` (XSalsa20-Poly1305); ilk görülen anahtar yerelde sabitlenir, değişirse uyarı verilir
-ve bağlantı kurulmaz. Geçmiş yalnızca oturum boyunca tutulur.
+| Tablo | İçerik | Kapsam |
+|---|---|---|
+| `dr_bilge_folders` | iç içe klasörler, sıra, yumuşak silme | ekip geneli |
+| `dr_bilge_bookmarks` | talep → klasör, sıra, etiketler | ekip geneli |
+| `dr_bilge_stars` | kişisel yıldızlar | kişisel |
 
-**Freeze.** Bugün bir dönemin içindeysek sağ üstte **❄ FREEZE**, `FREEZE_WARN_DAYS` içinde başlayacaksa
-"Freeze N gün sonra" rozeti. DevOps'ta CD sekmesi ve Kubernetes'te Prod işlemleri uyarı gösterir.
+Tablolar ilk kullanımda kendiliğinden oluşur; `dr_meta`'ya kendi anahtarını (`bookmarks_schema`) yazar,
+`schema_version`'a dokunmaz (masaüstü sürüm uyarı vermez). Klasör silmek talep silmez; içindekiler üst klasöre taşınır.
+
+Kullanım: adresi hızlı ekleme kutusuna yapıştırıp Enter (birden çok satır yapıştırınca toplu ekleme açılır);
+kartları sürükleyip soldaki klasöre bırakın (klasör görünümünde sürükleyerek sıralayın); ★ ile kişisel yer imi
+çubuğuna ekleyin; durum hapına tıklayıp Açık → Devam ediyor → Kapandı. **İçe aktar**: Edge / Chrome → Yer işaretleri
+→ Dışa aktar dosyası (klasör yapısı korunur, yalnız http/https, kayıtlı adresler yeniden eklenmez).
 
 ## Testler
 
@@ -191,40 +158,39 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
-Veritabanı testleri yerel PostgreSQL ister (`docker compose up -d`), yoksa atlanır:
+Veritabanı testleri **ayrı bir test veritabanı** ister (her testte sıfırlanır), yoksa atlanır:
 
 ```bash
-TEST_DB_HOST=localhost TEST_DB=app TEST_DB_USER=app TEST_DB_PW=app pytest
+TEST_DB_HOST=localhost TEST_DB=app_test TEST_DB_USER=app TEST_DB_PW=app pytest
 ```
 
-Kapsam: DevOps ayrıştırma ve hata eşlemesi, adlandırma, `.env` okuma / yazma, secret arındırma, sağlık
-durum makinesi ve yerel HTTP sunucusuna yoklama, freeze sınır günleri, kubeconfig'in verilen şablonla
-aynılığı, K8s iş yükü eşlemesi, terminal (Türkçe çıktı, Durdur), sohbet kriptosu ve iki eşin loopback
-üzerinden şifreli mesajlaşması, notlar / talepler / freeze / ezmeler / geçmiş, tüm sayfaların beş temada
-açılması.
+Kapsam: backend testlerinin tamamı (değişmedi); web güvenliği (çerez, Host, Origin, başlık, CSP), tüm sayfa ve
+parçaların örnek veriyle açılması, secret'ın hiçbir yanıtta görünmemesi, hata metinlerinin arındırılması, Prod
+onayının atlanamaması, adresle gelen komutun çalışmaması, hata kartı, tema CSS'i; olay akışı, Qt köprüsü, terminal
+çalıştırıcısı (Türkçe çıktı, Durdur tüm alt süreçleri sonlandırır); yer imleri (klasör, sıra, etiket, kişisel yıldız,
+Netscape içe/dışa aktarma, XSS); mimari kurallar (dondurulmuş backend, Qt bağlamı yalıtımı, sayfa → API kuralı).
+
+Geliştirme sırasında ayrıca Playwright ile uçtan uca denendi: notta XSS denemesi, yer imi ekleme / yinelenen adres /
+Türkçe adlı klasör / sürükle-bırak / yıldız / dışa aktarma, freeze → başlık rozeti, terminal, tema değişimi ve
+hatırlanması, iki ayrı backend arasında sohbet (mesaj canlı ulaşır, HTML çalışmaz, okunmamış rozeti); kabuk
+(PyQt6) ekransız açılıp sayfayı yükledi ve kapanınca backend süreci de kapandı.
 
 ## Windows'ta elle denenecekler
 
-Geliştirme ortamında (Linux) doğrulanamayan, ilk kurulumda bakılması gerekenler:
+Geliştirme ortamında (Linux) doğrulanamayanlar:
 
-* `kur.bat` kısayolu ve `Devrunner.pyw` ile konsolsuz açılış; başlatma hatası penceresi.
-* Terminal: Windows PowerShell 5.1, PowerShell 7 ve CMD'de Türkçe karakterler; `curl.exe`, `nslookup`,
-  `Test-NetConnection`; **Durdur**'un `ping -t` gibi komutları sonlandırması; konsol penceresi açılmaması.
-* Windows Güvenlik Duvarı'nın sohbet portunu (varsayılan 47800) engelleyip engellemediği. İki taraftan biri
-  gelen bağlantıyı kabul edebiliyorsa sohbet çalışır; ikisi de edemiyorsa PLAN.md 5.9'daki yedek yol gerekir.
-* DevOps'a `truststore` ile (Windows sertifika deposu) TLS doğrulamalı bağlantı.
-* Tepsi bildirimleri.
+* `kur.bat` kısayolu, `pythonw` ile konsolsuz açılış, backend alt sürecinin konsol penceresi açmaması.
+* QtWebEngine'in banka masaüstlerinde / VDI'da açılması (gerekirse `DEVRUNNER_DISABLE_GPU=1`).
+* Tepsi bildirimleri (Notification API → tepsi), indirme penceresi, tarih alanlarının Türkçe biçimi.
+* Terminal: Windows PowerShell 5.1, PowerShell 7, CMD; Türkçe karakterler; Durdur'un `ping -t` gibi komutları sonlandırması.
+* Sohbet portunun Windows Güvenlik Duvarı'ndan geçmesi; DevOps'a `truststore` ile TLS doğrulamalı bağlantı.
+* İç PyPI aynasında `PyQt6`, `PyQt6-WebEngine`, `PySide6-Essentials`, `Flask`, `markdown-it-py` bulunması.
 
 ## Sorun giderme
 
 | Belirti | Bakılacak yer |
 |---|---|
-| DevOps "PAT geçersiz" | PAT süresi ve yetkileri (Code/Build/Release Read); Ayarlar → Azure DevOps → Bağlantıyı sına |
-| DevOps "Sertifika doğrulanamadı" | Kurum CA'sı Windows deposunda mı? Son çare: "Sertifikayı doğrula" kapalı |
-| Notlar / Freeze / Sohbet kapalı | Ayarlar → PostgreSQL → Bağlantıyı sına; durum çubuğundaki "PostgreSQL" yazısının ipucu |
-| Sohbette kişi var ama "bağlantı kurulamadı" | Güvenlik duvarı / VLAN; Ayarlar → Sohbet → Yayınlanacak IP |
-| K8s "ulaşılamadı / zaman aşımı" | Adres ve port (CCE: 5443); proxy gerekiyorsa Ayarlar → Kubernetes → Proxy. Bağlantıyı sına mesajı denenen adresi yazar |
-| K8s "yetki yok (403)" | Servis hesabının RBAC yetkisi (pods, pods/log, pods/exec, ingresses, services, events) |
-| Uygulama açılmıyor | `.local/logs/devrunner.log`, `.local/logs/baslatma_hatasi.log`; `python app.py` ile konsollu açın |
-
-Planlama belgesi ve açık sorular: [PLAN.md](PLAN.md).
+| "Devrunner çekirdeği başlatılamadı" | Ekrandaki son log satırları; `.local/logs/devrunner.log`, `.local/logs/shell.log` |
+| Pencere boş / beyaz | `DEVRUNNER_DISABLE_GPU=1`; `python Devrunner.pyw --debug` ile F12 konsolu |
+| "Oturum yok" | Uygulamayı kısayoldan açın (her açılışta yeni belirteç); tarayıcıda geliştiriyorsanız `--dev` adresini kullanın |
+| Diğerleri | Masaüstü sürümle aynı: Ayarlar → Bağlantıyı sına; durum çubuğundaki ipuçları |
