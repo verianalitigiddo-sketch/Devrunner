@@ -1,0 +1,13 @@
+<div class="badge-grid">
+{% for r in rows %}
+  <div class="badge-tile{% if r.earned %} earned{% endif %}{% if r.equipped %} equipped{% endif %}" title="{{ r.b.rule }}">
+    <div class="ico">{{ r.b.icon }}</div>
+    <div class="txt"><b>{{ r.b.name }}</b><span class="muted small">{{ r.b.rule }}</span>
+      {% if not r.earned %}<span class="bar"><i style="width: {{ (r.frac * 100)|round|int }}%"></i></span><span class="muted small">{{ r.text }}</span>{% endif %}</div>
+    {% if r.earned and c %}
+      <form hx-post="/aura/equip" hx-swap="none"><input type="hidden" name="badge" value="{{ '' if r.equipped else r.b.id }}">
+        <button class="btn sm{{ ' primary' if not r.equipped else ' ghost' }}" type="submit">{{ 'Çıkar' if r.equipped else 'Tak' }}</button></form>
+    {% endif %}
+  </div>
+{% endfor %}
+</div>

@@ -1,0 +1,9 @@
+{% import "_macros.html" as m %}
+{% if c %}{% include "aura/_card.html" %}
+{% else %}
+<div class="card">
+  {% call m.banner("warning", "Adınız DevOps kayıtlarındaki hiçbir adla eşleşmedi.") %}<a class="btn sm" href="/settings/?group=general">Ayarlar → Genel</a>{% endcall %}
+  <p class="muted">İlk açılışta girdiğiniz ad (<b>{{ me.name }}</b>) DevOps'taki görünen adınızla eşlenir; birim parantezi ve büyük / küçük harf fark etmez. Adınızı DevOps'taki gibi yazın.</p>
+  {% if suggestions %}<p class="small">Yakın adlar: {% for s in suggestions %}<span class="chip">{{ s }}</span> {% endfor %}</p>{% endif %}
+</div>
+{% endif %}

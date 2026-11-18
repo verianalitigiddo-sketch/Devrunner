@@ -1,0 +1,10 @@
+<div class="aura-sync">
+  {% if state.running %}<span class="state state-info"><i></i>eşitleniyor {{ state.done }}/{{ state.total or '?' }}</span>
+    <span hx-get="/aura/status" hx-trigger="every 2s" hx-target="#aura-status" hx-swap="morph:innerHTML"></span>
+  {% elif state.error %}<span class="state state-danger" title="{{ state.error }}"><i></i>eşitleme hatası</span>
+  {% elif last and last.at %}<span class="muted small" title="{{ last.by or '' }}">Son eşitleme {{ last.at|ago }}{% if last.by %} · {{ last.by }}{% endif %}</span>
+  {% elif mode != 'demo' %}<span class="muted small">Henüz eşitlenmedi</span>{% endif %}
+  {% if state.result and state.result.errors %}<span class="chip" title="{{ state.result.errors[:5]|join('\n') }}">{{ state.result.errors|length }} kapsam okunamadı</span>{% endif %}
+  {% if ignored %}<span class="chip" title="7 haneli kullanıcı kodu, tek sözcüklü ad veya sistem hesabıyla atılmış kayıtlar puanlanmaz">{{ ignored }} kayıt yok sayıldı</span>{% endif %}
+  <button class="btn sm" hx-post="/aura/sync" hx-target="#aura-status" hx-swap="morph:innerHTML"{% if state.running %} disabled{% endif %}>{{ icon('refresh') }} Şimdi eşitle</button>
+</div>

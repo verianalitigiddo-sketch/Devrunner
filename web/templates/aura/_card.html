@@ -1,0 +1,30 @@
+{# Kişi kartı. Girdi: c (PersonCard), mine (bool) #}
+{% set deg = (c.progress * 360)|round|int %}
+<div class="card aura-card{% if c.aura < 0 %} neg{% endif %}">
+  <div class="aura-head">
+    <div class="aura-ring" style="--deg: {{ deg }}deg" title="Sonraki seviyeye {{ c.next_at - c.aura if c.aura >= 0 else c.next_at - c.aura }} aura">
+      <span class="avatar lg">{{ c.name|initials }}</span><span class="lvl">Sv {{ c.level }}</span>
+    </div>
+    <div class="aura-who">
+      <div class="aura-name">{{ c.name }}</div>
+      <div class="aura-title">{% if c.featured %}{{ c.featured.icon }} {% endif %}{{ c.title }}{% if c.equipped in c.earned %} · <span class="muted">{{ BADGE_BY_ID[c.equipped].name }}</span>{% endif %}</div>
+      <div class="aura-points"><b>{{ "{:,}".format(c.aura).replace(",", ".") }}</b> aura <span class="muted small">· #{{ c.rank }} · sonraki seviye {{ "{:,}".format(c.next_at).replace(",", ".") }}</span></div>
+      <div class="aura-bar"><i style="width: {{ (c.progress * 100)|round|int }}%"></i></div>
+    </div>
+    {% if mine %}<form hx-post="/aura/hide" hx-swap="none" class="aura-hide"><input type="hidden" name="hidden" value="{{ '0' if c.hidden else '1' }}">
+      <button class="btn ghost sm" type="submit" title="Sıralamada başkalarına görünme">{{ 'Sıralamada göster' if c.hidden else 'Sıralamada gizle' }}</button></form>{% endif %}
+  </div>
+  <div class="aura-stats">
+    {% for k, name, what in STATS %}<div class="aura-stat" title="{{ name }}: {{ what }}"><span class="k">{{ k }}</span><span class="bar"><i style="width: {{ c.stats[k] }}%"></i></span><b>{{ c.stats[k] }}</b></div>{% endfor %}
+  </div>
+  <div class="aura-counts muted small">
+    {{ c.totals.commits }} commit · {{ c.totals.reverts }} revert · CI {{ c.totals.ci_ok }}/{{ c.totals.ci_total }} · CD {{ c.totals.cd_ok }}/{{ c.totals.cd_total }}{% if c.totals.prod_ok %} (Prod {{ c.totals.prod_ok }}){% endif %} · {{ c.totals.pr_merged }} PR · {{ c.totals.reviews }} review · {{ c.totals.active_days }} etkin gün
+  </div>
+  {% if c.earned %}<div class="aura-earned">{% for bid in c.earned %}{% set b = BADGE_BY_ID[bid] %}<span class="badge-pill" title="{{ b.rule }}">{{ b.icon }} {{ b.name }}</span>{% endfor %}</div>{% endif %}
+  <h3 class="aura-sub">Son olaylar</h3>
+  <ul class="aura-recent">
+    {% for s in c.recent %}<li><span class="pts {{ 'plus' if s.points > 0 else 'minus' if s.points < 0 else 'zero' }}">{{ '%+d'|format(s.points) }}</span>
+      <span>{{ s.fact.title() }}</span>{% if s.fact.app %}<span class="chip">{{ s.fact.app }}</span>{% endif %}<span class="muted small">{{ s.fact.at|ago }}</span></li>
+    {% else %}<li class="muted">Henüz olay yok.</li>{% endfor %}
+  </ul>
+</div>

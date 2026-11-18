@@ -147,8 +147,8 @@ def test_pages_do_not_import_other_modules_apis():
     core = {"relations", "config", "database", "fmt", "apps", "theme", "user", "BookmarkAPI"}
     own = {"home": set(), "devops": {"DevopsAPI"}, "k8s": {"K8sAPI"}, "health": {"HealthAPI"},
            "terminal": {"TerminalAPI", "K8sExecAPI"}, "notes": {"NotesAPI"}, "bilge": {"BilgeAPI"}, "freeze": {"FreezeAPI"},
-           "chat": {"ChatAPI"}, "settings": set()}
-    apis = {"DevopsAPI", "K8sAPI", "K8sExecAPI", "HealthAPI", "TerminalAPI", "NotesAPI", "BilgeAPI", "FreezeAPI", "ChatAPI"}
+           "chat": {"ChatAPI"}, "aura": {"AuraAPI"}, "settings": set()}
+    apis = {"AuraAPI", "DevopsAPI", "K8sAPI", "K8sExecAPI", "HealthAPI", "TerminalAPI", "NotesAPI", "BilgeAPI", "FreezeAPI", "ChatAPI"}
     for page, allowed in own.items():
         tree = ast.parse((ROOT / "web" / "pages" / f"{page}.py").read_text(encoding="utf-8"))
         used = set()

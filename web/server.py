@@ -121,12 +121,16 @@ def main(argv=None) -> int:
         threading.Thread(target=watch_stdin, name="stdin-izleyici", daemon=True).start()
 
     log.info("Backend %s portunda hazır (profil: %s)", port, PROFILE or "varsayılan")
+    from web import services
+    services.start_all(hub)                  # Aura eşitlemesi (AURA_SYNC_MIN)
     try:
         code = qapp.exec()
     except KeyboardInterrupt:
         code = 0
     log.info("Backend kapanıyor")
     hub.close()
+    from web import services
+    services.stop_all()
     runner.shutdown()
     terms = getattr(app.extensions["dr"], "terms", None)
     if terms is not None:

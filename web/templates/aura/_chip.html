@@ -1,0 +1,2 @@
+{# Aura rozeti. Girdi: b = aura_badge(name) sözlüğü. Başlıkta, sohbette, sıralamada aynı. #}
+{% if b %}<a class="aura-chip{% if b.negative %} neg{% endif %}" href="/aura/" title="{{ b.tip }}"><span class="lv">Sv {{ b.level }}</span><span class="t">{{ b.label }}</span></a>{% endif %}

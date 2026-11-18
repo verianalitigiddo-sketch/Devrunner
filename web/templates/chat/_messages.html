@@ -2,7 +2,7 @@
 {% for g in groups %}
 <div class="msg-group">
   <span class="avatar">{{ g.name|initials }}</span>
-  <div><span class="who" style="color: var(--{{ 'heading' if g.mine else colors[g.color] }})">{{ g.name }}</span><span class="when">{{ g.when }}</span>
+  <div><span class="who" style="color: var(--{{ 'heading' if g.mine else colors[g.color] }})">{{ g.name }}</span>{% if aura_on %}{% with b = aura_badge(g.name) %}{% include "aura/_chip.html" %}{% endwith %}{% endif %}<span class="when">{{ g.when }}</span>
     {% for t in g.texts %}<div class="msg-text">{{ t }}</div>{% endfor %}</div>
 </div>
 {% else %}<div class="empty">{{ icon('chat') }}<p>#{{ 'Genel' if room == 'general' else 'bu sohbet' }} için henüz mesaj yok. İlk mesajı siz yazın 👋</p></div>{% endfor %}

@@ -51,6 +51,7 @@
       </label>
       <div id="header-status" class="header-status"
            hx-get="/api/header" hx-swap="morph:innerHTML" hx-trigger="load, freeze_changed from:body, presence_changed from:body, db_state_changed from:body, settings_changed from:body, every 60s"></div>
+      {% if aura_on %}<span id="aura-slot" hx-get="/api/header?part=aura" hx-swap="morph:innerHTML" hx-trigger="aura_changed from:body">{% with b = aura_badge(me.name) %}{% include "aura/_chip.html" %}{% endwith %}</span>{% endif %}
       <a class="me" href="/settings/?group=general" title="Adınızı değiştirmek için Ayarlar → Genel">
         <span class="avatar">{{ me.name|initials }}</span><span class="me-name">{{ me.name }}</span>
       </a>

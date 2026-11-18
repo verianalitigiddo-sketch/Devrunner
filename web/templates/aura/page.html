@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m %}
+{% block title %}Aura{% endblock %}
+{% block crumb %}Aura{% endblock %}
+{% block content %}
+{% call m.page_head("Aura", "DevOps etkinliğinden puan: commit, PR, CI/CD. Başarılı build ve deploy'lar artı, başarısızlar ve revert'ler eksi. Kullanıcı kodlu (7 haneli) kayıtlar sayılmaz.", "trophy") %}
+  <div id="aura-status" hx-get="/aura/status" hx-trigger="load, aura_changed from:body" hx-swap="morph:innerHTML"></div>
+{% endcall %}
+{% if mode_text %}{{ m.banner("demo" if mode == "demo" else "warning", mode_text) }}{% endif %}
+<div class="aura-layout">
+  <section class="stack">
+    <div id="aura-me" hx-get="/aura/me" hx-trigger="load, aura_changed from:body" hx-swap="morph:innerHTML">{{ m.skeleton(5) }}</div>
+    <div class="card">
+      <div class="card-head"><h2>Etiketler</h2><span class="muted small">Kazanılan bir etiketi takın: başlıkta ve sohbette o görünür.</span></div>
+      <div id="aura-badges" hx-get="/aura/badges" hx-trigger="load, aura_changed from:body" hx-swap="morph:innerHTML">{{ m.skeleton(3) }}</div>
+    </div>
+  </section>
+  <section class="card">
+    <div id="aura-board" hx-get="/aura/board" hx-trigger="load, aura_changed from:body" hx-swap="morph:innerHTML">{{ m.skeleton(8) }}</div>
+  </section>
+</div>
+<details class="card aura-rules">
+  <summary>Puan kuralları, seviyeler ve unvanlar</summary>
+  <div class="grid-2">
+    <table class="tbl compact"><thead><tr><th>Olay</th><th>Aura</th></tr></thead><tbody>
+      <tr><td>Commit (merge commit)</td><td>+{{ RULES.commit }} (+{{ RULES.merge_commit }}) · günde ilk 15</td></tr>
+      <tr><td>Revert</td><td>{{ RULES.revert }}</td></tr>
+      <tr><td>CI başarılı / kısmen / başarısız</td><td>+{{ RULES.ci_ok }} / +{{ RULES.ci_partial }} / {{ RULES.ci_fail }}</td></tr>
+      <tr><td>CD başarılı / başarısız</td><td>+{{ RULES.cd_ok }} / {{ RULES.cd_fail }}</td></tr>
+      <tr><td>CD Prod başarılı / başarısız</td><td>+{{ RULES.cd_ok_prod }} / {{ RULES.cd_fail_prod }}</td></tr>
+      <tr><td>PR açma / birleşme / terk</td><td>+{{ RULES.pr_open }} / +{{ RULES.pr_merged }} / {{ RULES.pr_abandoned }}</td></tr>
+      <tr><td>Review (onay)</td><td>+{{ RULES.review }}</td></tr>
+    </tbody></table>
+    <div>
+      <p class="muted small">Seviye = ⌊√(aura / 25)⌋ + 1 · Sv 10 ≈ 2.000, Sv 20 ≈ 9.000, Sv 30 ≈ 21.000 aura.</p>
+      <div class="aura-titles">{% for low, t in TITLES|reverse %}<span class="chip">Sv {{ low }}+ · {{ t }}</span>{% endfor %}<span class="chip neg">aura &lt; 0 · {{ NEGATIVE_TITLE }}</span></div>
+      <p class="muted small">{% for k, name, what in STATS %}<b>{{ k }}</b> {{ name }}: {{ what }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+    </div>
+  </div>
+</details>
+<dialog class="modal" id="modal"><div id="modal-body"></div></dialog>
+{% endblock %}

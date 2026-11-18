@@ -73,7 +73,7 @@
   // ---------------------------------------------------------------- canlı olaylar
   var NAMES = ["catalog_changed", "settings_changed", "freeze_changed", "health_changed", "health_updated", "presence_changed",
                "db_state_changed", "data_changed", "notify", "chat_message", "terminal_output", "terminal_done",
-               "pods_updated"];
+               "pods_updated", "aura_changed", "aura_sync"];
   var es = null;
   function connect() {
     if (es) es.close();

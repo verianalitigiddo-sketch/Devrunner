@@ -490,3 +490,64 @@ label.tab { display: inline-flex; align-items: center; }
 .term-pane .xterm { height: 100%; }
 .term-pane .xterm-viewport { background: transparent !important; }
 .term-quick { flex-wrap: nowrap; overflow-x: auto; }
+
+/* ---------------- Aura ---------------- */
+.aura-chip { display: inline-flex; align-items: center; gap: 0; height: 22px; border-radius: 11px; overflow: hidden; font-size: .78em; font-weight: 700;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); text-decoration: none !important; vertical-align: middle; margin-left: 6px; white-space: nowrap; }
+.aura-chip .lv { padding: 0 7px; background: var(--accent); color: var(--accent-text, #fff); height: 100%; display: inline-flex; align-items: center; }
+.aura-chip .t { padding: 0 8px; color: var(--text); background: color-mix(in srgb, var(--accent) 14%, var(--surface)); height: 100%; display: inline-flex; align-items: center; max-width: 190px; overflow: hidden; text-overflow: ellipsis; }
+.aura-chip.neg { border-color: color-mix(in srgb, var(--danger) 55%, transparent); }
+.aura-chip.neg .lv { background: var(--danger); }
+.topbar .aura-chip { height: 26px; border-radius: 13px; font-size: .84em; margin: 0; }
+.aura-layout { display: grid; grid-template-columns: minmax(340px, 5fr) minmax(0, 7fr); gap: 14px; align-items: start; }
+.aura-card .aura-head { display: flex; gap: 16px; align-items: center; }
+.aura-ring { --deg: 0deg; position: relative; width: 86px; height: 86px; border-radius: 50%; flex: 0 0 auto; display: grid; place-items: center;
+  background: conic-gradient(var(--accent) var(--deg), color-mix(in srgb, var(--border) 70%, transparent) 0); }
+.aura-ring::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; background: var(--surface); }
+.aura-ring .avatar { position: relative; width: 56px; height: 56px; font-size: 1.15em; }
+.aura-ring .lvl { position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--accent-text, #fff);
+  font-size: .72em; font-weight: 800; padding: 1px 8px; border-radius: 10px; white-space: nowrap; }
+.aura-card.neg .aura-ring { background: conic-gradient(var(--danger) 360deg, transparent 0); }
+.aura-card.neg .aura-ring .lvl { background: var(--danger); }
+.aura-who { flex: 1; min-width: 0; }
+.aura-name { font-family: var(--heading-font); font-weight: 700; color: var(--heading); font-size: 1.08em; overflow-wrap: anywhere; }
+.aura-title { color: var(--accent); font-weight: 700; margin: 2px 0 4px; }
+.aura-card.neg .aura-title, td.neg, .mono.neg { color: var(--danger); }
+.aura-points b { font-size: 1.5rem; font-family: var(--heading-font); color: var(--heading); }
+.aura-bar, .aura-stat .bar, .badge-tile .bar { display: block; height: 6px; border-radius: 3px; background: color-mix(in srgb, var(--border) 70%, transparent); overflow: hidden; margin-top: 6px; }
+.aura-bar i, .aura-stat .bar i, .badge-tile .bar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent2, var(--accent))); }
+.aura-hide { align-self: flex-start; }
+.aura-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 18px; margin: 16px 0 10px; }
+.aura-stat { display: grid; grid-template-columns: 36px 1fr 26px; align-items: center; gap: 8px; }
+.aura-stat .k { font-weight: 800; font-size: .82em; letter-spacing: .05em; color: var(--muted); }
+.aura-stat .bar { margin: 0; height: 8px; }
+.aura-stat b { text-align: right; font-variant-numeric: tabular-nums; }
+.aura-earned { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 4px; }
+.badge-pill { display: inline-flex; align-items: center; gap: 4px; padding: 2px 9px; border-radius: 11px; font-size: .84em; font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--text); white-space: nowrap; }
+.aura-sub { font-size: .9em; margin: 14px 0 6px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.aura-recent { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.aura-recent li { display: flex; align-items: center; gap: 8px; }
+.aura-recent .pts { min-width: 40px; text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; }
+.pts.plus { color: var(--success); } .pts.minus { color: var(--danger); } .pts.zero { color: var(--muted); }
+.aura-board td.rank { width: 42px; font-weight: 800; font-size: 1.05em; }
+.aura-board .who { font-weight: 600; }
+.aura-board tr.top1 td.rank, .aura-board tr.top2 td.rank, .aura-board tr.top3 td.rank { font-size: 1.25em; }
+.badge-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; }
+.badge-tile { display: flex; gap: 10px; align-items: center; padding: 9px 10px; border-radius: var(--radius); background: var(--surface-alt);
+  border: 1px solid transparent; }
+.badge-tile .ico { font-size: 1.5em; width: 32px; text-align: center; filter: grayscale(1); opacity: .45; }
+.badge-tile .txt { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.badge-tile.earned .ico { filter: none; opacity: 1; }
+.badge-tile.earned { border-color: color-mix(in srgb, var(--accent) 35%, transparent); }
+.badge-tile.equipped { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.aura-sync { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.aura-titles { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chip.neg { color: var(--danger); }
+.aura-rules { margin-top: 14px; }
+.aura-rules summary { cursor: pointer; font-weight: 700; }
+.aura-rules .grid-2 { margin-top: 10px; }
+[data-theme="bios"] .aura-ring { background: var(--accent); }
+@media (max-width: 1100px) { .aura-layout { grid-template-columns: minmax(0, 1fr); } }
+.aura-board .person { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.aura-board .person .avatar { flex: 0 0 auto; }

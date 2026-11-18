@@ -50,6 +50,7 @@ PAGES = [
     PageDef("bilge", "Bilge", "web.pages.bilge", "bookmark"),
     PageDef("freeze", "Freeze", "web.pages.freeze", "snow"),
     PageDef("chat", "Sohbet", "web.pages.chat", "chat"),
+    PageDef("aura", "Aura", "web.pages.aura", "trophy"),
     PageDef("settings", "Ayarlar", "web.pages.settings", "gear"),
 ]
 PAGE_IDS = {p.id for p in PAGES}
@@ -69,6 +70,8 @@ def create_app(bridge, hub, token: str, runner=None, on_shutdown=None) -> Flask:
     app.extensions["dr"] = SimpleNamespace(bridge=bridge, hub=hub, runner=runner, on_shutdown=on_shutdown,
                                            broken={}, token=token)
     security.install(app, token)
+    from web import aura_service
+    aura_service.init(hub)                     # Aura bildirimleri ve "aura_changed" olayı
     from web.ws import SERVER_OPTIONS, sock
     app.config["SOCK_SERVER_OPTIONS"] = SERVER_OPTIONS
     sock.init_app(app)
@@ -225,6 +228,8 @@ def _core_routes(app: Flask) -> None:
 
     @app.get("/api/header")
     def header():
+        if request.args.get("part") == "aura":
+            return render_template("aura/_chip.html", b=_aura_badge(user_mod.current_user().name))
         return render_template("_header_status.html", **_status())
 
     @app.get("/api/statusbar")

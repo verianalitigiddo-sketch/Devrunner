@@ -1,0 +1,24 @@
+{% import "_macros.html" as m %}
+<div class="card-head">
+  <h2>Sıralama</h2>
+  <div class="tabs" style="margin:0">{% for k, t in PERIODS.items() %}<a class="tab{% if k == period and not app %} active{% endif %}" hx-get="/aura/board?period={{ k }}" hx-target="#aura-board" hx-swap="morph:innerHTML">{{ t }}</a>{% endfor %}</div>
+  <select class="input sm" name="app" hx-get="/aura/board" hx-target="#aura-board" hx-swap="morph:innerHTML" hx-include="this" hx-vals='{"period": "{{ period }}"}' aria-label="Uygulama">
+    <option value="">Tüm uygulamalar</option>{% for a in apps %}<option{% if a == app %} selected{% endif %}>{{ a }}</option>{% endfor %}
+  </select>
+</div>
+<div class="table-wrap"><table class="tbl aura-board">
+  <thead><tr><th>#</th><th>Kişi</th><th>Seviye</th><th>Unvan</th><th style="text-align:right">Aura</th><th>Öne çıkan</th></tr></thead>
+  <tbody>
+  {% for c in cards %}
+    <tr id="aura-row-{{ loop.index }}" class="{% if c.key == my_key %}selected{% endif %}{% if c.rank <= 3 %} top{{ c.rank }}{% endif %}" style="cursor:pointer"
+        hx-get="/aura/person/{{ c.key|urlencode }}" hx-target="#modal-body">
+      <td class="rank">{% if c.rank == 1 %}🥇{% elif c.rank == 2 %}🥈{% elif c.rank == 3 %}🥉{% else %}{{ c.rank }}{% endif %}</td>
+      <td><div class="person"><span class="avatar sm">{{ c.name|initials }}</span><span class="who">{{ c.name }}</span>{% if c.hidden %}<span class="chip">gizli</span>{% endif %}</div></td>
+      <td><b>{{ c.level }}</b></td>
+      <td class="{{ 'neg' if c.aura < 0 }}">{{ c.title }}</td>
+      <td style="text-align:right" class="mono{{ ' neg' if c.aura < 0 }}">{{ "{:,}".format(c.aura).replace(",", ".") }}</td>
+      <td>{% if c.featured %}<span class="badge-pill" title="{{ c.featured.rule }}">{{ c.featured.icon }} {{ c.featured.name }}</span>{% endif %}</td>
+    </tr>
+  {% else %}<tr><td colspan="6">{{ m.empty("Bu dönemde puanlanan etkinlik yok.", "trophy") }}</td></tr>{% endfor %}
+  </tbody>
+</table></div>
