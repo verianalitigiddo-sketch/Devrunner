@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m %}
+{% block title %}Bilge{% endblock %}
+{% block crumb %}Bilge talepleri{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/bilge.js') }}?v={{ VERSION }}" defer></script>{% endblock %}
+{% block content %}
+{% call m.page_head("Bilge talepleri", "Talep linkleri yer imi gibi: klasörler ve etiketler ekip geneli, ★ yıldızlar kişisel. Sürükleyip klasöre bırakın.", "bookmark") %}
+  {% if not problem %}
+  <button class="btn" type="button" data-action="open-dialog" data-target="bulk-dialog">{{ icon('copy') }} Toplu ekle</button>
+  <button class="btn" type="button" data-action="open-dialog" data-target="import-dialog">{{ icon('upload') }} İçe aktar</button>
+  <a class="btn" href="/bilge/export{{ '?folder=' ~ st.folder if st.view == 'folder' else '' }}">{{ icon('download') }} Dışa aktar</a>
+  {% endif %}
+{% endcall %}
+{% if problem %}{% call m.banner("error", problem) %}<a class="btn sm" href="/settings/?group=db">Ayarlar</a>{% endcall %}{% else %}
+<form id="bm-state" hidden>
+  <input name="view" value="{{ st.view }}"><input name="folder" value="{{ st.folder if st.folder is not none else '' }}"><input name="app" value="{{ st.app }}">
+</form>
+<div class="bm-bar" hx-get="/bilge/bar" hx-trigger="load, bm_changed from:body">{{ m.skeleton(1) }}</div>
+<div class="bm-layout">
+  <aside class="tree card" id="bm-tree" hx-get="/bilge/tree" hx-include="#bm-state" hx-trigger="load, bm_changed from:body, every 60s">{{ m.skeleton(8) }}</aside>
+  <section>
+    <div class="row" style="margin-bottom:10px"><h2 style="flex:1">{{ title or 'Tümü' }}</h2></div>
+    <form class="quick-add" id="quick-add" hx-post="/bilge/add" hx-include="#bm-state" hx-target="#quick-msg">
+      <label class="search">{{ icon('link') }}<input class="input" name="url" id="quick-url" placeholder="Bilge adresini yapıştırın (birden çok satır: toplu ekleme)" required style="width:100%"></label>
+      <input class="input" name="title" id="quick-title" placeholder="Başlık (boşsa adresten)">
+      <button class="btn primary" type="submit">{{ icon('plus') }} Ekle</button>
+    </form>
+    <div id="quick-msg"></div>
+    <form class="row" id="bm-filter" style="margin-bottom:12px" hx-get="/bilge/list" hx-include="#bm-state" hx-target="#bm-list"
+          hx-trigger="change, input changed delay:300ms from:find input[name=q]">
+      <label class="search">{{ icon('search') }}<input class="input" name="q" value="{{ st.q }}" placeholder="Başlık, adres, açıklama, etiket…" style="width:300px"></label>
+      <select class="input" name="status"><option value="">Tüm durumlar</option>{% for s in statuses %}<option{% if s == st.status %} selected{% endif %}>{{ s }}</option>{% endfor %}</select>
+      <select class="input" name="tag"><option value="">Tüm etiketler</option>{% for t in tags %}<option value="{{ t }}"{% if t == st.tag %} selected{% endif %}>#{{ t }}</option>{% endfor %}</select>
+    </form>
+    <div id="bm-list" class="bm-list" data-folder="{{ st.folder if st.view == 'folder' else '' }}" data-view="{{ st.view }}"
+         hx-get="/bilge/list" hx-include="#bm-state, #bm-filter" hx-trigger="load, bm_changed from:body, every 60s">{{ m.skeleton(6) }}</div>
+  </section>
+</div>
+
+<dialog class="modal" id="modal"><div id="modal-body"></div></dialog>
+
+<dialog class="modal" id="bulk-dialog">
+  <div class="modal-head"><h2>Toplu ekle</h2><button class="btn icon ghost" data-action="close-dialog">{{ icon('x') }}</button></div>
+  <form class="modal-body stack" hx-post="/bilge/bulk/save" hx-include="#bm-state" hx-swap="none">
+    <p class="muted">Her satıra bir talep: <code>başlık | adres</code> veya yalnızca adres. Kayıtlı adresler atlanır.
+      {% if st.view == 'folder' %}Seçili klasöre eklenir.{% endif %}</p>
+    <textarea class="input mono" name="text" id="bulk-text" rows="8" hx-post="/bilge/bulk/preview" hx-trigger="input changed delay:400ms, load" hx-target="#bulk-preview"></textarea>
+    <select class="input" name="target_app"><option value="">(uygulama yok)</option>{% for a in apps %}<option{% if a == st.app %} selected{% endif %}>{{ a }}</option>{% endfor %}</select>
+    <div id="bulk-preview"></div>
+    <div class="row"><button class="btn primary" type="submit">{{ icon('check') }} Hepsini ekle</button><button class="btn ghost" type="button" data-action="close-dialog">Vazgeç</button></div>
+  </form>
+</dialog>
+
+<dialog class="modal" id="import-dialog">
+  <div class="modal-head"><h2>Yer imi dosyası içe aktar</h2><button class="btn icon ghost" data-action="close-dialog">{{ icon('x') }}</button></div>
+  <form class="modal-body stack" hx-post="/bilge/import" hx-include="#bm-state" hx-encoding="multipart/form-data" hx-swap="none">
+    <p class="muted">Edge / Chrome → Yer işaretleri → Dışa aktar ile alınan HTML dosyası. Klasör yapısı korunur;
+      yalnızca http/https bağlantıları alınır; kayıtlı adresler yeniden eklenmez, klasörüne yerleştirilir.
+      {% if st.view == 'folder' %}Seçili klasörün altına aktarılır.{% endif %}</p>
+    <input class="input" type="file" name="file" accept=".html,.htm,text/html" required>
+    <div class="row"><button class="btn primary" type="submit">{{ icon('upload') }} İçe aktar</button><button class="btn ghost" type="button" data-action="close-dialog">Vazgeç</button></div>
+  </form>
+</dialog>
+{% endif %}
+{% endblock %}

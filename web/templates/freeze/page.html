@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m %}
+{% block title %}Freeze{% endblock %}
+{% block crumb %}Freeze{% endblock %}
+{% block content %}
+{% call m.page_head("Freeze", "Freeze dönemleri ekip geneli tutulur. İçindeysek sağ üstte FREEZE rozeti görünür; CD ve Prod işlemleri uyarı gösterir.", "snow") %}{% endcall %}
+{% if problem %}{% call m.banner("error", problem) %}<a class="btn sm" href="/settings/?group=db">Ayarlar</a>{% endcall %}{% else %}
+<div id="freeze-body" hx-get="/freeze/body?m={{ month }}" hx-trigger="load, freeze_saved from:body, freeze_changed from:body"></div>
+{% endif %}
+{% endblock %}

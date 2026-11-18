@@ -1,0 +1,38 @@
+<form class="card" hx-post="/settings/save/{{ group.id }}" hx-target="#settings-form" autocomplete="off">
+  <div class="card-head"><h2>{{ group.title }}</h2></div>
+  {% if group.description %}<p class="muted" style="margin:-4px 0 14px">{{ group.description }}</p>{% endif %}
+  <div class="form-grid">
+  {% for f in fields %}{% set s = f.s %}
+    <label for="f-{{ s.key }}">{{ s.label }}</label>
+    <div class="field">
+      {% if s.kind == "bool" %}
+        <label class="check"><input type="checkbox" id="f-{{ s.key }}" name="{{ s.key }}" value="1"{% if f.checked %} checked{% endif %}> Açık</label>
+      {% elif s.secret %}
+        <input class="input" type="password" id="f-{{ s.key }}" name="{{ s.key }}" value="" autocomplete="new-password"
+               placeholder="{{ 'kayıtlı — değiştirmek için yeni değeri yazın' if f.has_value else 'boş' }}">
+        <span class="row secret-state">
+          {% if f.has_value %}<span class="state state-success"><i></i>kayıtlı</span>
+            <label class="check muted"><input type="checkbox" name="clear_{{ s.key }}" value="1"> temizle</label>
+          {% else %}<span class="state state-missing"><i></i>girilmemiş</span>{% endif %}
+          <span class="muted">Secret değer güvenlik gereği geri gösterilmez.</span>
+        </span>
+      {% else %}
+        <input class="input" id="f-{{ s.key }}" name="{{ s.key }}" value="{{ f.value }}" placeholder="{{ s.default }}"{% if s.readonly %} readonly{% endif %}>
+      {% endif %}
+      {% if s.help %}<span class="help">{{ s.help }}</span>{% endif %}
+      {% if f.from_os %}<span class="help tone-warning">Bu değer işletim sistemi ortam değişkeninden geliyor; .env'e yazılan değeri ezer.</span>{% endif %}
+    </div>
+  {% endfor %}
+    <span></span>
+    <div class="row">
+      <button class="btn primary" type="submit">{{ icon('check') }} Kaydet</button>
+      {% if group.testable %}
+      <button class="btn" type="button" hx-post="/settings/test/{{ group.id }}" hx-include="closest form" hx-target="#settings-form"
+              hx-indicator="this">{{ icon('pulse') }} Bağlantıyı sına</button>
+      {% endif %}
+    </div>
+  </div>
+  {% if result %}
+    <div class="banner {{ 'banner-info' if result[0] else 'banner-error' }} result">{{ icon('check' if result[0] else 'alert') }}<div>{{ result[1] }}</div></div>
+  {% endif %}
+</form>

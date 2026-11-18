@@ -1,0 +1,26 @@
+{% import "_macros.html" as m %}
+{% if not rows %}{{ m.empty("Uygulama bulunamadı.", "apps") }}{% else %}
+<table class="tbl">
+  <thead><tr><th>Uygulama</th><th>CI</th><th>CD</th>{% for e in ENVS %}<th>{{ e|envtitle }}</th>{% endfor %}<th>Pod</th><th class="num">Not</th><th class="num">Talep</th></tr></thead>
+  <tbody>
+  {% for r in rows %}{% set a = r.app %}
+    <tr class="clickable{% if a.name == selected %} selected{% endif %}" hx-get="/home/app/{{ a.name|urlencode }}" hx-target="#detail"
+        hx-push-url="/home/?app={{ a.name|urlencode }}" data-row>
+      <td class="name">{{ a.name }}</td>
+      {% for pipe in [r.pipes.ci if r.pipes else none, r.pipes.cd if r.pipes else none] %}
+        <td class="nowrap">{% if pipe %}{{ m.state(pipe.state, PIPE_TITLES[pipe.state]) }}{% else %}<span class="muted">–</span>{% endif %}</td>
+      {% endfor %}
+      {% for e in ENVS %}{% set h = r.health.get(e) %}
+        <td class="nowrap" title="{{ a.url(e) }}{% if h %} · {{ h.title }}{% if h.status_code %} · HTTP {{ h.status_code }}{% endif %}{% if h.error %} · {{ h.error }}{% endif %}{% endif %}">
+          {% if not h %}<span class="muted">…</span>{% elif h.state == 'missing' %}<span class="muted">–</span>
+          {% else %}{{ m.state(h.state, h.ms|ms if h.ms is not none else h.title) }}{% endif %}
+        </td>
+      {% endfor %}
+      <td class="nowrap small">{% for e, v in pods.get(a.name, {}).items() %}<span class="chip">{{ (e|envtitle)[0] }} {{ v }}</span> {% else %}<span class="muted">–</span>{% endfor %}</td>
+      <td class="num">{{ notes.get(a.name, '') }}</td>
+      <td class="num">{{ reqs.get(a.name, '') }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endif %}

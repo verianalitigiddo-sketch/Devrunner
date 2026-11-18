@@ -1,0 +1,40 @@
+{# Ortak parçalar. Şablonlarda: {% import "_macros.html" as m %} #}
+
+{% macro page_head(title, subtitle="", icon_name="") %}
+<div class="page-head">
+  {% if icon_name %}<div class="page-icon">{{ icon(icon_name) }}</div>{% endif %}
+  <div class="page-titles">
+    <h1>{{ title }}</h1>
+    {% if subtitle %}<p class="muted">{{ subtitle }}</p>{% endif %}
+  </div>
+  <div class="page-tools">{{ caller() if caller else "" }}</div>
+</div>
+{% endmacro %}
+
+{% macro banner(level, text) %}
+<div class="banner banner-{{ level }}">{{ icon('alert' if level in ('error', 'warning') else 'clock') }}<div>{{ text }}</div>{{ caller() if caller else "" }}</div>
+{% endmacro %}
+
+{% macro state(state_name, label) %}
+<span class="state state-{{ state_name|role }}"><i></i>{{ label }}</span>
+{% endmacro %}
+
+{% macro empty(text, icon_name="search") %}
+<div class="empty">{{ icon(icon_name) }}<p>{{ text }}</p></div>
+{% endmacro %}
+
+{% macro skeleton(rows=4) %}
+<div class="skeleton">{% for _ in range(rows) %}<div class="sk-line" style="width: {{ [92, 70, 84, 60, 76][loop.index0 % 5] }}%"></div>{% endfor %}</div>
+{% endmacro %}
+
+{% macro lazy(url, rows=4, trigger="load") %}
+<div hx-get="{{ url }}" hx-trigger="{{ trigger }}" hx-swap="innerHTML">{{ skeleton(rows) }}</div>
+{% endmacro %}
+
+{% macro ext_icon(url, title="Aç") %}
+<a href="{{ url }}" class="btn icon ghost sm" target="_blank" rel="noopener noreferrer" title="{{ title }}">{{ icon('external') }}</a>
+{% endmacro %}
+
+{% macro ext_link(url, text="") %}
+<a href="{{ url }}" class="ext" target="_blank" rel="noopener noreferrer">{{ text or url }}{{ icon('external', 'i-sm') }}</a>
+{% endmacro %}

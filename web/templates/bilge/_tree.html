@@ -1,0 +1,24 @@
+{% macro folder_node(n, depth) %}
+  <a class="node{% if st.view == 'folder' and st.folder == n.id %} active{% endif %}" href="/bilge/?view=folder&folder={{ n.id }}"
+     data-folder="{{ n.id }}" draggable="true" style="padding-left: {{ 10 + depth * 16 }}px" title="{{ n.name }}">
+    {{ icon('folder') }}<span>{{ n.name }}</span><span class="count">{{ n.total }}</span>
+  </a>
+  {% for c in n.children %}{{ folder_node(c, depth + 1) }}{% endfor %}
+{% endmacro %}
+{% for key, title in smart.items() %}
+  <a class="node{% if st.view == key %} active{% endif %}" href="/bilge/?view={{ key }}"{% if key == 'unfiled' %} data-folder=""{% endif %}>
+    {{ icon({'all': 'bookmark', 'starred': 'star', 'open': 'clock', 'progress': 'refresh', 'closed': 'check', 'recent': 'history', 'unfiled': 'filter'}[key]) }}
+    <span>{{ title }}</span><span class="count">{{ t.smart.get(key, 0) }}</span></a>
+{% endfor %}
+<div class="tree-group">Klasörler
+  <button class="btn icon ghost sm" title="Yeni klasör" type="button" data-prompt-post="/bilge/folder" data-prompt="Yeni klasörün adı">{{ icon('folder-plus') }}</button></div>
+{% for n in t.folders %}{{ folder_node(n, 0) }}{% else %}<p class="muted small" style="padding:0 10px">Henüz klasör yok. + ile oluşturun.</p>{% endfor %}
+{% if st.view == 'folder' and st.folder in t.by_id %}{% set f = t.by_id[st.folder] %}
+  <div class="row" style="padding:8px 6px">
+    <button class="btn sm ghost" type="button" data-prompt-post="/bilge/folder" data-vals='{"parent_id": "{{ f.id }}"}' data-prompt="“{{ f.name }}” altında yeni klasör">{{ icon('folder-plus') }} Alt klasör</button>
+    <button class="btn sm ghost" type="button" data-prompt-post="/bilge/folder/{{ f.id }}/rename" data-prompt="Yeni ad" data-default="{{ f.name }}" title="Yeniden adlandır">{{ icon('edit') }}</button>
+    <button class="btn sm ghost danger" hx-post="/bilge/folder/{{ f.id }}/delete" hx-confirm="“{{ f.name }}” silinsin mi? İçindekiler üst klasöre taşınır, talepler silinmez." hx-swap="none">{{ icon('trash') }}</button>
+  </div>
+{% endif %}
+{% if t.apps %}<div class="tree-group">Uygulamaya göre</div>
+{% for a, n in t.apps.items() %}<a class="node{% if st.view == 'app' and st.app == a %} active{% endif %}" href="/bilge/?view=app&app={{ a|urlencode }}">{{ icon('apps') }}<span>{{ a }}</span><span class="count">{{ n }}</span></a>{% endfor %}{% endif %}

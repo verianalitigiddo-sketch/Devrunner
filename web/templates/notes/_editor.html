@@ -1,0 +1,32 @@
+{% import "_macros.html" as m %}
+<form class="stack" hx-post="/notes/save" hx-target="#editor" id="note-form">
+  <input type="hidden" name="id" value="{{ note.id if note else '' }}">
+  <input class="input big" name="title" value="{{ note.title if note else '' }}" placeholder="Başlık" required maxlength="200">
+  <div class="row">
+    <select class="input" name="app"><option value="">(genel)</option>
+      {% for a in apps %}<option value="{{ a }}"{% if (note and note.app_name == a) or (not note and preset_app == a) %} selected{% endif %}>{{ a }}</option>{% endfor %}</select>
+    <select class="input" name="env"><option value="">(tüm ortamlar)</option>
+      {% for e in envs %}<option value="{{ e }}"{% if note and note.env == e %} selected{% endif %}>{{ e|envtitle }}</option>{% endfor %}</select>
+    <label class="check"><input type="checkbox" name="pinned" value="1"{% if note and note.pinned %} checked{% endif %}> 📌 Sabitle</label>
+  </div>
+  <div class="tabs" style="margin:0">
+    <button class="tab{% if mode == 'edit' %} active{% endif %}" type="button" data-tab data-action="note-edit">{{ icon('edit') }} Düzenle</button>
+    <button class="tab{% if mode == 'view' %} active{% endif %}" type="button" data-tab hx-post="/notes/preview" hx-include="#note-form" hx-target="#note-preview"
+            data-action="note-view">{{ icon('note') }} Önizleme</button>
+  </div>
+  <textarea class="input mono" name="body" id="note-body" rows="16" placeholder="Not (Markdown: **kalın**, `kod`, - liste, [bağlantı](https://…))"{% if mode == 'view' %} hidden{% endif %}>{{ note.body if note else '' }}</textarea>
+  <div id="note-preview" class="md card"{% if mode != 'view' %} hidden{% endif %}>{{ html }}</div>
+  <div class="row">
+    <button class="btn primary" type="submit">{{ icon('check') }} Kaydet</button>
+    {% if note %}<button class="btn danger" type="button" hx-post="/notes/delete" hx-vals='{"id": "{{ note.id }}"}' hx-target="#editor"
+       hx-confirm="“{{ note.title }}” silinsin mi?">{{ icon('trash') }} Sil</button>{% endif %}
+    <span class="spacer"></span>
+    {% if note %}<span class="muted small">Yazan: {{ note.created_by }} · {{ note.created_at|dt }}{% if note.updated_at %} · son düzenleyen: {{ note.updated_by }} · {{ note.updated_at|dt }}{% endif %}</span>{% endif %}
+  </div>
+</form>
+{% if note %}
+<div class="section"><h3>{{ icon('history') }} Bu notun geçmişi</h3>
+<ul class="timeline">{% for r in history %}<li><span class="when">{{ r.at|dt }}</span><span><b>{{ r.user_name }}</b>
+  {{ {'create': 'ekledi', 'update': 'düzenledi', 'delete': 'sildi'}.get(r.action, r.action) }}
+  <span class="muted">{{ ((r.detail or {}).get('fields') or [])|join(', ') }}</span></span></li>{% else %}<li class="muted">Kayıt yok.</li>{% endfor %}</ul></div>
+{% endif %}

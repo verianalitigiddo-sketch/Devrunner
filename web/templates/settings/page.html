@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m %}
+{% block title %}Ayarlar{% endblock %}
+{% block crumb %}Ayarlar{% endblock %}
+{% block content %}
+{% call m.page_head("Ayarlar", "Değerler " ~ env_file ~ " dosyasına yazılır (depoya girmez) ve uygulama yeniden başlatılmadan geçerli olur.", "gear") %}{% endcall %}
+<div class="settings">
+  <nav class="settings-nav">
+    {% for g in groups %}
+      <a href="?group={{ g.id }}" class="{% if g.id == group.id %}active{% endif %}">{{ g.title }}</a>
+    {% endfor %}
+  </nav>
+  <div id="settings-form">{% include "settings/_form.html" %}</div>
+</div>
+{% endblock %}

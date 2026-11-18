@@ -1,0 +1,12 @@
+<div class="modal-head"><h2>{{ a.name }}: adres ve eşleme</h2><button class="btn icon ghost" data-action="close-dialog">{{ icon('x') }}</button></div>
+<form class="modal-body stack" hx-post="/home/app/{{ a.name|urlencode }}/override" hx-target="#modal-body">
+  <p class="muted">Boş bırakılan alan kurala göre türetilir. Ekip geneli geçerlidir.</p>
+  {% for e in envs %}
+  <label class="field"><span>{{ e|envtitle }} adresi</span>
+    <input class="input" name="url_{{ e }}" value="{{ cur.get('url_' ~ e) or '' }}" placeholder="{{ a.url(e) }}"></label>
+  {% endfor %}
+  <label class="field"><span>Kubernetes iş yükü</span>
+    <input class="input" name="k8s_workload" value="{{ cur.get('k8s_workload') or '' }}" placeholder="{{ a.host_name }}"></label>
+  <div class="row"><button class="btn primary" type="submit">{{ icon('check') }} Kaydet</button>
+    <button class="btn ghost" type="button" data-action="close-dialog">Vazgeç</button></div>
+</form>

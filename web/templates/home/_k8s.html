@@ -1,0 +1,19 @@
+{% import "_macros.html" as m %}
+{% for env, w in workloads.items() %}
+  <div class="pod-line"><b style="min-width:42px">{{ env|envtitle }}</b>
+  {% if not w.found %}<span class="muted">iş yükü bulunamadı (aktarılmamış olabilir)</span>
+  {% else %}
+    <span class="chip accent">pod {{ w.ready_text }}</span>
+    {% if w.deployment and w.deployment.images %}<span class="chip mono">{{ w.deployment.images[0].split('/')[-1] }}</span>{% endif %}
+    <span class="muted small">{{ w.how }}</span>
+    <a class="btn ghost sm" href="/k8s/?env={{ env }}&app={{ name|urlencode }}">ayrıntı {{ icon('chevron', 'i-sm') }}</a>
+  {% endif %}
+  </div>
+  {% for pod in w.pods %}
+    {% set ok = pod.status == 'Running' and pod.ready.split('/')[0] == pod.ready.split('/')[1] %}
+    <div class="pod-line small" style="padding-left:50px">{{ m.state('Running' if ok else ('failed' if pod.status in ('CrashLoopBackOff','Error','ImagePullBackOff','ErrImagePull','OOMKilled') else 'Pending'), pod.status) }}
+      <span class="mono">{{ pod.name }}</span><span class="muted">{{ pod.ready }} · {{ pod.restarts }} yeniden başlama · {{ pod.age }}</span></div>
+  {% endfor %}
+  {% for wt in w.warnings %}<div class="small tone-warning" style="padding-left:50px">{{ wt }}</div>{% endfor %}
+{% else %}<span class="muted">Kubernetes ortamı yok.</span>{% endfor %}
+{% for e in errors %}<div class="tone-danger small">{{ e }}</div>{% endfor %}

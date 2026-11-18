@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m %}
+{% block title %}DevOps{% endblock %}
+{% block crumb %}DevOps{% endblock %}
+{% block content %}
+{% call m.page_head("DevOps", "Repolar ve CI/CD pipeline'ları · Azure DevOps (salt okunur) · " ~ base, "git") %}
+  <button class="btn" hx-post="/devops/refresh" hx-swap="none">{{ icon('refresh') }} Yenile</button>
+{% endcall %}
+{% if error %}
+  {% call m.banner("error", "DevOps'a ulaşılamadı: " ~ error ~ (" Son bilinen durum gösteriliyor." if ov else "")) %}<a class="btn sm" href="/settings/?group=devops">Ayarlar</a>{% endcall %}
+{% elif ov and ov.source == 'demo' %}
+  {% call m.banner("demo", "Örnek veri: Azure DevOps PAT'i girilmemiş.") %}<a class="btn sm" href="/settings/?group=devops">Ayarlar</a>{% endcall %}
+{% elif ov and ov.warnings %}{{ m.banner("warning", ov.warnings|join(' ')) }}{% endif %}
+<div class="split" style="grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr)">
+  <div id="devops-table" class="table-wrap" hx-get="/devops/table?app={{ selected|urlencode }}"
+       hx-trigger="load, catalog_changed from:body, freeze_changed from:body">{{ m.skeleton(8) }}</div>
+  <div id="devops-detail" class="card">
+    {% if selected %}{{ m.lazy("/devops/app/" ~ selected|urlencode, 8) }}{% else %}{{ m.empty("Uygulama yok.", "git") }}{% endif %}
+  </div>
+</div>
+<dialog class="modal" id="modal"><div id="modal-body"></div></dialog>
+{% endblock %}

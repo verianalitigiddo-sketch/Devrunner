@@ -1,0 +1,14 @@
+{% if snap.running %}
+<a class="room{% if room == 'general' %} active{% endif %}" href="/chat/?room=general">{{ icon('hash') }} Genel
+  {% if snap.unread_general and room != 'general' %}<span class="unread">{{ snap.unread_general }}</span>{% endif %}</a>
+<div class="tree-group">Çevrimiçi — {{ snap.online }}</div>
+{% for p in snap.peers %}
+  <a class="room{% if room == p.uid %} active{% endif %}" href="/chat/?room={{ p.uid|urlencode }}" title="{{ p.ip }}:{{ p.port }}">
+    <span class="avatar sm">{{ p.name|initials }}</span><span class="presence{{ ' on' if p.online }}"></span>
+    <span>{% if p.key_state == 'changed' %}⚠ {% endif %}{{ p.name }}{% if not p.online %}<br><span class="small muted">{{ 'anahtar değişti' if p.key_state == 'changed' else 'bağlantı kurulamadı' }}</span>{% endif %}</span>
+    {% if p.unread and room != p.uid %}<span class="unread">{{ p.unread }}</span>{% endif %}
+  </a>
+{% else %}<p class="muted small" style="padding:0 10px">Şu an başka çevrimiçi geliştirici yok.</p>{% endfor %}
+<div class="divider"></div>
+<p class="muted small" style="padding:0 6px">Siz: <b>{{ snap.name }}</b> · {{ snap.ip }}:{{ snap.port }}<br>Parmak izi: <span class="mono">{{ snap.fingerprint }}</span></p>
+{% endif %}

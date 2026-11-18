@@ -1,0 +1,11 @@
+{% import "_macros.html" as m %}
+{% set failed = rows|selectattr('s.state', 'equalto', 'failed')|list %}
+<h3>{{ icon('terminal') }} Build {{ number }} adımları {% if failed %}<span class="pill danger">düşen adım: {{ failed[0].s.name }}</span>{% endif %}</h3>
+<div class="table-wrap" style="margin-top:8px"><table class="tbl compact">
+<thead><tr><th>Adım</th><th>Durum</th><th>Süre</th><th>Hata</th><th></th></tr></thead><tbody>
+{% for r in rows %}{% set s = r.s %}
+<tr><td>{{ s.name }}</td><td>{{ m.state(s.state, T.get(s.state, s.state)) }}</td><td class="nowrap">{{ r.dur|duration }}</td>
+<td class="wrap tone-danger small">{{ s.errors|join(' | ') }}</td>
+<td class="nowrap">{% if s.log_id is not none %}<button class="btn sm{{ ' primary' if s.state == 'failed' else '' }}"
+  hx-get="/devops/build/{{ build_id }}/log/{{ s.log_id }}?t={{ s.name|urlencode }}" hx-target="#modal-body">{{ icon('terminal') }} Log</button>{% endif %}</td></tr>
+{% endfor %}</tbody></table></div>

@@ -1,0 +1,4 @@
+{% import "_macros.html" as m %}
+<div class="table-wrap"><table class="tbl compact"><thead><tr><th>Commit</th><th>Mesaj</th><th>Yazan</th><th>Zaman</th></tr></thead><tbody>
+{% for c in rows %}<tr><td class="mono">{{ c.id }}</td><td class="wrap">{{ c.message }}</td><td class="nowrap">{{ c.author }}</td><td class="nowrap muted" title="{{ c.date|dt }}">{{ c.date|ago }}</td></tr>
+{% else %}<tr><td colspan="4">{{ m.empty("Commit yok.", "git") }}</td></tr>{% endfor %}</tbody></table></div>

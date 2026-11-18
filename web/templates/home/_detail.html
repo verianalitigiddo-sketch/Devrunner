@@ -1,0 +1,44 @@
+{% import "_macros.html" as m %}
+<div class="card-head" style="align-items:flex-start">
+  <div class="fav-lg avatar lg">{{ a.name[:2] }}</div>
+  <div style="flex:1;min-width:0">
+    <h2>{{ a.name }}</h2>
+    <div class="muted small row">{{ a.repo }} · {{ m.ext_link(a.web_url, "repo") }} · <a href="/devops/?app={{ a.name|urlencode }}">DevOps</a>
+      · <a href="/bilge/?view=app&app={{ a.name|urlencode }}">Talepler</a></div>
+  </div>
+  <button class="btn sm" hx-get="/home/app/{{ a.name|urlencode }}/override" hx-target="#modal-body">{{ icon('edit') }} Adres / eşleme</button>
+</div>
+{% if warn %}{{ m.banner("error", warn) }}{% endif %}
+
+<div class="section"><h3>{{ icon('git') }} Pipeline'lar</h3>
+  <div class="kv">
+  {% for label, pipe in [("CI", p.ci if p else none), ("CD", p.cd if p else none)] %}
+    <b>{{ label }}</b>
+    {% if pipe %}
+      <div class="row">{{ m.state(pipe.state, PIPE_TITLES[pipe.state]) }}
+        {% if pipe.last %}<span class="muted small">#{{ pipe.last.number }} · {{ pipe.last.branch }} · {{ pipe.last.requested_by }} · {{ pipe.last.when|ago }}</span>{% endif %}
+        {% if pipe.kind == 'release' %}<span class="chip">release</span>{% endif %}</div>
+      {{ m.ext_link(pipe.last.web_url if pipe.last else pipe.web_url, "aç") }}
+    {% else %}<span class="muted">pipeline yok</span><span></span>{% endif %}
+  {% endfor %}
+  </div>
+</div>
+
+<div class="section"><h3>{{ icon('pulse') }} Adresler</h3>
+  {% for e in envs %}{% set st = health.get(e) %}{% set url = a.url(e) %}
+  <div class="addr-item">
+    <div class="row">
+      <b class="env-tag">{{ e|envtitle }}</b>
+      {{ m.state(st.state if st else 'unknown', HEALTH_TITLES.get(st.state if st else 'unknown')) }}
+      <span class="muted small">{% if st and st.ms is not none %}{{ st.ms|ms }}{% endif %}{% if st and st.status_code %} · HTTP {{ st.status_code }}{% endif %}{% if e in muted %} · sessizde{% endif %}</span>
+      <span class="spacer"></span>
+      <a class="btn ghost sm" href="/terminal/?cmd={{ ('nslookup ' ~ a.host(e))|urlencode }}" title="Terminalde nslookup">nslookup</a>
+      <a class="btn ghost sm" href="/terminal/?cmd={{ ('curl -k -I -s -m 15 ' ~ url)|urlencode }}" title="Terminalde curl">curl</a>
+    </div>
+    <a class="url small" href="{{ url }}" target="_blank" rel="noopener noreferrer">{{ url }}</a>
+  </div>
+  {% endfor %}
+</div>
+
+<div class="section"><h3>{{ icon('cube') }} Kubernetes</h3>{{ m.lazy("/home/app/" ~ a.name|urlencode ~ "/k8s", 3) }}</div>
+<div class="section" hx-get="/home/app/{{ a.name|urlencode }}/shared" hx-trigger="load, data_changed from:body" hx-swap="innerHTML">{{ m.skeleton(5) }}</div>

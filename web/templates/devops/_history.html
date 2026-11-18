@@ -1,0 +1,19 @@
+{% import "_macros.html" as m %}
+<div class="row" style="margin-bottom:8px"><span class="muted small">{{ pipe.name }} · {{ 'klasik Release' if pipe.kind == 'release' else 'YAML / build pipeline' }} · son {{ builds|length }} çalışma</span>
+  <span class="spacer"></span>{{ m.ext_link(pipe.web_url, "DevOps'ta aç") }}</div>
+<div class="table-wrap" style="max-height:38vh"><table class="tbl compact">
+<thead><tr><th>#</th><th>Durum</th><th>Dal / ortam</th><th>Commit</th><th>Tetikleyen</th><th>Süre</th><th>Zaman</th><th></th></tr></thead><tbody>
+{% for b in builds %}
+<tr class="{{ 'clickable' if b.kind == 'build' else '' }}" {% if b.kind == 'build' %}data-row hx-get="/devops/build/{{ b.id }}/steps?n={{ b.number|urlencode }}" hx-target="#steps"{% endif %}>
+  <td class="mono nowrap">{{ b.number }}</td><td>{{ m.state(b.state, T[b.state]) }}</td><td>{{ b.stage or b.branch }}</td>
+  <td class="mono">{{ b.commit }}</td><td class="nowrap">{{ b.requested_by }}</td><td class="nowrap">{{ b.duration_sec|duration }}</td>
+  <td class="nowrap muted" title="{{ b.when|dt(true) }}">{{ b.when|ago }}</td>
+  <td>{{ m.ext_icon(b.web_url, "DevOps'ta aç") }}</td>
+</tr>
+{% else %}<tr><td colspan="8">{{ m.empty("Çalışma yok.", "git") }}</td></tr>{% endfor %}
+</tbody></table></div>
+<div id="steps" class="section">
+  {% if builds and builds[0].kind == 'build' and builds[0].state in ['failed', 'partial'] %}
+    {{ m.lazy("/devops/build/" ~ builds[0].id ~ "/steps?n=" ~ builds[0].number|urlencode, 5) }}
+  {% else %}<p class="muted">Adımları görmek için bir build seçin.</p>{% endif %}
+</div>

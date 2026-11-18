@@ -1,0 +1,2 @@
+<div><div class="muted small mono">── {{ env|envtitle }} · {{ pod }}/{{ container }} $ {{ command }}</div>
+{% if error %}<div class="banner banner-error">{{ icon('alert') }}<div>{{ error }}</div></div>{% else %}<pre class="console">{{ out }}</pre>{% endif %}</div>

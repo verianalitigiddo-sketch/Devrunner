@@ -1,0 +1,15 @@
+{% import "_macros.html" as m %}
+<table class="tbl">
+<thead><tr><th>Uygulama</th><th>CI</th><th>CD</th><th>Son</th></tr></thead><tbody>
+{% for r in rows %}{% set a = r.app %}{% set p = r.p %}
+<tr class="clickable{% if a.name == selected %} selected{% endif %}" data-row hx-get="/devops/app/{{ a.name|urlencode }}" hx-target="#devops-detail"
+    hx-push-url="/devops/?app={{ a.name|urlencode }}">
+  <td class="name">{{ a.name }}</td>
+  {% for pipe in [p.ci if p else none, p.cd if p else none] %}
+    <td class="nowrap">{% if pipe %}{{ m.state(pipe.state, T[pipe.state]) }}{% if pipe.kind == 'release' %} <span class="chip">release</span>{% endif %}{% else %}<span class="muted">pipeline yok</span>{% endif %}</td>
+  {% endfor %}
+  <td class="nowrap muted small">{% set last = (p.ci.last if p and p.ci else none) %}{{ last.when|ago if last else '' }}</td>
+</tr>
+{% else %}<tr><td colspan="4">{{ m.empty("Uygulama yok.", "git") }}</td></tr>{% endfor %}
+</tbody></table>
+{% if fetched %}<div class="muted small" style="padding:8px 12px">Son eşitleme: {{ fetched|ago }}</div>{% endif %}

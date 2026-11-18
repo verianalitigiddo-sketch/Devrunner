@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m %}
+{% block title %}Uygulamalar{% endblock %}
+{% block crumb %}Uygulamalar{% endblock %}
+{% block content %}
+{% call m.page_head("Uygulamalar", "DDDB.Iz.Anm altındaki tüm uygulamalar: pipeline, erişilebilirlik, pod, not ve talepler", "apps") %}
+  <button class="btn" hx-post="/devops/refresh" hx-swap="none">{{ icon('refresh') }} Yenile</button>
+{% endcall %}
+{% if overview_error %}
+  {% call m.banner("error", "DevOps: " ~ overview_error) %}<a class="btn sm" href="/settings/?group=devops">Ayarlar</a>{% endcall %}
+{% elif source == "demo" %}
+  {% call m.banner("demo", "Örnek veri gösteriliyor: Azure DevOps PAT'i girilmemiş.") %}<a class="btn sm" href="/settings/?group=devops">Ayarlar</a>{% endcall %}
+{% endif %}
+<div class="tabs">
+  <a class="tab{% if tab == 'apps' %} active{% endif %}" href="/home/?app={{ selected }}">{{ icon('apps') }} Uygulamalar</a>
+  <a class="tab{% if tab == 'history' %} active{% endif %}" href="/home/?tab=history">{{ icon('history') }} Değişiklik geçmişi</a>
+</div>
+{% if tab == 'history' %}
+  <form class="row" style="margin-bottom:12px" hx-get="/home/history" hx-target="#history" hx-trigger="change">
+    <select class="input" name="module"><option value="">Tüm modüller</option>{% for k, v in MODULE_TITLES.items() %}<option value="{{ k }}">{{ v }}</option>{% endfor %}</select>
+    <input class="input" name="app" placeholder="Uygulama adı (isteğe bağlı)">
+  </form>
+  <div id="history">{{ m.lazy("/home/history", 8) }}</div>
+{% else %}
+<div class="split wide-left">
+  <div class="stack">
+    <label class="search">{{ icon('search') }}<input class="input" name="q" placeholder="Uygulama ara…" style="width:280px"
+      hx-get="/home/table" hx-target="#apps-table" hx-trigger="input changed delay:250ms" hx-vals='{"app": "{{ selected }}"}'></label>
+    <div id="apps-table" class="table-wrap" hx-get="/home/table?app={{ selected|urlencode }}"
+         hx-trigger="load, catalog_changed from:body, health_updated from:body, pods_updated from:body, data_changed from:body, every 60s">
+      {{ m.skeleton(8) }}
+    </div>
+  </div>
+  <div id="detail" class="card sticky app-detail">
+    {% if selected %}{{ m.lazy("/home/app/" ~ selected|urlencode, 10) }}{% else %}{{ m.empty("Uygulama listesi yükleniyor…", "apps") }}{% endif %}
+  </div>
+</div>
+{% endif %}
+<dialog class="modal" id="modal"><div id="modal-body"></div></dialog>
+{% endblock %}

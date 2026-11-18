@@ -1,0 +1,4 @@
+{% if dup %}<div class="banner banner-warning">{{ icon('alert') }}<div>Bu adres zaten kayıtlı: <b>{{ dup.title }}</b></div>
+  <a class="btn sm" href="/bilge/?view=all&q={{ dup.url|urlencode }}">Göster</a></div>
+{% elif error %}<div class="banner banner-error">{{ icon('alert') }}<div>{{ error }}</div></div>
+{% elif ok %}<div class="muted small" style="margin:-4px 0 10px">✓ Eklendi: {{ ok }}</div>{% endif %}

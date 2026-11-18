@@ -1,0 +1,6 @@
+{% import "_macros.html" as m %}
+<div class="table-wrap"><table class="tbl compact"><thead><tr><th>Zaman</th><th>Uygulama</th><th>Ortam</th><th>Durum</th><th class="num">HTTP</th><th class="num">Süre</th><th>Ayrıntı</th><th>Gözlemleyen</th></tr></thead><tbody>
+{% for e in rows %}<tr><td class="nowrap muted">{{ e.observed_at|dt(true) }}</td><td class="name">{{ e.app_name }}</td><td>{{ e.env|envtitle }}</td>
+<td>{{ m.state(e.state, T.get(e.state, e.state)) }}</td><td class="num">{{ e.status_code or '' }}</td><td class="num">{{ e.response_ms|ms if e.response_ms is not none else '' }}</td>
+<td class="small">{{ e.detail or '' }}</td><td class="small">{{ e.observed_by or '' }}</td></tr>
+{% else %}<tr><td colspan="8">{{ m.empty("Henüz durum değişimi kaydedilmedi.", "history") }}</td></tr>{% endfor %}</tbody></table></div>

@@ -1,0 +1,13 @@
+{% import "_macros.html" as m %}
+<div class="card-head"><div class="avatar lg">{{ a.name[:2] }}</div>
+  <div style="flex:1"><h2>{{ a.name }}</h2><div class="muted small">{{ a.repo }} · varsayılan dal: {{ a.default_branch or '?' }} · {{ m.ext_link(a.web_url, "repo") }}</div></div>
+</div>
+{% if warn %}{{ m.banner("error", "❄ " ~ warn ~ ". CD çalıştırmadan önce ekiple teyitleşin.") }}{% endif %}
+<div class="tabs" id="devops-tabs">
+  {% set base = "/devops/app/" ~ a.name|urlencode %}
+  <button class="tab active" hx-get="{{ base }}/history/ci" hx-target="#devops-tab" data-tab>CI geçmişi</button>
+  <button class="tab" hx-get="{{ base }}/history/cd" hx-target="#devops-tab" data-tab>CD geçmişi{% if warn %} ❄{% endif %}</button>
+  <button class="tab" hx-get="{{ base }}/commits" hx-target="#devops-tab" data-tab>Son commit'ler</button>
+  <button class="tab" hx-get="{{ base }}/prs" hx-target="#devops-tab" data-tab>Açık PR'lar</button>
+</div>
+<div id="devops-tab">{{ m.lazy(base ~ "/history/ci", 8) }}</div>

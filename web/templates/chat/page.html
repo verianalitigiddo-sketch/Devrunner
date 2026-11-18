@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m %}
+{% block title %}Sohbet{% endblock %}
+{% block crumb %}Sohbet{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/chat.js') }}?v={{ VERSION }}" defer></script>{% endblock %}
+{% block content %}
+{% call m.page_head("Sohbet", "Çevrimiçi geliştiricilerle doğrudan (P2P) ve uçtan uca şifreli sohbet. Mesajlar sunucuda saklanmaz; geçmiş yalnızca bu oturum boyunca tutulur.", "chat") %}{% endcall %}
+{% if not enabled %}{{ m.banner("warning", "Sohbet kapalı (Ayarlar → Sohbet).") }}
+{% elif not snap.running %}{% call m.banner("error", snap.error or "Sohbet için ortak PostgreSQL bağlantısı gerekir (çevrimiçi kişiler oradan bulunur).") %}<a class="btn sm" href="/settings/?group=db">Ayarlar</a>{% endcall %}
+{% else %}
+<div class="chat">
+  <aside class="card rooms" id="rooms" hx-get="/chat/rooms?room={{ room|urlencode }}" hx-trigger="presence_changed from:body, chat_message from:body, every 20s">
+    {% include "chat/_rooms.html" %}
+  </aside>
+  <section class="card chat-main">
+    <div id="chat-header" hx-get="/chat/header?room={{ room|urlencode }}" hx-trigger="presence_changed from:body">
+      {% set peer = (snap.peers|selectattr('uid', 'equalto', room)|first) %}{% include "chat/_header.html" %}</div>
+    <div class="messages" id="messages" data-autoscroll hx-get="/chat/messages?room={{ room|urlencode }}" hx-trigger="load, chat_message from:body"></div>
+    <div id="composer">{% include "chat/_composer.html" %}</div>
+  </section>
+</div>
+{% endif %}
+{% endblock %}

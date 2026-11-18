@@ -1,0 +1,4 @@
+<div class="modal-head"><h2>{{ title or 'Log' }} · build {{ build_id }}</h2>
+  <a class="btn sm" href="/devops/build/{{ build_id }}/log/{{ log_id }}?download=1">{{ icon('download') }} İndir</a>
+  <button class="btn icon ghost" data-action="close-dialog">{{ icon('x') }}</button></div>
+<div class="modal-body"><pre class="console tall nowrap">{{ text }}</pre></div>

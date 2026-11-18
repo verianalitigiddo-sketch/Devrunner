@@ -1,0 +1,25 @@
+{% import "_macros.html" as m %}
+<h3>{{ icon('note') }} Notlar <span class="chip">{{ notes|length }}</span> <a class="btn ghost sm" href="/notes/?app={{ name|urlencode }}" style="margin-left:auto">Notlara git</a></h3>
+{% for n in notes[:6] %}
+  <a class="note-card" href="/notes/?id={{ n.id }}" style="margin-bottom:6px">{% if n.pinned %}📌 {% endif %}<b>{{ n.title }}</b>
+    <span class="muted small">{{ n.updated_by or n.created_by }} · {{ (n.updated_at or n.created_at)|ago }}</span>
+    <div class="small" style="margin-top:4px">{{ n.body[:200] }}</div></a>
+{% else %}<p class="muted">Not yok.</p>{% endfor %}
+
+<div class="section"><h3>{{ icon('bookmark') }} Bilge talepleri <span class="chip">{{ bookmarks|length }}</span>
+  <a class="btn ghost sm" href="/bilge/?view=app&app={{ name|urlencode }}" style="margin-left:auto">Taleplere git</a></h3>
+{% for b in bookmarks[:10] %}
+  <div class="pod-line">{% if b.starred %}<span class="tone-warning">{{ icon('star-fill', 'i-sm') }}</span>{% endif %}
+    {{ m.ext_link(b.url, b.title) }}<span class="pill {{ {'Açık':'info','Devam ediyor':'warning'}.get(b.status, 'missing') }}">{{ b.status }}</span>
+    {% if b.folder_path %}<span class="chip">{{ icon('folder', 'i-sm') }} {{ b.folder_path }}</span>{% endif %}
+    {% for t in b.tags %}<span class="chip">#{{ t }}</span>{% endfor %}</div>
+{% else %}<p class="muted">Talep yok.</p>{% endfor %}
+</div>
+
+<div class="section"><h3>{{ icon('history') }} Değişiklik geçmişi</h3>
+<ul class="timeline">
+{% for e in history %}
+  <li><span class="when">{{ e.at|dt }}</span><span><b>{{ e.user_name }}</b> {{ MODULE_TITLES.get(e.module, e.module) }}
+    {{ ACTION_TITLES.get(e.action, e.action) }} <span class="muted">{{ (e.detail or {}).get('title', '') }}</span></span></li>
+{% else %}<li class="muted">Kayıt yok.</li>{% endfor %}
+</ul></div>

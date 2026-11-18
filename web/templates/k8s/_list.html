@@ -1,0 +1,20 @@
+{% import "_macros.html" as m %}
+<div class="muted small" style="margin-bottom:8px">{{ env|envtitle }} · {{ pods|length }} pod{% if app %} · {% if found %}eşleme: {{ how }}{% else %}bu ortamda iş yükü bulunamadı (aktarılmamış olabilir){% endif %}{% endif %}</div>
+{% for w in warnings %}{{ m.banner("warning", w) }}{% endfor %}
+<div class="table-wrap"><table class="tbl compact">
+<thead><tr><th>Pod</th><th>Durum</th><th>Hazır</th><th class="num">Yeniden b.</th><th>Yaş</th><th>Node</th></tr></thead><tbody>
+{% for p in pods %}
+<tr class="clickable" data-row hx-get="/k8s/pod?env={{ env }}&pod={{ p.name|urlencode }}" hx-target="#pod-detail"
+    {% if loop.first %}hx-trigger="click, load"{% endif %}>
+  <td class="mono nowrap">{{ p.name }}</td><td>{{ m.state(pod_state(p), p.status) }}</td><td>{{ p.ready }}</td>
+  <td class="num{{ ' tone-danger' if p.restarts > 5 else '' }}">{{ p.restarts }}</td><td class="nowrap">{{ p.age }}</td><td class="muted small nowrap" title="{{ p.ip }}">{{ p.node }}</td>
+</tr>
+{% else %}<tr><td colspan="6">{{ m.empty("Pod yok.", "cube") }}</td></tr>{% endfor %}
+</tbody></table></div>
+{% if deps %}
+<div class="section"><h3>{{ icon('server') }} Deployment'lar</h3>
+<div class="table-wrap"><table class="tbl compact"><thead><tr><th>Deployment</th><th>Hazır</th><th>İmaj</th><th>Yaş</th></tr></thead><tbody>
+{% for d in deps %}<tr><td class="name">{{ d.name }}</td><td>{{ m.state('Running' if d.ready >= d.desired > 0 else 'failed', d.ready ~ '/' ~ d.desired) }}</td>
+<td class="mono small" title="{{ d.images|join(', ') }}">{{ d.images|map('replace', '/', ' / ')|join(', ')|truncate(60) }}</td><td>{{ d.age }}</td></tr>{% endfor %}
+</tbody></table></div></div>
+{% endif %}

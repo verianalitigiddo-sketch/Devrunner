@@ -1,0 +1,13 @@
+<div class="card-head" style="margin-bottom:0;padding-bottom:10px;border-bottom:1px solid var(--border)">
+{% if room == 'general' %}
+  <div class="page-icon">{{ icon('hash') }}</div><div style="flex:1"><h2>Genel</h2><span class="muted small">{{ snap.online }} kişi çevrimiçi · mesaj her çevrimiçi kişiye ayrı şifrelenir</span></div>
+{% elif peer %}
+  <span class="avatar lg">{{ peer.name|initials }}</span>
+  <div style="flex:1"><h2>{{ peer.name }}</h2><span class="muted small">{{ 'çevrimiçi' if peer.online else 'bağlantı yok' }} · sürüm {{ peer.version or '?' }} · parmak izi <span class="mono">{{ peer.fingerprint }}</span></span></div>
+  {% if peer.key_state == 'changed' %}
+    <button class="btn danger sm" hx-post="/chat/accept/{{ peer.uid|urlencode }}" hx-swap="none"
+      hx-confirm="Parmak izini kişiyle başka bir kanaldan (telefon, yüz yüze) teyit ettiniz mi?">{{ icon('lock') }} Yeni anahtarı kabul et</button>
+  {% endif %}
+{% else %}<h2>Kişi çevrimdışı</h2>{% endif %}
+</div>
+{% if peer and peer.key_state == 'changed' %}<div class="banner banner-error" style="margin-top:10px">{{ icon('alert') }}<div>Bu kişinin şifreleme anahtarı ilk görülenden farklı. Yeni bir bilgisayara geçmiş olabilir ya da biri onun adına bağlanmaya çalışıyor olabilir.</div></div>{% endif %}

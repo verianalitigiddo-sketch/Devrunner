@@ -1,0 +1,5 @@
+{% import "_macros.html" as m %}
+<div class="table-wrap"><table class="tbl compact"><thead><tr><th>Tür</th><th>Neden</th><th class="num">Sayı</th><th>Zaman</th><th>Mesaj</th></tr></thead><tbody>
+{% for e in rows %}<tr><td>{{ m.state('failed' if e.type == 'Warning' else 'up', e.type) }}</td><td>{{ e.reason }}</td><td class="num">{{ e.count }}</td>
+<td class="nowrap muted" title="{{ e.when|dt(true) }}">{{ e.when|ago }}</td><td class="wrap">{{ e.message }}</td></tr>
+{% else %}<tr><td colspan="5">{{ m.empty("Olay yok.", "clock") }}</td></tr>{% endfor %}</tbody></table></div>

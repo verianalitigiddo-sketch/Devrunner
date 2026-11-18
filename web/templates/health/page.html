@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m %}
+{% block title %}Erişilebilirlik{% endblock %}
+{% block crumb %}Erişilebilirlik{% endblock %}
+{% block content %}
+{% call m.page_head("Erişilebilirlik", "Dev/Test/Prod adreslerine her " ~ interval ~ " sn'de bir HTTP isteği · zaman aşımı " ~ timeout ~ " sn · yavaş eşiği " ~ slow ~ " ms · durum iki ardışık yoklamada aynı çıkınca değişmiş sayılır", "pulse") %}
+  <button class="btn primary" hx-post="/health/probe" hx-swap="none">{{ icon('refresh') }} Şimdi yokla</button>
+{% endcall %}
+{% if not enabled %}{{ m.banner("warning", "Düzenli yoklama kapalı (Ayarlar → Erişilebilirlik).") }}
+{% elif demo %}{{ m.banner("demo", "Örnek katalog: sonuçlar uydurmadır, gerçek adreslere istek atılmaz.") }}{% endif %}
+<form class="row" id="health-filter" style="margin-bottom:12px" hx-get="/health/table" hx-target="#health-table" hx-trigger="change">
+  <div class="tabs" style="margin:0">
+    <label class="tab"><input type="radio" name="env" value="" checked hidden> Tümü</label>
+    {% for e in ENVS %}<label class="tab"><input type="radio" name="env" value="{{ e }}" hidden> {{ e|envtitle }}</label>{% endfor %}
+  </div>
+  <label class="check"><input type="checkbox" name="problems" value="1"> Yalnızca sorunlular</label>
+  <input type="hidden" name="hide_missing" value="0">
+  <label class="check"><input type="checkbox" name="hide_missing" value="1" checked> Aktarılmamışları gizle</label>
+</form>
+<div id="health-table" hx-get="/health/table" hx-include="#health-filter" hx-trigger="load, health_updated from:body, catalog_changed from:body">{{ m.skeleton(10) }}</div>
+<div class="section"><h3>{{ icon('history') }} Son durum değişimleri <span class="muted small">(ekip geneli)</span></h3>
+  <div hx-get="/health/events" hx-trigger="load, health_changed from:body, every 60s">{{ m.skeleton(4) }}</div></div>
+{% endblock %}

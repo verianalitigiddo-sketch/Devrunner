@@ -1,0 +1,13 @@
+{% if request.args.get('part') == 'freeze' %}
+  {% if freeze.is_active %}
+    <a class="freeze-badge active" href="/freeze/" title="{{ freeze.tooltip() }}">{{ icon('snow') }} FREEZE</a>
+  {% elif freeze.upcoming %}
+    <a class="freeze-badge upcoming" href="/freeze/" title="{{ freeze.tooltip() }}">{{ icon('snow') }} Freeze {{ upcoming_days }} gün sonra</a>
+  {% endif %}
+{% else %}
+  {% if online is none %}
+    <a class="online-pill off" href="/chat/" title="{{ chat_error or 'Sohbet için PostgreSQL bağlantısı gerekir.' }}"><i></i>sohbet kapalı</a>
+  {% else %}
+    <a class="online-pill" href="/chat/" title="{{ peers|join(', ') or 'Şu an başka çevrimiçi geliştirici yok.' }}"><i></i>{{ online }} çevrimiçi</a>
+  {% endif %}
+{% endif %}

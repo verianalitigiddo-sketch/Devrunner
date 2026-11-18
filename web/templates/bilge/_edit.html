@@ -1,0 +1,16 @@
+<div class="modal-head"><h2>Talebi düzenle</h2><button class="btn icon ghost" data-action="close-dialog">{{ icon('x') }}</button></div>
+<form class="modal-body stack" hx-post="/bilge/edit/{{ r.id }}" hx-target="#edit-error">
+  <label class="field"><span>Başlık</span><input class="input" name="title" value="{{ r.title }}" required maxlength="300"></label>
+  <label class="field"><span>Bilge adresi</span><input class="input" name="url" value="{{ r.url }}" required></label>
+  <div class="grid-2">
+    <label class="field"><span>Uygulama</span><select class="input" name="app"><option value="">(uygulama yok)</option>
+      {% for a in apps %}<option{% if a == r.app_name %} selected{% endif %}>{{ a }}</option>{% endfor %}</select></label>
+    <label class="field"><span>Durum</span><select class="input" name="status">{% for s in statuses %}<option{% if s == r.status %} selected{% endif %}>{{ s }}</option>{% endfor %}</select></label>
+    <label class="field"><span>Klasör</span><select class="input" name="folder_id"><option value="">Klasörsüz</option>
+      {% for fid, label in folders %}<option value="{{ fid }}"{% if fid == r.folder_id %} selected{% endif %}>{{ label }}</option>{% endfor %}</select></label>
+    <label class="field"><span>Etiketler</span><input class="input" name="tags" value="{{ r.tags|join(', ') }}" placeholder="ör. port, firewall"></label>
+  </div>
+  <label class="field"><span>Açıklama</span><textarea class="input" name="description" rows="3">{{ r.description or '' }}</textarea></label>
+  <div id="edit-error"></div>
+  <div class="row"><button class="btn primary" type="submit">{{ icon('check') }} Kaydet</button><button class="btn ghost" type="button" data-action="close-dialog">Vazgeç</button></div>
+</form>

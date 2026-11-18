@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="tr" data-theme="{{ theme }}">
+<head>
+  <meta charset="utf-8"><title>Hoş geldiniz · {{ APP_NAME }}</title>
+  <link rel="stylesheet" href="/theme.css?v={{ VERSION }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}?v={{ VERSION }}">
+  <script src="{{ url_for('static', filename='vendor/htmx-2.0.4.min.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}?v={{ VERSION }}" defer></script>
+</head>
+<body hx-headers='{"X-Devrunner": "1"}' class="welcome-body">
+<div class="aurora" aria-hidden="true"></div>
+<form class="welcome card" hx-post="/welcome" hx-target="this" hx-swap="outerHTML">
+  <div class="rail-logo big">D</div>
+  <h1>{{ APP_NAME }}'a hoş geldiniz</h1>
+  <p class="muted">Adınız notlarda, sohbette ve değişiklik geçmişinde görünür. LDAP yoktur; bu bir kimlik
+    doğrulama değil, ekip içi güvene dayalı bir araçtır.</p>
+  <input class="input big" name="name" value="{{ suggestion }}" maxlength="100" autofocus required placeholder="Adınız Soyadınız">
+  {% if error %}<p class="tone-danger">{{ error }}</p>{% endif %}
+  <button class="btn primary big" type="submit">Başla</button>
+</form>
+</body>
+</html>

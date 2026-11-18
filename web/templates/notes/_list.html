@@ -1,0 +1,10 @@
+{% import "_macros.html" as m %}
+{% for n in rows %}
+  <a class="note-card{% if n.id == active %} active{% endif %}" href="/notes/?id={{ n.id }}" hx-get="/notes/edit?id={{ n.id }}" hx-target="#editor" hx-push-url="/notes/?id={{ n.id }}">
+    <b>{% if n.pinned %}📌 {% endif %}{{ n.title }}</b>
+    <span class="row small muted" style="margin-top:4px">
+      {% if n.app_name %}<span class="chip accent">{{ n.app_name }}</span>{% else %}<span class="chip">genel</span>{% endif %}
+      {% if n.env %}<span class="chip">{{ n.env|envtitle }}</span>{% endif %}
+      {{ n.updated_by or n.created_by }} · {{ (n.updated_at or n.created_at)|ago }}</span>
+  </a>
+{% else %}{{ m.empty("Not yok.", "note") }}{% endfor %}

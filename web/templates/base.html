@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="tr" data-theme="{{ theme }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="view-transition" content="same-origin">
+  <title>{% block title %}{% endblock %} · {{ APP_NAME }}</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/theme.css?v={{ VERSION }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}?v={{ VERSION }}">
+  <script src="{{ url_for('static', filename='vendor/htmx-2.0.4.min.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}?v={{ VERSION }}" defer></script>
+  {% block scripts %}{% endblock %}
+</head>
+<body hx-headers='{"X-Devrunner": "1"}' data-page="{{ page_id }}">
+{% include "_icons.html" %}
+<div class="aurora" aria-hidden="true"></div>
+
+<div class="shell">
+  <nav class="rail" aria-label="Modüller">
+    <a class="rail-logo" href="/" title="{{ APP_NAME }} v{{ VERSION }}">D</a>
+    <div class="rail-sep"></div>
+    {% for p in PAGES %}
+      <a class="rail-item{% if p.id == page_id %} active{% endif %}{% if p.id in broken %} broken{% endif %}"
+         href="/{{ p.id }}/" data-tip="{{ p.title }}" aria-label="{{ p.title }}">
+        {{ icon(p.icon) }}
+        {% if p.id == 'chat' %}<span class="rail-badge" id="chat-unread" hidden></span>{% endif %}
+      </a>
+    {% endfor %}
+  </nav>
+
+  <div class="main-col">
+    <header class="topbar">
+      <div class="crumb">
+        <span class="crumb-app">{{ APP_NAME }}</span>
+        <span class="crumb-sep">{{ icon('chevron') }}</span>
+        <span class="crumb-page">{% block crumb %}{% endblock %}</span>
+        {% if PROFILE %}<span class="chip">profil: {{ PROFILE }}</span>{% endif %}
+      </div>
+      <button class="search-pill" type="button" data-action="palette">
+        {{ icon('search') }}<span>Ara veya git…</span><kbd>Ctrl</kbd><kbd>K</kbd>
+      </button>
+      <div class="spacer"></div>
+      <label class="theme-picker" title="Tema">
+        {{ icon('palette') }}
+        <select id="theme-select" aria-label="Tema">
+          {% for key, title in THEMES %}<option value="{{ key }}"{% if key == theme %} selected{% endif %}>{{ title }}</option>{% endfor %}
+        </select>
+      </label>
+      <div id="header-status" class="header-status"
+           hx-get="/api/header" hx-trigger="load, freeze_changed from:body, presence_changed from:body, db_state_changed from:body, settings_changed from:body, every 60s"></div>
+      <a class="me" href="/settings/?group=general" title="Adınızı değiştirmek için Ayarlar → Genel">
+        <span class="avatar">{{ me.name|initials }}</span><span class="me-name">{{ me.name }}</span>
+      </a>
+      <div id="freeze-slot" hx-get="/api/header?part=freeze" hx-trigger="load, freeze_changed from:body, every 60s"></div>
+    </header>
+
+    <main class="page" id="page">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="statusbar" id="statusbar"
+            hx-get="/api/statusbar" hx-trigger="load, catalog_changed from:body, health_updated from:body, db_state_changed from:body, every 30s"></footer>
+  </div>
+</div>
+
+<div id="toasts" class="toasts" aria-live="polite"></div>
+
+<dialog id="palette" class="palette">
+  <div class="palette-box">
+    <div class="palette-search">{{ icon('search') }}<input id="palette-input" placeholder="Sayfa, uygulama veya tema ara…" autocomplete="off"></div>
+    <ul id="palette-list" class="palette-list" role="listbox"></ul>
+    <div class="palette-foot"><kbd>↑</kbd><kbd>↓</kbd> seç · <kbd>Enter</kbd> git · <kbd>Esc</kbd> kapat</div>
+  </div>
+</dialog>
+</body>
+</html>

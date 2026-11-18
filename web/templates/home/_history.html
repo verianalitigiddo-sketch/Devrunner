@@ -1,0 +1,10 @@
+{% import "_macros.html" as m %}
+{% if not rows %}{{ m.empty("Kayıt yok.", "history") }}{% else %}
+<div class="table-wrap"><table class="tbl compact">
+<thead><tr><th>Zaman</th><th>Kişi</th><th>Modül</th><th>İşlem</th><th>Uygulama</th><th>Ayrıntı</th></tr></thead><tbody>
+{% for r in rows %}{% set d = r.detail or {} %}
+<tr><td class="nowrap muted">{{ r.at|dt(true) }}</td><td class="nowrap"><span class="row"><span class="avatar sm">{{ r.user_name|initials }}</span>{{ r.user_name }}</span></td>
+<td>{{ MODULE_TITLES.get(r.module, r.module) }}</td><td>{{ ACTION_TITLES.get(r.action, r.action) }}</td><td>{{ r.app_name or '' }}</td>
+<td class="wrap">{{ d.get('title') or (d.get('labels') or [])|join(', ') or d.items()|map('join', ': ')|join(', ') }}</td></tr>
+{% endfor %}</tbody></table></div>
+{% endif %}

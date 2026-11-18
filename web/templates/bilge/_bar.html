@@ -1,0 +1,3 @@
+{{ icon('star-fill', 'tone-warning') }}
+{% for b in items %}<a href="{{ b.url }}" target="_blank" rel="noopener noreferrer" title="{{ b.url }}">{{ b.title|truncate(40) }}</a>
+{% else %}<span class="muted small">Yıldızladığınız talepler burada tek tıkla açılır.</span>{% endfor %}

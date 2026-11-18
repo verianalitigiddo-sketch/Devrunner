@@ -1,0 +1,13 @@
+<span class="sb-item" title="{{ db_text }}">{{ icon('server', 'i-sm') }}
+  {% if not db_configured %}PostgreSQL: ayarlanmamış{% elif db_ready %}<span class="state state-success"><i></i>PostgreSQL bağlı</span>{% else %}<span class="state state-danger"><i></i>PostgreSQL bağlantı yok</span>{% endif %}
+</span>
+<span class="sb-item" title="{{ overview_error or (app_count ~ ' uygulama') }}">{{ icon('git', 'i-sm') }}
+  {% if overview_error %}<span class="state state-danger"><i></i>DevOps: hata</span>
+  {% elif catalog_source == 'demo' %}DevOps: örnek veri
+  {% elif catalog_updated %}DevOps: {{ catalog_updated|ago }} eşitlendi
+  {% else %}DevOps: bekleniyor{% endif %}
+</span>
+<span class="sb-item">{{ icon('pulse', 'i-sm') }}
+  {% if health %}Erişim: {{ health.get('up', 0) }} çalışıyor{% if health.get('slow') %} · <span class="tone-warning">{{ health.slow }} yavaş</span>{% endif %}{% if health.get('down') %} · <span class="tone-danger">{{ health.down }} kapalı</span>{% endif %}
+  {% else %}Erişim: bekleniyor{% endif %}
+</span>

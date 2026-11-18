@@ -1,0 +1,1 @@
+{% for label, cmd in cmds %}<button class="chip-btn" type="button" data-fill='{{ {"#command": cmd}|tojson|forceescape }}' title="{{ cmd }}">{{ label }}</button>{% else %}<span class="muted small">uygulama seçin</span>{% endfor %}

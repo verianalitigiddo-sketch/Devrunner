@@ -1,0 +1,27 @@
+{% import "_macros.html" as m %}
+{% for b in items %}
+<div class="bm" data-id="{{ b.id }}" draggable="true">
+  <span class="grip" title="Sürükleyip klasöre bırakın{{ ' veya sıralayın' if sortable else '' }}">{{ icon('grip') }}</span>
+  <span class="fav">{{ (b.url|host or '?')[:2]|upper }}</span>
+  <div style="min-width:0">
+    <a class="title" href="{{ b.url }}" target="_blank" rel="noopener noreferrer" title="{{ b.url }}">{{ b.title }}</a>
+    <div class="meta">
+      <span>{{ b.url|host }}</span>
+      <button class="pill {{ role.get(b.status, 'missing') }}" style="background:none;cursor:pointer" hx-post="/bilge/status/{{ b.id }}" hx-swap="none" title="Durumu değiştir">{{ b.status }}</button>
+      {% if b.app_name %}<a class="chip accent" href="/bilge/?view=app&app={{ b.app_name|urlencode }}">{{ b.app_name }}</a>{% endif %}
+      {% if b.folder_path %}<a class="chip" href="/bilge/?view=folder&folder={{ b.folder_id }}">{{ icon('folder', 'i-sm') }} {{ b.folder_path }}</a>{% endif %}
+      {% for t in b.tags %}<a class="chip" href="/bilge/?view=all&tag={{ t|urlencode }}">#{{ t }}</a>{% endfor %}
+      <span>{{ b.created_by }} · {{ b.created_at|ago }}</span>
+    </div>
+    {% if b.description %}<div class="small muted" style="margin-top:4px">{{ b.description|truncate(200) }}</div>{% endif %}
+  </div>
+  <div class="actions">
+    <button class="btn icon ghost{{ ' star-on' if b.starred else '' }}" title="{{ 'Yıldızı kaldır' if b.starred else 'Yıldızla (yalnızca sizde)' }}"
+            hx-post="/bilge/star/{{ b.id }}" hx-vals='{"on": "{{ 0 if b.starred else 1 }}"}' hx-swap="none">{{ icon('star-fill' if b.starred else 'star') }}</button>
+    <button class="btn icon ghost" title="Bağlantıyı kopyala" data-action="copy" data-value="{{ b.url }}">{{ icon('copy') }}</button>
+    <button class="btn icon ghost" title="Düzenle" hx-get="/bilge/edit/{{ b.id }}" hx-target="#modal-body">{{ icon('edit') }}</button>
+    <button class="btn icon ghost" title="Listeden kaldır" hx-post="/bilge/delete/{{ b.id }}" hx-swap="none"
+            hx-confirm="“{{ b.title }}” listeden kaldırılsın mı? (Bilge'deki talep etkilenmez)">{{ icon('trash') }}</button>
+  </div>
+</div>
+{% else %}{{ m.empty("Bu görünümde talep yok. Yukarıdan adres yapıştırarak ekleyin.", "bookmark") }}{% endfor %}

@@ -1,0 +1,26 @@
+{% import "_macros.html" as m %}
+<div class="cards" style="margin-bottom:12px">
+  {% for k in ['up', 'slow', 'down', 'missing'] %}
+  <div class="stat"><span class="muted small">{{ T[k] }}</span><b class="tone-{{ k|role }}">{{ summary.get(k, 0) }}</b></div>
+  {% endfor %}
+</div>
+<div class="table-wrap"><table class="tbl">
+<thead><tr><th>Uygulama</th><th>Ortam</th><th>Durum</th><th class="num">HTTP</th><th class="num">Süre</th><th>Son 1 saat</th><th>Son değişim</th><th>Adres</th><th></th></tr></thead><tbody>
+{% for r in rows %}{% set s = r.s %}
+<tr>
+  <td class="name">{{ r.app }}</td><td>{{ r.env|envtitle }}</td>
+  <td class="nowrap" title="{{ s.error if s else '' }}{% if s and s.checked_at %} · son yoklama {{ s.checked_at|dt(true) }}{% endif %}">{{ m.state(r.state, T.get(r.state, r.state)) }}{% if r.muted %} <span class="chip">sessiz</span>{% endif %}</td>
+  <td class="num">{{ s.status_code if s and s.status_code else '' }}</td>
+  <td class="num nowrap{{ ' tone-warning' if r.state == 'slow' else '' }}">{{ s.ms|ms if s else '' }}</td>
+  <td>{{ r.spark }}</td>
+  <td class="nowrap muted" title="{{ s.changed_at|dt(true) if s else '' }}">{{ s.changed_at|ago if s else '' }}</td>
+  <td class="small" style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ m.ext_link(r.url) }}</td>
+  <td class="nowrap">
+    <a class="btn ghost sm" href="/terminal/?cmd={{ ('curl -k -I -s -m 15 ' ~ r.url)|urlencode }}" title="Terminalde curl">curl</a>
+    <a class="btn ghost sm" href="/terminal/?cmd={{ ('nslookup ' ~ r.host)|urlencode }}" title="Terminalde nslookup">dns</a>
+    <button class="btn ghost sm" hx-post="/health/mute" hx-vals='{"app": "{{ r.app }}", "env": "{{ r.env }}"}' hx-swap="none"
+            title="Sessizdeki uygulama/ortam bildirim üretmez (ekip geneli)">{{ 'sesi aç' if r.muted else 'sustur' }}</button>
+  </td>
+</tr>
+{% else %}<tr><td colspan="9">{{ m.empty("Gösterilecek adres yok.", "pulse") }}</td></tr>{% endfor %}
+</tbody></table></div>
