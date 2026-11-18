@@ -1,10 +1,11 @@
 """
 Devrunner'ı konsolsuz başlatır (Windows'ta çift tıklama veya kur.bat'ın oluşturduğu kısayol).
 
-    pythonw Devrunner.pyw                 normal
+    pythonw Devrunner.pyw                    normal (PyQt6 penceresi + arka planda web.server)
     pythonw Devrunner.pyw --profile ikinci   aynı makinede ikinci kopya (.env.ikinci, .local/ikinci/)
+    python  Devrunner.pyw --debug            F12 geliştirici araçları, log konsola
 
-Hata ayıklamak için konsollu: python app.py
+Arayüzü normal tarayıcıda geliştirmek için: python -m web.server --dev
 """
 import os
 import sys
@@ -21,7 +22,7 @@ if "--profile" in sys.argv:
 
 
 def _fatal(text: str) -> None:
-    """Qt açılamadan önceki hatalar (ör. PySide6 kurulu değil): pythonw'da görünür kılmak için."""
+    """Qt açılamadan önceki hatalar (ör. PyQt6 kurulu değil): pythonw'da görünür kılmak için."""
     log = ROOT / ".local" / "logs" / "baslatma_hatasi.log"
     log.parent.mkdir(parents=True, exist_ok=True)
     log.write_text(text, encoding="utf-8")
@@ -32,7 +33,7 @@ def _fatal(text: str) -> None:
 
 
 try:
-    from app import main
+    from shell.main import main
 except Exception:   # noqa: BLE001
     import traceback
     _fatal(traceback.format_exc())

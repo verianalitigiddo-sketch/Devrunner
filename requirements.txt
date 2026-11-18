@@ -1,9 +1,16 @@
-PySide6==6.8.1                  # masaüstü arayüz (Qt)
-requests==2.34.2                # DevOps REST, erişilebilirlik yoklaması
+# Arayüz kabuğu (shell/) — yalnızca bu süreç PyQt6 kullanır
+PyQt6==6.12.1                   # pencere, tepsi
+PyQt6-WebEngine==6.140.1        # gömülü tarayıcı (QWebEngineView)
+
+# Backend süreci (web/ + scripts/) — PySide6'nın yalnızca QtCore / QtNetwork / QtGui kısmı
+PySide6-Essentials==6.8.1       # dondurulmuş backend: bus, servisler, sohbet (QTcpServer), tema paletleri
+Flask==3.1.3                    # yerel arayüz sunucusu (yalnızca 127.0.0.1)
+markdown-it-py==4.3.0           # notlarda Markdown (ham HTML kapalı)
+requests==2.34.2                # DevOps REST, erişilebilirlik yoklaması, Kubernetes REST
 truststore==0.10.5              # DevOps için Windows sertifika deposu (kurum içi CA)
 SQLAlchemy==2.1.8               # ortak PostgreSQL
 psycopg2-binary==2.9.13         # PostgreSQL sürücüsü
 python-dotenv==1.2.4            # .env okuma / yazma (ayarlar ekranı)
-websockets==16.0                # Kubernetes pods/exec (WebSocket); REST çağrıları requests ile
+websockets==16.0                # Kubernetes pods/exec (WebSocket)
 PyNaCl==1.6.2                   # sohbet: uçtan uca şifreleme (libsodium)
 tzdata==2026.6; sys_platform == "win32"   # Windows'ta Europe/Istanbul saat dilimi (freeze tarihleri)

@@ -23,7 +23,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "$r=$env:DR_ROOT; $d=[Env
 
 echo.
 echo Kurulum tamam. Masaüstündeki "Devrunner" kısayolu ile açın.
-echo Hata ayıklamak için konsollu açılış: .venv\Scripts\python.exe app.py
+echo Hata ayıklamak için: .venv\Scripts\python.exe Devrunner.pyw --debug   (F12 geliştirici araçları)
 pause
 exit /b 0
 
