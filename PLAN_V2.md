@@ -13,6 +13,36 @@ Bu belge, `DevrunnerWeb` dalındaki uygulamanın ikinci turunu yapacak modele ve
 
 Emin olunamayan noktalar [Bölüm 9](#9-açık-sorular-ve-varsayımlar)'da varsayım olarak işaretli.
 
+## Durum (uygulandı)
+
+Dört faz da `DevrunnerWeb` dalında ayrı commit'ler olarak yapıldı; `scripts/` farkı yalnızca yeni dosyalardır
+(`K8sExecAPI.py`, `AuraAPI.py`). 150 test geçiyor (88 eski + 62 yeni); Playwright ile titreme, terminal ve Aura
+uçtan uca denendi.
+
+| Faz | Durum | Not |
+|---|---|---|
+| A — Port, oturum, K8s, titreme | Tamam | `DEVRUNNER_PORT=28657`, 30 günlük kalıcı çerez, "Tarayıcıda aç", `k8s_access` deployment istemez, idiomorph ile yerinde güncelleme, `UI_EFFECTS` |
+| B — Native terminaller | Tamam | xterm.js, sekmeli yerel / pod kabuğu, geri oynatma, Prod onayı, pod satırından "Terminal", canlı log WebSocket'i |
+| C — Aura | Tamam | Kurallar, 24 etiket, DbStore / MemoryStore, eşitleme, sayfa, başlık ve sohbet rozetleri, bildirimler |
+| D — Teslim | Tamam | README (tarayıcı erişimi, terminal, Aura kuralları, Windows listesi), `requirements.txt` |
+
+Plandan sapmalar ve uygulamada bulunanlar:
+
+* **WebSocket kapanışı**: `flask-sock` werkzeug sunucusunda işleyici bitince aynı bağlantıya boş bir HTTP yanıtı
+  yazıyor; Chrome bunu "Invalid frame header" hatası olarak gösteriyordu. `web/ws.py` her işleyiciden sonra kapanış
+  el sıkışmasını bekleyip TCP'yi kapatıyor (testli).
+* **Arka plan işleri**: `bash -i` arka plan işlerini ayrı süreç gruplarına koyduğu için grubu öldürmek yetmiyordu;
+  yerel kabuk kapanınca kabuğun oturumundaki (SID) tüm süreçler sonlandırılıyor.
+* **Port denetimi** POSIX'te `SO_REUSEADDR` ile yapılıyor; aksi hâlde yeniden açılışta TIME_WAIT bağlantıları portu
+  "dolu" gösteriyordu.
+* **YAML CD'de Prod**: build listesi aşama adını vermediği için pipeline adı "prod" içeriyorsa Prod sayılıyor; klasik
+  Release'te ortam adı "Prod" / "Canlı" ise.
+* **Demo**: örnek olgulara uygulama kullanıcısı da eklenir (kartım boş kalmasın); demo olguları veritabanına yazılmaz.
+* Bölüm 9'daki varsayımlar aynen uygulandı (revert'te puanı revert'ü atan kaybeder; herkes görünür, kişi kendini
+  gizleyebilir; 180 gün; sezon yok).
+* Windows'a özgü olanlar (ConPTY / `pywinpty`, pano, tepsi "Tarayıcıda aç", iç PyPI'de paketler) geliştirme ortamında
+  doğrulanamadı; README → "Windows'ta elle denenecekler".
+
 ## 1. Kurallar ve ortak altyapı
 
 **Backend dondurma kuralı sürer.** `scripts/` altındaki mevcut dosyalar değişmez; yeni dosya eklenebilir.
