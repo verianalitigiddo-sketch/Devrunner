@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% import "_macros.html" as m %}
+{% block title %}Terminal{% endblock %}
+{% block crumb %}Terminal{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/terminal_legacy.js') }}?v={{ VERSION }}" defer></script>{% endblock %}
+{% block content %}
+{% call m.page_head("Terminal", "Teşhis komutları (nslookup, curl, ping, kubectl). Her komut ayrı süreçte çalışır; etkileşimli programlar (vim, parametresiz nslookup, ssh) desteklenmez.", "terminal") %}{% endcall %}
+{% if reason %}<div class="banner banner-warning" style="margin-bottom:10px">{{ icon('alert') }}<div>{{ reason }} Gerçek terminal için Windows'ta <code>pip install pywinpty</code>.</div></div>{% endif %}
+<div class="row" style="margin-bottom:10px">
+  <form class="row" hx-post="/terminal/shell" hx-target="#shell-badge" hx-trigger="change">
+    <select class="input" name="shell" id="shell-select">
+      {% for s in shells %}<option value="{{ s.id }}"{% if shell and s.id == shell.id %} selected{% endif %}>{{ s.title }}</option>{% else %}<option>kabuk bulunamadı</option>{% endfor %}
+    </select>
+  </form>
+  <div id="shell-badge">{% include "terminal/_badge.html" %}</div>
+  <span class="spacer"></span>
+  <label class="row"><span class="muted">kubectl ortamı</span>
+    <select class="input" id="kube-select" title="KUBECONFIG: .local/kube/&lt;ortam&gt;.yaml (Ayarlar → Kubernetes'ten üretilir)">
+      <option value="">(yok)</option>{% for e in kube_envs %}<option value="{{ e }}"{% if e == kube %} selected{% endif %}>{{ e|envtitle }}</option>{% endfor %}
+    </select></label>
+</div>
+<div class="row" style="margin-bottom:10px">
+  <span class="muted">Dizin</span><span id="cwd">{% include "terminal/_cwd.html" %}</span>
+  <form class="row" hx-post="/terminal/cwd" hx-target="#cwd"><input class="input mono" name="cwd" placeholder="yeni dizin" style="width:260px"><button class="btn sm">Değiştir</button></form>
+</div>
+<form class="row" style="margin-bottom:10px" hx-get="/terminal/quick" hx-target="#quick" hx-trigger="change">
+  <span class="muted">Hazır komutlar</span>
+  <select class="input" name="app"><option value="">(uygulama seçin)</option>{% for a in apps %}<option>{{ a }}</option>{% endfor %}</select>
+  <select class="input" name="env">{% for e in envs %}<option value="{{ e }}">{{ e|envtitle }}</option>{% endfor %}</select>
+  <div id="quick" class="row"></div>
+</form>
+<pre class="console tall" id="console" data-autoscroll>{{ output }}</pre>
+<div id="hint"></div>
+<form class="term-input" id="term-form" hx-post="/terminal/run" hx-swap="none" hx-include="#shell-select">
+  <input type="hidden" name="kube" id="kube-input" value="{{ kube }}">
+  <span class="prompt" id="prompt">{{ prompt }}</span>
+  <input class="input" name="command" id="command" value="{{ prefill }}" autocomplete="off" spellcheck="false"
+         placeholder="Komut yazın ve Enter'a basın (↑/↓ geçmiş)" data-history="{{ history|tojson|forceescape }}"
+         hx-get="/terminal/hint" hx-trigger="keyup changed delay:350ms, load" hx-target="#hint" hx-include="#shell-select" hx-params="command,shell">
+  <button class="btn primary" id="run-btn" type="submit"{% if running %} disabled{% endif %}>{{ icon('play') }} Çalıştır</button>
+  <button class="btn danger" id="stop-btn" type="button" hx-post="/terminal/stop" hx-swap="none"{% if not running %} disabled{% endif %}>{{ icon('stop') }} Durdur</button>
+  <button class="btn ghost" type="button" hx-post="/terminal/clear" hx-swap="none">{{ icon('trash') }} Temizle</button>
+</form>
+{% if prefill %}<p class="muted small">Komut kutuya yazıldı; çalıştırmak için Enter'a basın.</p>{% endif %}
+{% endblock %}

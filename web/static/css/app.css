@@ -465,3 +465,28 @@ label.tab { display: inline-flex; align-items: center; }
 
 /* Canlı göstergeler */
 .live-dot { color: var(--success); font-weight: 700; font-size: .86em; }
+
+/* ---------------- Terminal (xterm.js) ---------------- */
+.term-root { display: flex; flex-direction: column; gap: 8px; height: calc(100vh - 150px); min-height: 380px; }
+.term-top { display: flex; align-items: center; gap: 10px; }
+.term-tabs { display: flex; gap: 4px; flex: 1; overflow-x: auto; scrollbar-width: none; min-height: 36px; align-items: flex-end; }
+.term-tab { display: inline-flex; align-items: center; gap: 7px; height: 34px; padding: 0 8px 0 12px; border: 1px solid var(--border);
+  border-bottom: 0; border-radius: var(--radius) var(--radius) 0 0; background: var(--surface-alt); color: var(--muted);
+  font: 600 .92em var(--font); cursor: pointer; white-space: nowrap; max-width: 280px; }
+.term-tab .t { overflow: hidden; text-overflow: ellipsis; }
+.term-tab .x { width: 18px; height: 18px; display: grid; place-items: center; border-radius: 5px; font-size: 15px; line-height: 1; opacity: .6; }
+.term-tab .x:hover { opacity: 1; background: color-mix(in srgb, var(--danger) 25%, transparent); color: var(--danger); }
+.term-tab.active { background: var(--input-bg); color: var(--text); border-color: var(--accent); box-shadow: inset 0 2px 0 var(--accent); }
+.term-tab.closed .t { text-decoration: line-through; opacity: .7; }
+.term-tab .chip.env-prod { background: color-mix(in srgb, var(--danger) 22%, transparent); color: var(--danger); }
+.term-actions { display: flex; gap: 6px; align-items: center; }
+.split-btn { display: inline-flex; }
+.split-btn .btn { border-top-right-radius: 0; border-bottom-right-radius: 0; }
+.split-btn select { border-top-left-radius: 0; border-bottom-left-radius: 0; max-width: 170px; }
+.input.sm { min-height: 28px; padding: 3px 8px; font-size: .9em; }
+.term-info { display: flex; gap: 10px; align-items: center; min-height: 32px; }
+.term-host { position: relative; flex: 1; min-height: 0; border-radius: var(--radius); background: var(--input-bg); border: 1px solid var(--border); overflow: hidden; }
+.term-pane { position: absolute; inset: 0; padding: 8px 4px 4px 10px; }
+.term-pane .xterm { height: 100%; }
+.term-pane .xterm-viewport { background: transparent !important; }
+.term-quick { flex-wrap: nowrap; overflow-x: auto; }

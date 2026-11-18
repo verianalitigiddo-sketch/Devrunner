@@ -125,8 +125,12 @@ def test_secret_never_echoed(client):
 
 
 def test_terminal_prefill_does_not_run(demo_catalog):
+    import threading
+
     class FakeRunner:
         shells, running, calls = [], False, []
+        shells_ready = threading.Event()
+        shells_ready.set()
 
         def shell(self, _):
             return None
@@ -141,6 +145,8 @@ def test_terminal_prefill_does_not_run(demo_catalog):
     c = make_app(runner).test_client()
     c.get(f"/auth?t={TOKEN}")
     body = c.get("/terminal/?cmd=rm%20-rf%20%2F").get_data(as_text=True)
+    assert 'data-prefill="rm -rf /"' in body and runner.calls == []       # yazılır, çalıştırılmaz
+    body = c.get("/terminal/?legacy=1&cmd=rm%20-rf%20%2F").get_data(as_text=True)
     assert 'value="rm -rf /"' in body and runner.calls == []
 
 

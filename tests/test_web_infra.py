@@ -146,9 +146,9 @@ def test_pages_do_not_import_other_modules_apis():
     """Bir sayfa yalnızca kendi API'sini ve relations'ı kullanır (çekirdek modüller hariç)."""
     core = {"relations", "config", "database", "fmt", "apps", "theme", "user", "BookmarkAPI"}
     own = {"home": set(), "devops": {"DevopsAPI"}, "k8s": {"K8sAPI"}, "health": {"HealthAPI"},
-           "terminal": {"TerminalAPI"}, "notes": {"NotesAPI"}, "bilge": {"BilgeAPI"}, "freeze": {"FreezeAPI"},
+           "terminal": {"TerminalAPI", "K8sExecAPI"}, "notes": {"NotesAPI"}, "bilge": {"BilgeAPI"}, "freeze": {"FreezeAPI"},
            "chat": {"ChatAPI"}, "settings": set()}
-    apis = {"DevopsAPI", "K8sAPI", "HealthAPI", "TerminalAPI", "NotesAPI", "BilgeAPI", "FreezeAPI", "ChatAPI"}
+    apis = {"DevopsAPI", "K8sAPI", "K8sExecAPI", "HealthAPI", "TerminalAPI", "NotesAPI", "BilgeAPI", "FreezeAPI", "ChatAPI"}
     for page, allowed in own.items():
         tree = ast.parse((ROOT / "web" / "pages" / f"{page}.py").read_text(encoding="utf-8"))
         used = set()

@@ -114,6 +114,17 @@ def _match(a: AppRef, raw: dict) -> bool:
     return labels.get("app") == name or raw["metadata"]["name"].startswith(name + "-")
 
 
+def is_demo() -> bool:
+    return K8sAPI.is_demo()
+
+
+def pods(env: str, app_name: str = "") -> list[K8sAPI.PodInfo]:
+    """Ortamdaki (veya uygulamanın) pod'ları — Terminal'in pod kabuğu penceresi için."""
+    if app_name:
+        return workload(app_name, env).pods
+    return [K8sAPI.pod_info(p) for p in cluster(env).pods()]
+
+
 def pod_summary() -> dict[str, dict[str, str]]:
     """Uygulama -> {ortam: "hazır/toplam"}. Ortam başına TEK pod listesi; deployment istenmez."""
     out: dict[str, dict[str, str]] = {}

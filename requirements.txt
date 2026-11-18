@@ -13,5 +13,6 @@ SQLAlchemy==2.1.8               # ortak PostgreSQL
 psycopg2-binary==2.9.13         # PostgreSQL sürücüsü
 python-dotenv==1.2.4            # .env okuma / yazma (ayarlar ekranı)
 websockets==16.0                # Kubernetes pods/exec (WebSocket)
+pywinpty==3.1.2; sys_platform == "win32"   # Windows ConPTY: Terminal sayfasında gerçek kabuk
 PyNaCl==1.6.2                   # sohbet: uçtan uca şifreleme (libsodium)
 tzdata==2026.6; sys_platform == "win32"   # Windows'ta Europe/Istanbul saat dilimi (freeze tarihleri)

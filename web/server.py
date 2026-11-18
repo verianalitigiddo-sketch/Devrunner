@@ -32,6 +32,10 @@ log = logging.getLogger("web.server")
 def _port_free(port: int) -> bool:
     import socket
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        # werkzeug ile aynı kural: POSIX'te SO_REUSEADDR (yeni kapanmış bağlantıların TIME_WAIT'i portu
+        # "dolu" göstermesin). Windows'ta bu seçenek başkasının portunu çalmaya izin verir: kullanılmaz.
+        if sys.platform != "win32":
+            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         try:
             s.bind(("127.0.0.1", port))
             return True
@@ -124,6 +128,9 @@ def main(argv=None) -> int:
     log.info("Backend kapanıyor")
     hub.close()
     runner.shutdown()
+    terms = getattr(app.extensions["dr"], "terms", None)
+    if terms is not None:
+        terms.shutdown()                     # yerel kabuklar ve pod kabukları kapanır
     relations.stop_services()
     srv.shutdown()
     return code
