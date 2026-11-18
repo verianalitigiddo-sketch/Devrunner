@@ -21,11 +21,12 @@ from markupsafe import Markup, escape
 from flask import (Flask, Response, abort, jsonify, redirect, render_template, request, send_from_directory,
                    url_for)
 
-from scripts import __version__, database, fmt, relations
+from scripts import __version__, database, fmt, relations, theme
 from scripts import user as user_mod
 from scripts.apps import ENV_TITLES, ENVS
 from scripts.config import APP_NAME, ASSET_DIR, PROFILE, redact
 from web import security, theme_css, ui_state
+from web.web_config import WENV
 from web.qt_bridge import BridgeTimeout
 
 log = logging.getLogger("web")
@@ -52,7 +53,8 @@ PAGES = [
     PageDef("settings", "Ayarlar", "web.pages.settings", "gear"),
 ]
 PAGE_IDS = {p.id for p in PAGES}
-WELCOME_EXEMPT = ("/welcome", "/static/", "/fonts/", "/theme.css", "/auth", "/api/events", "/api/shutdown")
+WELCOME_EXEMPT = ("/welcome", "/static/", "/fonts/", "/theme.css", "/auth", "/api/events", "/api/shutdown",
+                  "/terminal/ws/", "/k8s/ws/")
 
 
 def current_theme() -> str:
@@ -65,8 +67,11 @@ def create_app(bridge, hub, token: str, runner=None, on_shutdown=None) -> Flask:
     app.config.update(DR_PORT=None, DR_EXTRA_HOSTS=(), TEMPLATES_AUTO_RELOAD=False,
                       MAX_CONTENT_LENGTH=8 * 1024 * 1024, JSON_AS_ASCII=False)
     app.extensions["dr"] = SimpleNamespace(bridge=bridge, hub=hub, runner=runner, on_shutdown=on_shutdown,
-                                           broken={})
+                                           broken={}, token=token)
     security.install(app, token)
+    from web.ws import SERVER_OPTIONS, sock
+    app.config["SOCK_SERVER_OPTIONS"] = SERVER_OPTIONS
+    sock.init_app(app)
     _filters(app)
     _core_routes(app)
 
@@ -117,6 +122,8 @@ def _filters(app: Flask) -> None:
             "PAGES": PAGES, "page_id": bp, "APP_NAME": APP_NAME, "VERSION": __version__, "PROFILE": PROFILE,
             "theme": current_theme(), "THEMES": theme_css.names(), "ENVS": ENVS, "ENV_TITLES": ENV_TITLES,
             "me": user_mod.current_user(), "broken": app.extensions["dr"].broken,
+            "theme_bg": theme.palette(current_theme())["bg"], "effects": WENV.UI_EFFECTS,
+            "aura_badge": _aura_badge, "aura_on": WENV.AURA_ENABLED,
         }
 
 
@@ -175,6 +182,26 @@ def _core_routes(app: Flask) -> None:
             ext.on_shutdown()
         return Response(status=204)
 
+    @app.post("/api/open-browser")
+    def open_browser():
+        """Sistem tarayıcısında bu oturumu aç (yalnızca yerel makine; belirteç tek açılışlıktır)."""
+        import webbrowser
+        port = app.config.get("DR_PORT")
+        if not port:
+            abort(409)
+        webbrowser.open(f"http://127.0.0.1:{port}/auth?t={ext.token}")
+        from web.common import toast
+        return Response(status=204, headers=toast("Varsayılan tarayıcıda açılıyor…", "info"))
+
+    @app.post("/api/sessions/reset")
+    def reset_sessions():
+        """Tüm tarayıcı oturumlarını kapat: imzalama sırrı yenilenir; bu pencere yeni çerezle devam eder."""
+        security.rotate_secret(app)
+        from web.common import toast
+        resp = Response(status=204, headers=toast("Tüm tarayıcı oturumları kapatıldı.", "info"))
+        security.set_session_cookie(app, resp)
+        return resp
+
     @app.post("/api/ui")
     def ui():
         theme = request.values.get("theme")
@@ -224,6 +251,17 @@ def _core_routes(app: Flask) -> None:
         log.exception("İstek hatası: %s", request.path)
         return render_template("_error.html", title="Beklenmeyen hata",
                                message=redact(f"{type(e).__name__}: {e}")), 500
+
+
+def _aura_badge(name: str) -> dict | None:
+    """Şablonlar için: kişinin aura rozeti (yoksa None). Aura modülü yüklenemezse sessizce None."""
+    if not WENV.AURA_ENABLED:
+        return None
+    try:
+        from web import aura_service
+        return aura_service.badge_for(name)
+    except Exception:   # noqa: BLE001 - rozet görünmez, sayfa çalışır
+        return None
 
 
 def _status() -> dict:

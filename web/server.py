@@ -6,6 +6,10 @@ Kabuk (shell/) bu modülü alt süreç olarak başlatır:
     python -m web.server --dev           belirteç üretilir, adres konsola yazılır (normal tarayıcıda açılabilir)
     python -m web.server --dev --port 8765
 
+Port: --port > DEVRUNNER_PORT (varsayılan 28657). --profile ile açılan kopya, kendi .env'inde DEVRUNNER_PORT
+vermemişse rastgele port kullanır. Port doluysa rastgele porta DÜŞMEZ (yer imi sessizce bozulmasın):
+"ERROR port_in_use <port>" yazar ve çıkar; kabuk bunu anlaşılır hata olarak gösterir.
+
 stdin kapanırsa (kabuk öldü) süreç kendini kapatır. Bu süreç PyQt6 import ETMEZ (yalnızca PySide6 QtCore).
 """
 from __future__ import annotations
@@ -25,10 +29,20 @@ from scripts.config import PROFILE
 log = logging.getLogger("web.server")
 
 
+def _port_free(port: int) -> bool:
+    import socket
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        try:
+            s.bind(("127.0.0.1", port))
+            return True
+        except OSError:
+            return False
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(prog="web.server")
     parser.add_argument("--dev", action="store_true", help="geliştirme: belirteci üret ve adresi yazdır")
-    parser.add_argument("--port", type=int, default=0)
+    parser.add_argument("--port", type=int, default=None)
     args = parser.parse_args(argv)
 
     logsetup.setup_logging()
@@ -63,7 +77,23 @@ def main(argv=None) -> int:
         bridge.post(qapp.quit)
 
     app = create_app(bridge, hub, token, runner=runner, on_shutdown=request_quit)
-    srv = make_server("127.0.0.1", args.port, app, threaded=True)
+    from web.web_config import WENV, is_explicit
+    if args.port is not None:
+        wanted = args.port
+    elif PROFILE and not is_explicit("DEVRUNNER_PORT"):
+        wanted = 0
+    else:
+        wanted = WENV.DEVRUNNER_PORT
+    if wanted and not _port_free(wanted):
+        log.error("Port %s kullanılıyor", wanted)
+        print(f"ERROR port_in_use {wanted}", flush=True)
+        return 3
+    try:
+        srv = make_server("127.0.0.1", wanted, app, threaded=True)
+    except (OSError, SystemExit) as e:      # werkzeug dolu portta mesaj yazıp SystemExit fırlatır
+        log.error("Port %s açılamadı: %s", wanted, e)
+        print(f"ERROR port_in_use {wanted}", flush=True)
+        return 3
     port = srv.server_port
     app.config["DR_PORT"] = port
     threading.Thread(target=srv.serve_forever, name="flask", daemon=True).start()

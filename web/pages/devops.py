@@ -11,7 +11,7 @@ from scripts.DevopsAPI import STATE_TITLES
 from scripts.config import ENV
 from scripts.fmt import parse_dt
 from web import ui_state
-from web.common import error_fragment, qt, toast
+from web.common import current_query, error_fragment, qt, toast
 
 bp = Blueprint("devops", __name__)
 
@@ -36,7 +36,7 @@ def refresh():
 def table():
     ov = relations.overview()
     rows = [{"app": a, "p": ov.pipelines.get(a.name) if ov else None} for a in relations.catalog()]
-    return render_template("devops/_table.html", rows=rows, selected=request.args.get("app", ""), T=STATE_TITLES,
+    return render_template("devops/_table.html", rows=rows, selected=current_query("app"), T=STATE_TITLES,
                            fetched=ov.fetched_at if ov else "")
 
 

@@ -7,6 +7,8 @@
     <div class="field">
       {% if s.kind == "bool" %}
         <label class="check"><input type="checkbox" id="f-{{ s.key }}" name="{{ s.key }}" value="1"{% if f.checked %} checked{% endif %}> Açık</label>
+      {% elif s.kind == "choice" %}
+        <select class="input" id="f-{{ s.key }}" name="{{ s.key }}">{% for c in s.choices %}<option{% if c == f.value %} selected{% endif %}>{{ c }}</option>{% endfor %}</select>
       {% elif s.secret %}
         <input class="input" type="password" id="f-{{ s.key }}" name="{{ s.key }}" value="" autocomplete="new-password"
                placeholder="{{ 'kayıtlı — değiştirmek için yeni değeri yazın' if f.has_value else 'boş' }}">
@@ -26,6 +28,11 @@
     <span></span>
     <div class="row">
       <button class="btn primary" type="submit">{{ icon('check') }} Kaydet</button>
+      {% if group.id == 'web' %}
+      <button class="btn" type="button" hx-post="/api/open-browser" hx-swap="none">{{ icon('external') }} Tarayıcıda aç</button>
+      <button class="btn danger" type="button" hx-post="/api/sessions/reset" hx-swap="none"
+              hx-confirm="Bu cihazdaki tüm tarayıcı oturumları kapatılsın mı? (Bu pencere açık kalır.)">{{ icon('lock') }} Tüm tarayıcı oturumlarını kapat</button>
+      {% endif %}
       {% if group.testable %}
       <button class="btn" type="button" hx-post="/settings/test/{{ group.id }}" hx-include="closest form" hx-target="#settings-form"
               hx-indicator="this">{{ icon('pulse') }} Bağlantıyı sına</button>

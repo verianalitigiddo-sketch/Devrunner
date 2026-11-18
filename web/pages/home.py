@@ -16,8 +16,8 @@ from scripts import BookmarkAPI, database, relations
 from scripts.apps import ENVS
 from scripts.DevopsAPI import STATE_TITLES as PIPE_TITLES
 from scripts.HealthAPI import STATE_TITLES as HEALTH_TITLES
-from web import ui_state
-from web.common import db_problem, error_fragment, hub, qt, toast, uid
+from web import k8s_access, ui_state
+from web.common import current_query, db_problem, error_fragment, hub, qt, toast, uid
 
 bp = Blueprint("home", __name__)
 
@@ -43,7 +43,7 @@ def pods_cached() -> dict:
 
 def _compute_pods(h) -> None:
     try:
-        data = relations.pod_summary()
+        data = k8s_access.pod_summary()
     except Exception:   # noqa: BLE001 - sütun boş kalır
         data = {}
     with _pods_lock:
@@ -80,7 +80,7 @@ def table():
             continue
         rows.append({"app": a, "pipes": relations.app_pipelines(a.name), "health": relations.app_health(a.name)})
     return render_template("home/_table.html", rows=rows, notes=counts[0], reqs=counts[1], pods=pods_cached(),
-                           selected=request.args.get("app", ""), **_ctx())
+                           selected=current_query("app"), **_ctx())
 
 
 @bp.get("/app/<name>")
@@ -97,7 +97,7 @@ def detail_k8s(name):
     out, errors = {}, []
     for env in relations.k8s_envs():
         try:
-            out[env] = relations.app_workload(name, env)
+            out[env] = k8s_access.workload(name, env)
         except Exception as e:   # noqa: BLE001
             errors.append(f"{env}: {e}")
     return render_template("home/_k8s.html", workloads=out, errors=errors, name=name)

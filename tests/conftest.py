@@ -29,8 +29,11 @@ def isolated_env(tmp_path, monkeypatch):
     monkeypatch.setattr(config, "LOCAL_DIR", tmp_path / ".local")
     config.load()
     config.save({"USER_NAME": "Test Kişi", "USER_ID": "00000000-0000-4000-8000-000000000001"})
+    from web import web_config
+    web_config.load()
     yield
     config.load()
+    web_config.load()
     import gc
     gc.collect()   # Qt nesneleri arayüz iş parçacığında toplansın
 

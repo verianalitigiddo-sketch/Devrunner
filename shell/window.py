@@ -10,8 +10,8 @@ from __future__ import annotations
 import logging
 
 from PyQt6.QtCore import QSettings, QSize, Qt, QUrl, pyqtSignal
-from PyQt6.QtGui import QAction, QDesktopServices, QIcon, QKeySequence, QShortcut
-from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile
+from PyQt6.QtGui import QAction, QColor, QDesktopServices, QIcon, QKeySequence, QShortcut
+from PyQt6.QtWebEngineCore import QWebEnginePage, QWebEngineProfile, QWebEngineSettings
 from PyQt6.QtWebEngineWidgets import QWebEngineView
 from PyQt6.QtWidgets import (QFileDialog, QLabel, QMainWindow, QMenu, QPlainTextEdit, QPushButton, QStackedWidget,
                              QSystemTrayIcon, QVBoxLayout, QWidget)
@@ -123,6 +123,14 @@ class MainWindow(QMainWindow):
 
         self.view = QWebEngineView(self)
         self.page = AppPage(self.profile, self)
+        # Titreme önleme: sayfa yüklenirken varsayılan beyaz zemin görünmesin; zemin temayı izler
+        self.page.setBackgroundColor(QColor("#07080d"))
+        self.page.loadFinished.connect(self._sync_background)
+        self.page.titleChanged.connect(lambda _t: self._sync_background(True))
+        # Pano: terminalde kopyala / yapıştır, "Bağlantıyı kopyala" (yalnızca kendi kökenimiz yüklenebilir)
+        s = self.page.settings()
+        s.setAttribute(QWebEngineSettings.WebAttribute.JavascriptCanAccessClipboard, True)
+        s.setAttribute(QWebEngineSettings.WebAttribute.JavascriptCanPaste, True)
         self.view.setPage(self.page)
         self._connect_permissions()
         self.page.titleChanged.connect(lambda t: self.setWindowTitle(t or APP_NAME))
@@ -149,9 +157,21 @@ class MainWindow(QMainWindow):
 
     def _permission(self, permission) -> None:
         from PyQt6.QtWebEngineCore import QWebEnginePermission
+        allowed = {QWebEnginePermission.PermissionType.Notifications}
+        clip = getattr(QWebEnginePermission.PermissionType, "ClipboardReadWrite", None)
+        if clip is not None:
+            allowed.add(clip)
         ok = (self.origin is not None and same_origin(permission.origin(), self.origin)
-              and permission.permissionType() == QWebEnginePermission.PermissionType.Notifications)
+              and permission.permissionType() in allowed)
         permission.grant() if ok else permission.deny()
+
+    def _sync_background(self, _ok=True) -> None:
+        """Sayfa zeminini temanın --bg rengine eşitle (bir sonraki sayfa geçişinde beyaz parlama olmasın)."""
+        def apply(value):
+            color = QColor(str(value or "").strip())
+            if color.isValid():
+                self.page.setBackgroundColor(color)
+        self.page.runJavaScript("getComputedStyle(document.documentElement).getPropertyValue('--bg')", 0, apply)
 
     def _feature_permission(self, origin, feature) -> None:
         ok = (self.origin is not None and same_origin(origin, self.origin)
@@ -187,9 +207,12 @@ class MainWindow(QMainWindow):
         menu = QMenu()
         show = QAction("Göster", self)
         show.triggered.connect(self.bring_to_front)
+        browser = QAction("Tarayıcıda aç", self)
+        browser.triggered.connect(self.open_in_browser)
         quit_ = QAction("Çıkış", self)
         quit_.triggered.connect(self.quit)
         menu.addAction(show)
+        menu.addAction(browser)
         menu.addSeparator()
         menu.addAction(quit_)
         self.tray.setContextMenu(menu)
@@ -219,7 +242,13 @@ class MainWindow(QMainWindow):
         self._dev = dev
 
     # ---- içerik
+    def open_in_browser(self) -> None:
+        """Aynı oturumu sistem tarayıcısında aç (yalnızca 127.0.0.1; belirteç tek açılışlıktır)."""
+        if self.origin is not None and getattr(self, "_token", ""):
+            QDesktopServices.openUrl(QUrl(f"{self.origin.toString()}/auth?t={self._token}"))
+
     def load(self, base_url: str, token: str) -> None:
+        self._token = token
         self.origin = QUrl(base_url)
         self.stack.setCurrentWidget(self.view)
         self.view.load(QUrl(f"{base_url}/auth?t={token}"))

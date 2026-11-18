@@ -12,7 +12,7 @@
   {% call m.banner("demo", "Örnek veri: Azure DevOps PAT'i girilmemiş.") %}<a class="btn sm" href="/settings/?group=devops">Ayarlar</a>{% endcall %}
 {% elif ov and ov.warnings %}{{ m.banner("warning", ov.warnings|join(' ')) }}{% endif %}
 <div class="split" style="grid-template-columns:minmax(0,.9fr) minmax(0,1.4fr)">
-  <div id="devops-table" class="table-wrap" hx-get="/devops/table?app={{ selected|urlencode }}"
+  <div id="devops-table" hx-swap="morph:innerHTML" class="table-wrap" hx-get="/devops/table?app={{ selected|urlencode }}"
        hx-trigger="load, catalog_changed from:body, freeze_changed from:body">{{ m.skeleton(8) }}</div>
   <div id="devops-detail" class="card">
     {% if selected %}{{ m.lazy("/devops/app/" ~ selected|urlencode, 8) }}{% else %}{{ m.empty("Uygulama yok.", "git") }}{% endif %}

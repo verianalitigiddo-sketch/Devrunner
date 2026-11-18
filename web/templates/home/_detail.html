@@ -41,4 +41,4 @@
 </div>
 
 <div class="section"><h3>{{ icon('cube') }} Kubernetes</h3>{{ m.lazy("/home/app/" ~ a.name|urlencode ~ "/k8s", 3) }}</div>
-<div class="section" hx-get="/home/app/{{ a.name|urlencode }}/shared" hx-trigger="load, data_changed from:body" hx-swap="innerHTML">{{ m.skeleton(5) }}</div>
+<div class="section" hx-get="/home/app/{{ a.name|urlencode }}/shared" hx-trigger="load, data_changed from:body" hx-swap="morph:innerHTML">{{ m.skeleton(5) }}</div>

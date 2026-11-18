@@ -2,6 +2,7 @@
 {% import "_macros.html" as m %}
 {% block title %}Kubernetes{% endblock %}
 {% block crumb %}Kubernetes{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/k8s.js') }}?v={{ VERSION }}" defer></script>{% endblock %}
 {% block content %}
 {% call m.page_head("Kubernetes", "Namespace: " ~ ns ~ " · container durumu, log, olaylar ve komut", "cube") %}
   <form class="row" hx-get="/k8s/list" hx-target="#k8s-list" hx-trigger="change" id="k8s-filter">

@@ -86,3 +86,17 @@ def form_int(name: str, default=None):
         return int(v)
     except (TypeError, ValueError):
         return default
+
+
+def current_query(name: str, default: str = "") -> str:
+    """
+    Seçim gibi durumları sayfanın GÜNCEL adresinden okur (htmx HX-Current-URL başlığı). Parça ilk yüklemedeki
+    adresi taşıyorsa, kullanıcı başka satıra tıkladıktan sonraki yenilemede vurgu eski satıra zıplıyordu.
+    """
+    from urllib.parse import parse_qs, urlparse
+    url = request.headers.get("HX-Current-URL")
+    if url:
+        values = parse_qs(urlparse(url).query).get(name)
+        if values:
+            return values[0]
+    return request.args.get(name, default)

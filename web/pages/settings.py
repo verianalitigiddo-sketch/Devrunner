@@ -11,22 +11,31 @@ from flask import Blueprint, render_template, request
 
 from scripts import config, relations
 from scripts.config import ENV_FILE, SETTINGS, TRUE_WORDS
-from web import ui_state
-from web.common import error_text, qt, toast
+from web import ui_state, web_config
+from web.common import error_text, qt, toast, trigger
 
 bp = Blueprint("settings", __name__)
 
 
+ALL_GROUPS = tuple(SETTINGS) + tuple(web_config.groups())
+
+
 def _group(group_id: str):
-    return next((g for g in SETTINGS if g.id == group_id), SETTINGS[0])
+    return next((g for g in ALL_GROUPS if g.id == group_id), SETTINGS[0])
+
+
+def _store(group):
+    """Backend grubu -> scripts.config; web grubu -> web.web_config (aynı .env dosyası)."""
+    return web_config if web_config.is_web_group(group.id) else config
 
 
 def _fields(group) -> list[dict]:
+    store = _store(group)
     out = []
     for s in group.settings:
-        value = config.get(s.key)
+        value = store.get(s.key)
         out.append({"s": s, "value": "" if s.secret else value, "has_value": bool(value),
-                    "checked": value.lower() in TRUE_WORDS, "from_os": config.is_from_os(s.key)})
+                    "checked": value.lower() in TRUE_WORDS, "from_os": store.is_from_os(s.key)})
     return out
 
 
@@ -34,13 +43,14 @@ def _fields(group) -> list[dict]:
 def page():
     ui_state.update(last_page="settings")
     g = _group(request.args.get("group", "general"))
-    return render_template("settings/page.html", groups=SETTINGS, group=g, fields=_fields(g), env_file=ENV_FILE)
+    return render_template("settings/page.html", groups=ALL_GROUPS, group=g, fields=_fields(g), env_file=ENV_FILE,
+                           web_group=web_config.is_web_group(g.id))
 
 
 @bp.get("/group/<group_id>")
 def group_form(group_id):
     g = _group(group_id)
-    return render_template("settings/_form.html", group=g, fields=_fields(g))
+    return render_template("settings/_form.html", group=g, fields=_fields(g), web_group=web_config.is_web_group(g.id))
 
 
 def _values(group) -> dict[str, str]:
@@ -64,6 +74,8 @@ def _values(group) -> dict[str, str]:
 @bp.post("/save/<group_id>")
 def save(group_id):
     g = _group(group_id)
+    if web_config.is_web_group(g.id):
+        return _save_web(g)
     try:
         changed = qt.call(relations.save_settings, g.id, _values(g))
     except ValueError as e:
@@ -83,3 +95,22 @@ def test(group_id):
     except Exception as e:   # noqa: BLE001
         ok, message = False, error_text(e)
     return render_template("settings/_form.html", group=g, fields=_fields(g), result=(ok, error_text(message)))
+
+
+def _save_web(g):
+    try:
+        changed = web_config.save(_values(g))
+    except ValueError as e:
+        return render_template("settings/_form.html", group=g, fields=_fields(g), web_group=True, result=(False, str(e)))
+    notes = []
+    if "DEVRUNNER_PORT" in changed:
+        notes.append("Port değişikliği uygulama yeniden başlatılınca geçerli olur.")
+    if "AURA_SYNC_MIN" in changed or "AURA_ENABLED" in changed:
+        notes.append("Aura eşitleme aralığı bir sonraki turda uygulanır.")
+    labels = ", ".join(web_config.setting(k).label for k in changed)
+    result = (True, (f"Kaydedildi: {labels}. " + " ".join(notes)) if changed else "Değişiklik yok.")
+    events = ["settings_saved"]
+    headers = trigger(*events, toast_message="Ayarlar kaydedildi." if changed else "Değişiklik yok.")
+    if "UI_EFFECTS" in changed or "AURA_ENABLED" in changed:
+        headers["HX-Refresh"] = "true"      # görünüm düzeyi / menü tüm sayfayı etkiler
+    return render_template("settings/_form.html", group=g, fields=_fields(g), web_group=True, result=result), 200, headers

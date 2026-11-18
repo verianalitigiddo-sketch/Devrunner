@@ -124,24 +124,6 @@ def test_secret_never_echoed(client):
     assert config.get("DEVOPS_PAT") == ""
 
 
-def test_prod_exec_requires_server_side_confirmation(client):
-    form = {"env": "prod", "pod": "musteri360-x", "container": "musteri360", "command": "id"}
-    body = post(client, "/k8s/exec", data=form).get_data(as_text=True)
-    assert "PROD ortamında" in body
-    token = re.search(r'name="confirm" value="([^"]+)"', body).group(1)
-    assert "Onay geçersiz" in post(client, "/k8s/exec", data={**form, "confirm": "uydurma"}).get_data(as_text=True)
-    other = post(client, "/k8s/exec", data={**form, "command": "rm -rf /", "confirm": token}).get_data(as_text=True)
-    assert "Onay geçersiz" in other                                  # belirteç başka komuta kullanılamaz
-    body = post(client, "/k8s/exec", data=form).get_data(as_text=True)
-    token = re.search(r'name="confirm" value="([^"]+)"', body).group(1)
-    ok = post(client, "/k8s/exec", data={**form, "confirm": token}).get_data(as_text=True)
-    assert "[örnek]" in ok                                           # demo cluster yanıtı
-    again = post(client, "/k8s/exec", data={**form, "confirm": token}).get_data(as_text=True)
-    assert "Onay geçersiz" in again                                  # tek kullanımlık
-    dev = post(client, "/k8s/exec", data={**form, "env": "dev"}).get_data(as_text=True)
-    assert "[örnek]" in dev and "PROD" not in dev                    # Dev'de onay yok
-
-
 def test_terminal_prefill_does_not_run(demo_catalog):
     class FakeRunner:
         shells, running, calls = [], False, []

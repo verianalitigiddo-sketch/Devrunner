@@ -26,7 +26,7 @@
   <div class="stack">
     <label class="search">{{ icon('search') }}<input class="input" name="q" placeholder="Uygulama ara…" style="width:280px"
       hx-get="/home/table" hx-target="#apps-table" hx-trigger="input changed delay:250ms" hx-vals='{"app": "{{ selected }}"}'></label>
-    <div id="apps-table" class="table-wrap" hx-get="/home/table?app={{ selected|urlencode }}"
+    <div id="apps-table" hx-swap="morph:innerHTML" class="table-wrap" hx-get="/home/table?app={{ selected|urlencode }}"
          hx-trigger="load, catalog_changed from:body, health_updated from:body, pods_updated from:body, data_changed from:body, every 60s">
       {{ m.skeleton(8) }}
     </div>

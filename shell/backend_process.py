@@ -71,6 +71,10 @@ class Backend:
                 except (IndexError, ValueError):
                     self.failed = f"Beklenmeyen yanıt: {line}"
                 self.ready.set()
+            elif line.startswith("ERROR port_in_use"):
+                port = line.split()[-1]
+                self.failed = (f"{port} portu kullanılıyor. Başka bir Devrunner açık olabilir; değilse .env içinde "
+                               f"DEVRUNNER_PORT ile başka bir port verin (Ayarlar → Web arayüzü).")
             elif line.startswith("ERROR"):
                 self.failed = line
         if not self.ready.is_set():

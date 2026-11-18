@@ -17,7 +17,7 @@
       </select>
       <input type="hidden" name="id" value="{{ note_id }}">
     </form>
-    <div id="note-list" class="note-list" hx-get="/notes/list" hx-include="#notes-filter"
+    <div id="note-list" hx-swap="morph:innerHTML" class="note-list" hx-get="/notes/list" hx-include="#notes-filter"
          hx-trigger="load, notes_changed from:body, every 60s">{{ m.skeleton(6) }}</div>
   </div>
   <div id="editor" class="card">{{ m.lazy("/notes/edit?id=" ~ note_id ~ "&app=" ~ app|urlencode, 10) }}</div>

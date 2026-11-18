@@ -15,9 +15,18 @@
     htmx.config.refreshOnHistoryMiss = true;   // geri tuşu: sayfayı sunucudan tam yükle
     htmx.config.defaultSwapStyle = "innerHTML";
     // Hata yanıtları (4xx/5xx) da gösterilsin: sunucu hata kartı döndürür
+    // Titreme önleme (PLAN_V2 Bölüm 4): periyodik GET yanıtı bir öncekiyle aynıysa DOM'a hiç dokunma.
+    var lastBody = new WeakMap();
     document.addEventListener("htmx:beforeSwap", function (e) {
       if (e.detail.xhr.status >= 400 && e.detail.xhr.status !== 401 && e.detail.xhr.status !== 403) {
         e.detail.shouldSwap = true; e.detail.isError = false;
+      }
+      var cfg = e.detail.requestConfig || {}, tgt = e.detail.target, body = e.detail.serverResponse;
+      if (cfg.verb === "get" && tgt && e.detail.shouldSwap && typeof body === "string") {
+        if (lastBody.get(tgt) === body && !tgt.querySelector(".skeleton") && !tgt.closest("dialog")) {
+          e.detail.shouldSwap = false; return;
+        }
+        lastBody.set(tgt, body);
       }
     });
     document.addEventListener("htmx:responseError", function (e) {
@@ -101,6 +110,9 @@
   var sel = document.getElementById("theme-select");
   function setTheme(key) {
     document.documentElement.setAttribute("data-theme", key);
+    var bg = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+    if (bg) { document.documentElement.style.background = bg; document.body.style.background = bg; }
+    document.dispatchEvent(new CustomEvent("themechange", { detail: { theme: key } }));
     if (sel) sel.value = key;
     var fd = new FormData(); fd.append("theme", key);
     fetch("/api/ui", { method: "POST", body: fd, headers: { "X-Devrunner": "1" } });
@@ -150,9 +162,13 @@
       else if (e.key === "Enter" && shown[idx]) { go(shown[idx]); e.preventDefault(); }
     });
   }
+  // Ctrl+K: komut paleti. Terminal odaktayken Ctrl+K kabuğa gider; palet orada Ctrl+Shift+K ile açılır.
   document.addEventListener("keydown", function (e) {
-    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); openPalette(); }
-  });
+    if (!(e.ctrlKey || e.metaKey) || e.key.toLowerCase() !== "k") return;
+    var inTerm = e.target && e.target.closest && e.target.closest(".xterm");
+    if (inTerm && !e.shiftKey) return;
+    e.preventDefault(); openPalette();
+  }, true);
   document.addEventListener("click", function (e) {
     var a = e.target.closest("[data-action]"); if (!a) return;
     var act = a.dataset.action;

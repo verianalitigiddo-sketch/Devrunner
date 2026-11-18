@@ -15,9 +15,9 @@
 <form id="bm-state" hidden>
   <input name="view" value="{{ st.view }}"><input name="folder" value="{{ st.folder if st.folder is not none else '' }}"><input name="app" value="{{ st.app }}">
 </form>
-<div class="bm-bar" hx-get="/bilge/bar" hx-trigger="load, bm_changed from:body">{{ m.skeleton(1) }}</div>
+<div class="bm-bar" hx-swap="morph:innerHTML" hx-get="/bilge/bar" hx-trigger="load, bm_changed from:body">{{ m.skeleton(1) }}</div>
 <div class="bm-layout">
-  <aside class="tree card" id="bm-tree" hx-get="/bilge/tree" hx-include="#bm-state" hx-trigger="load, bm_changed from:body, every 60s">{{ m.skeleton(8) }}</aside>
+  <aside class="tree card" id="bm-tree" hx-swap="morph:innerHTML" hx-get="/bilge/tree" hx-include="#bm-state" hx-trigger="load, bm_changed from:body, every 60s">{{ m.skeleton(8) }}</aside>
   <section>
     <div class="row" style="margin-bottom:10px"><h2 style="flex:1">{{ title or 'Tümü' }}</h2></div>
     <form class="quick-add" id="quick-add" hx-post="/bilge/add" hx-include="#bm-state" hx-target="#quick-msg">
@@ -32,7 +32,7 @@
       <select class="input" name="status"><option value="">Tüm durumlar</option>{% for s in statuses %}<option{% if s == st.status %} selected{% endif %}>{{ s }}</option>{% endfor %}</select>
       <select class="input" name="tag"><option value="">Tüm etiketler</option>{% for t in tags %}<option value="{{ t }}"{% if t == st.tag %} selected{% endif %}>#{{ t }}</option>{% endfor %}</select>
     </form>
-    <div id="bm-list" class="bm-list" data-folder="{{ st.folder if st.view == 'folder' else '' }}" data-view="{{ st.view }}"
+    <div id="bm-list" hx-swap="morph:innerHTML" class="bm-list" data-folder="{{ st.folder if st.view == 'folder' else '' }}" data-view="{{ st.view }}"
          hx-get="/bilge/list" hx-include="#bm-state, #bm-filter" hx-trigger="load, bm_changed from:body, every 60s">{{ m.skeleton(6) }}</div>
   </section>
 </div>

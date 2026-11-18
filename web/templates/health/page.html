@@ -17,7 +17,7 @@
   <input type="hidden" name="hide_missing" value="0">
   <label class="check"><input type="checkbox" name="hide_missing" value="1" checked> Aktarılmamışları gizle</label>
 </form>
-<div id="health-table" hx-get="/health/table" hx-include="#health-filter" hx-trigger="load, health_updated from:body, catalog_changed from:body">{{ m.skeleton(10) }}</div>
+<div id="health-table" hx-swap="morph:innerHTML" hx-get="/health/table" hx-include="#health-filter" hx-trigger="load, health_updated from:body, catalog_changed from:body">{{ m.skeleton(10) }}</div>
 <div class="section"><h3>{{ icon('history') }} Son durum değişimleri <span class="muted small">(ekip geneli)</span></h3>
-  <div hx-get="/health/events" hx-trigger="load, health_changed from:body, every 60s">{{ m.skeleton(4) }}</div></div>
+  <div hx-get="/health/events" hx-swap="morph:innerHTML" hx-trigger="load, health_changed from:body, every 60s">{{ m.skeleton(4) }}</div></div>
 {% endblock %}

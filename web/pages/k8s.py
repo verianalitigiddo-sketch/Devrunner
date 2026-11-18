@@ -1,28 +1,22 @@
 """
-Kubernetes -> scripts/K8sAPI.py: ortam / uygulama seçimi, pod ve deployment, log (canlı izleme), olaylar, komut.
+Kubernetes -> scripts/K8sAPI.py (erişim web/k8s_access.py üzerinden; deployment hiç istenmez).
 
-Prod'da komut: sunucu önce onay parçası döner ve TEK KULLANIMLIK bir onay belirteci üretir (ortam, pod,
-container ve komuta bağlı, 2 dk geçerli). Belirteçsiz veya uyuşmayan istek reddedilir; yalnızca
-arayüzdeki onay penceresine güvenilmez. Prod komutları değişiklik geçmişine yazılır.
+Ortam / uygulama seçimi, pod'lar, log (canlı akış: WebSocket, yalnızca ekleme), olaylar. Pod içinde
+etkileşimli kabuk Terminal sayfasında açılır ("Terminal" düğmesi); Prod'da sunucu onayı orada istenir.
 """
 from __future__ import annotations
 
-import secrets
 import threading
-import time
 
 from flask import Blueprint, render_template, request
 
-from scripts import K8sAPI, database, relations
+from scripts import K8sAPI, relations
 from scripts.config import ENV, redact
-from web import ui_state
+from web import k8s_access, ui_state
 from web.common import error_fragment
+from web.ws import sock
 
 bp = Blueprint("k8s", __name__)
-
-_confirm: dict[str, tuple] = {}
-_confirm_lock = threading.Lock()
-CONFIRM_TTL = 120
 FAILED = ("CrashLoopBackOff", "Error", "ImagePullBackOff", "ErrImagePull", "OOMKilled")
 
 
@@ -42,6 +36,13 @@ def _env() -> str:
     return env if env in envs else (envs[0] if envs else "")
 
 
+def _lines() -> int:
+    try:
+        return max(10, min(5000, int(request.values.get("lines", ENV.K8S_LOG_LINES))))
+    except ValueError:
+        return ENV.K8S_LOG_LINES
+
+
 @bp.get("/")
 def page():
     ui_state.update(last_page="k8s")
@@ -58,100 +59,74 @@ def listing():
         return render_template("_error.html", message="Kubernetes ortamı yok.")
     try:
         if app_name:
-            w = relations.app_workload(app_name, env)
-            data = {"deps": [w.deployment] if w.deployment else [], "pods": w.pods, "warnings": w.warnings,
-                    "how": w.how, "found": w.found}
+            w = k8s_access.workload(app_name, env)
+            pods, how, found = w.pods, w.how, w.found
         else:
-            c = K8sAPI.cluster(env)
-            data = {"deps": [], "pods": [], "warnings": [], "how": "", "found": True}
-            for kind, fn, conv in (("deps", c.deployments, K8sAPI.deployment_info), ("pods", c.pods, K8sAPI.pod_info)):
-                try:
-                    data[kind] = [conv(x) for x in fn()]
-                except K8sAPI.K8sForbidden as e:
-                    data["warnings"].append(str(e))
+            pods = [K8sAPI.pod_info(p) for p in k8s_access.cluster(env).pods()]
+            how, found = "", True
     except Exception as e:   # noqa: BLE001
         return error_fragment(e, env)
-    return render_template("k8s/_list.html", env=env, app=app_name, pod_state=pod_state, **data)
+    return render_template("k8s/_list.html", env=env, app=app_name, pods=pods, how=how, found=found,
+                           pod_state=pod_state, forbidden=k8s_access.forbidden(env))
 
 
 @bp.get("/pod")
 def pod():
     env, name = _env(), request.args.get("pod", "")
     try:
-        p = next((K8sAPI.pod_info(x) for x in K8sAPI.cluster(env).pods() if x["metadata"]["name"] == name), None)
+        p = next((K8sAPI.pod_info(x) for x in k8s_access.cluster(env).pods() if x["metadata"]["name"] == name), None)
     except Exception as e:   # noqa: BLE001
         return error_fragment(e, name)
     if not p:
         return render_template("_error.html", message=f"Pod bulunamadı: {name}")
     container = request.args.get("container") or (p.containers[0] if p.containers else "")
     return render_template("k8s/_pod.html", env=env, p=p, container=container, lines=ENV.K8S_LOG_LINES,
-                           kubectl=env in relations.kubectl_envs(), state=pod_state(p))
+                           kubectl=env in relations.kubectl_envs(), state=pod_state(p),
+                           app=request.args.get("app", ""))
 
 
 @bp.get("/logs")
 def logs():
     env, name, container = _env(), request.args.get("pod", ""), request.args.get("container", "")
-    lines = max(10, min(5000, int(request.args.get("lines", ENV.K8S_LOG_LINES) or ENV.K8S_LOG_LINES)))
-    previous = bool(request.args.get("previous"))
-    follow = bool(request.args.get("follow"))
+    lines, previous = _lines(), bool(request.args.get("previous"))
     try:
-        text = K8sAPI.cluster(env).logs(name, container, lines, previous)
-        error = ""
+        text, error = k8s_access.cluster(env).logs(name, container, lines, previous), ""
     except Exception as e:   # noqa: BLE001
         text, error = "", redact(str(e))
-    return render_template("k8s/_logs.html", env=env, pod=name, container=container, lines=lines, previous=previous,
-                           follow=follow, text=text, error=error)
+    return render_template("k8s/_logs.html", env=env, pod=name, container=container, lines=lines,
+                           previous=previous, text=text, error=error)
+
+
+@sock.route("/ws/logs", bp=bp)
+def logs_ws(ws):
+    """Canlı log: önce son N satır, sonra yeni satırlar. İstemci kapatınca akış durur."""
+    env, name, container = _env(), request.args.get("pod", ""), request.args.get("container", "")
+    lines, previous = _lines(), bool(request.args.get("previous"))
+    stop = threading.Event()
+
+    def watch_client():
+        try:
+            while ws.receive() is not None:
+                pass
+        except Exception:   # noqa: BLE001
+            pass
+        stop.set()
+
+    threading.Thread(target=watch_client, daemon=True).start()
+    try:
+        for chunk in k8s_access.stream_logs(env, name, container, lines, previous, stop):
+            if stop.is_set():
+                break
+            ws.send(chunk)
+    finally:
+        stop.set()
 
 
 @bp.get("/events")
 def events():
     env, name = _env(), request.args.get("pod", "")
     try:
-        rows = K8sAPI.event_rows(K8sAPI.cluster(env).events(name))
+        rows = K8sAPI.event_rows(k8s_access.cluster(env).events(name))
     except Exception as e:   # noqa: BLE001
         return error_fragment(e, "Olaylar")
-    return render_template("k8s/_events.html", rows=rows)
-
-
-def _issue_confirm(key: tuple) -> str:
-    token = secrets.token_urlsafe(16)
-    now = time.time()
-    with _confirm_lock:
-        for k in [k for k, v in _confirm.items() if v[1] < now]:
-            del _confirm[k]
-        _confirm[token] = (key, now + CONFIRM_TTL)
-    return token
-
-
-def _use_confirm(token: str, key: tuple) -> bool:
-    with _confirm_lock:
-        entry = _confirm.pop(token, None)
-    return bool(entry) and entry[0] == key and entry[1] >= time.time()
-
-
-@bp.post("/exec")
-def execute():
-    env = _env()
-    pod_name, container = request.form.get("pod", ""), request.form.get("container", "")
-    command = request.form.get("command", "").strip()
-    app_name = request.form.get("app") or None
-    if not (pod_name and container and command):
-        return render_template("_error.html", message="Pod, container ve komut gerekli.")
-    key = (env, pod_name, container, command)
-    if env == "prod":
-        token = request.form.get("confirm", "")
-        if not token or not _use_confirm(token, key):
-            if token:   # süresi dolmuş / uyuşmayan belirteç: yeniden onay iste
-                return render_template("_error.html", title="Onay geçersiz", message="Onay süresi dolmuş veya komut değişmiş.")
-            return render_template("k8s/_confirm.html", env=env, pod=pod_name, container=container, command=command,
-                                   app=app_name or "", token=_issue_confirm(key),
-                                   warn=relations.prod_warning("prod"))
-    try:
-        out = K8sAPI.cluster(env).exec(pod_name, container, command)
-        if env == "prod":
-            database.audit_now("k8s", "exec", "pod", pod_name, {"title": redact(command)[:200], "env": env}, app_name)
-        error = ""
-    except Exception as e:   # noqa: BLE001
-        out, error = "", redact(str(e))
-    return render_template("k8s/_exec_out.html", env=env, pod=pod_name, container=container, command=command,
-                           out=out, error=error)
+    return render_template("k8s/_events.html", rows=rows, forbidden="Event" in k8s_access.forbidden(env))

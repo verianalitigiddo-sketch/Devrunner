@@ -15,8 +15,6 @@
 @font-face { font-family: "JetBrains Mono"; font-weight: 100 800; font-display: swap; src: url("/fonts/jetbrains-mono-latin-ext-wght-normal.woff2") format("woff2");
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
 
-@view-transition { navigation: auto; }
-::view-transition-old(root), ::view-transition-new(root) { animation-duration: .18s; }
 
 :root { --ease: cubic-bezier(.2, .8, .2, 1); --rail-w: 76px; --t: .16s; }
 
@@ -58,17 +56,16 @@ code, pre, .mono { font-family: var(--mono); }
 /* ---------------- arka plan: modern temada dolaşan renk bulutları + ızgara ---------------- */
 .aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; display: none; }
 [data-theme="modern"] .aurora, [data-theme="cyberpunk"] .aurora, [data-theme="dracula"] .aurora { display: block; }
-.aurora::before { content: ""; position: absolute; inset: -30%;
-  background: radial-gradient(30% 28% at 18% 12%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 70%),
-              radial-gradient(28% 26% at 88% 85%, color-mix(in srgb, var(--accent2) 18%, transparent), transparent 70%),
-              radial-gradient(24% 20% at 70% 8%, color-mix(in srgb, var(--info) 14%, transparent), transparent 70%);
-  filter: blur(50px); animation: drift 28s ease-in-out infinite alternate; }
+/* Durağan: filter / animasyon YOK (her karede tüm ekranı yeniden bulanıklaştırmak titreme yapıyordu) */
+.aurora::before { content: ""; position: absolute; inset: 0;
+  background: radial-gradient(45% 40% at 12% 6%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 75%),
+              radial-gradient(40% 38% at 92% 92%, color-mix(in srgb, var(--accent2) 14%, transparent), transparent 75%),
+              radial-gradient(34% 30% at 72% 4%, color-mix(in srgb, var(--info) 10%, transparent), transparent 75%); }
 .aurora::after { content: ""; position: absolute; inset: 0;
   background-image: linear-gradient(color-mix(in srgb, var(--text) 3%, transparent) 1px, transparent 1px),
                     linear-gradient(90deg, color-mix(in srgb, var(--text) 3%, transparent) 1px, transparent 1px);
   background-size: 44px 44px; mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 20%, transparent 80%); }
-@keyframes drift { from { transform: translate3d(-2%, -1%, 0) rotate(-4deg); } to { transform: translate3d(3%, 2%, 0) rotate(5deg) scale(1.06); } }
-@media (prefers-reduced-motion: reduce) { .aurora::before { animation: none; } * { transition: none !important; animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 
 /* ---------------- iskelet ---------------- */
 .shell { position: relative; z-index: 1; display: grid; grid-template-columns: var(--rail-w) minmax(0, 1fr); height: 100vh; }
@@ -133,16 +130,20 @@ code, pre, .mono { font-family: var(--mono); }
 .avatar.lg { width: 40px; height: 40px; font-size: 14px; }
 .freeze-badge { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 14px; border-radius: 10px; font-weight: 900;
   letter-spacing: .08em; text-decoration: none !important; white-space: nowrap; }
-.freeze-badge.active { background: var(--danger); color: #fff; box-shadow: 0 0 0 0 var(--danger); animation: pulse 2.4s infinite; }
+.freeze-badge { position: relative; }
+.freeze-badge.active { background: var(--danger); color: #fff; }
+/* Nabız: yalnızca transform / opacity (bileşikleştirici), yeniden boyama yok */
+.freeze-badge.active::after { content: ""; position: absolute; inset: 0; border-radius: inherit; border: 2px solid var(--danger);
+  animation: pulse 2.4s ease-out infinite; pointer-events: none; }
 .freeze-badge.upcoming { border: 1px solid var(--warning); color: var(--warning); letter-spacing: .02em; font-weight: 700; }
-@keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--danger) 60%, transparent); } 70% { box-shadow: 0 0 0 10px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+@keyframes pulse { 0% { transform: scale(1); opacity: .7; } 80%, 100% { transform: scale(1.25, 1.6); opacity: 0; } }
 
 /* Sayfa kartı */
 .page { margin: 4px 14px 10px 6px; padding: 20px 22px; overflow: auto; min-height: 0;
   background: var(--surface); border: var(--border-w) solid var(--border); border-radius: calc(var(--rail-radius) + 2px); }
+/* Cam görünüm backdrop-filter OLMADAN: yarı saydam düz renk (bulanıklaştırma her yenilemede tüm kartı yeniden çiziyordu) */
 :is([data-theme="modern"], [data-theme="dark"], [data-theme="dracula"], [data-theme="cyberpunk"]) .page {
-  background: color-mix(in srgb, var(--surface) 78%, transparent); backdrop-filter: blur(22px) saturate(150%);
-  box-shadow: 0 30px 80px -40px rgba(0,0,0,.8); }
+  background: color-mix(in srgb, var(--surface) 90%, transparent); box-shadow: 0 30px 80px -40px rgba(0,0,0,.8); }
 [data-theme="bios"] .page { border: 3px double var(--border); }
 .page-head { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px; }
 .page-icon { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; flex: 0 0 auto;
@@ -452,3 +453,15 @@ svg.spark.slow .line { stroke: var(--warning); } svg.spark.slow .area { fill: co
 label.tab { display: inline-flex; align-items: center; }
 .tab:has(input:checked) { background: var(--surface); color: var(--text); box-shadow: 0 6px 16px -10px rgba(0,0,0,.6); }
 [data-theme="bios"] .tab:has(input:checked) { background: var(--selection); color: var(--selection-text); }
+
+/* ---------------- efekt düzeyi (UI_EFFECTS, PLAN_V2 Bölüm 4) ---------------- */
+[data-effects="azaltilmis"] .aurora { display: none !important; }
+[data-effects="azaltilmis"] .page, [data-effects="kapali"] .page { background: var(--surface) !important; box-shadow: none !important; }
+[data-effects="azaltilmis"] :is(.card, .panel) { background: var(--surface-alt) !important; }
+[data-effects="azaltilmis"] .toast, [data-effects="azaltilmis"] .palette-box, [data-effects="azaltilmis"] dialog.modal { box-shadow: none; }
+[data-effects="azaltilmis"] dialog::backdrop, [data-effects="kapali"] dialog::backdrop { backdrop-filter: none; }
+[data-effects="kapali"] .aurora { display: none !important; }
+[data-effects="kapali"] *, [data-effects="kapali"] *::before, [data-effects="kapali"] *::after { animation: none !important; transition: none !important; }
+
+/* Canlı göstergeler */
+.live-dot { color: var(--success); font-weight: 700; font-size: .86em; }

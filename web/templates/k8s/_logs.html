@@ -1,12 +1,14 @@
-<form class="row" style="margin-bottom:8px" hx-get="/k8s/logs" hx-target="#pod-tab" hx-trigger="change">
+<form class="row log-controls" style="margin-bottom:8px" hx-get="/k8s/logs" hx-target="#pod-tab" hx-trigger="change from:find .reload">
   <input type="hidden" name="env" value="{{ env }}"><input type="hidden" name="pod" value="{{ pod }}"><input type="hidden" name="container" value="{{ container }}">
-  <label class="field" style="flex-direction:row;align-items:center;gap:6px"><span>Satır</span><input class="input" name="lines" type="number" min="10" max="5000" value="{{ lines }}" style="width:90px"></label>
-  <label class="check"><input type="checkbox" name="previous" value="1"{% if previous %} checked{% endif %}> Önceki container</label>
-  <label class="check"><input type="checkbox" name="follow" value="1"{% if follow %} checked{% endif %}> Canlı izle (3 sn)</label>
+  <label class="field" style="flex-direction:row;align-items:center;gap:6px"><span>Satır</span><input class="input reload" name="lines" type="number" min="10" max="5000" value="{{ lines }}" style="width:90px"></label>
+  <label class="check"><input class="reload" type="checkbox" name="previous" value="1"{% if previous %} checked{% endif %}> Önceki container</label>
+  <label class="check"><input type="checkbox" data-follow> Canlı izle</label>
+  <span class="live-dot" hidden>● canlı</span>
   <span class="spacer"></span>
+  <a class="btn sm ghost" data-log-download href="#" title="Görünen log'u .log olarak indir">{{ icon('download') }}</a>
   <button class="btn sm" type="button" hx-get="/k8s/logs" hx-include="closest form" hx-target="#pod-tab">{{ icon('refresh') }} Yenile</button>
 </form>
 {% if error %}<div class="banner banner-error">{{ icon("alert") }}<div>{{ error }}</div></div>{% endif %}
 <pre class="console tall nowrap" id="log-box" data-autoscroll
-  {% if follow %}hx-get="/k8s/logs?env={{ env }}&pod={{ pod|urlencode }}&container={{ container|urlencode }}&lines={{ lines }}&follow=1{{ '&previous=1' if previous else '' }}"
-  hx-trigger="every 3s" hx-target="#pod-tab" hx-swap="innerHTML"{% endif %}>{{ text }}</pre>
+     data-ws="/k8s/ws/logs?env={{ env }}&pod={{ pod|urlencode }}&container={{ container|urlencode }}&lines={{ lines }}{{ '&previous=1' if previous else '' }}"
+     data-name="{{ pod }}-{{ container }}">{{ text }}</pre>

@@ -5,29 +5,14 @@
   <div style="flex:1;min-width:0"><h3 class="mono" style="overflow:hidden;text-overflow:ellipsis">{{ p.name }}</h3>
     <div class="row small muted">{{ m.state(state, p.status) }} · {{ p.ready }} hazır · {{ p.restarts }} yeniden başlama · {{ p.age }} · {{ p.node }} · {{ p.ip }}</div></div>
   <form hx-get="/k8s/pod" hx-target="#pod-detail" hx-trigger="change">
-    <input type="hidden" name="env" value="{{ env }}"><input type="hidden" name="pod" value="{{ p.name }}">
+    <input type="hidden" name="env" value="{{ env }}"><input type="hidden" name="pod" value="{{ p.name }}"><input type="hidden" name="app" value="{{ app }}">
     <select class="input" name="container">{% for c in p.containers %}<option{% if c == container %} selected{% endif %}>{{ c }}</option>{% endfor %}</select>
   </form>
+  <a class="btn primary" href="/terminal/?open=pod&{{ q }}&app={{ app|urlencode }}" title="Pod içinde etkileşimli kabuk (kubectl exec -it)">{{ icon('terminal') }} Terminal</a>
 </div>
 <div class="tabs">
   <button class="tab active" data-tab hx-get="/k8s/logs?{{ q }}&lines={{ lines }}" hx-target="#pod-tab">{{ icon('terminal') }} Log</button>
   <button class="tab" data-tab hx-get="/k8s/events?{{ q }}" hx-target="#pod-tab">{{ icon('clock') }} Olaylar</button>
-  <button class="tab" type="button" data-action="open-dialog" data-target="exec-dialog">{{ icon('play') }} Komut</button>
+  {% if kubectl %}<a class="tab" href="/terminal/?kube={{ env }}&cmd={{ ('kubectl logs ' ~ p.name ~ ' -c ' ~ container ~ ' --tail ' ~ lines)|urlencode }}">kubectl</a>{% endif %}
 </div>
 <div id="pod-tab">{{ m.lazy("/k8s/logs?" ~ q ~ "&lines=" ~ lines, 10) }}</div>
-
-<dialog class="modal" id="exec-dialog">
-  <div class="modal-head"><h2>Komut · {{ env|envtitle }} · {{ p.name }}/{{ container }}</h2><button class="btn icon ghost" data-action="close-dialog">{{ icon('x') }}</button></div>
-  <div class="modal-body stack">
-    <p class="muted">Seçili container'da <code>/bin/sh -c</code> ile tek seferlik komut çalışır; etkileşimli kabuk yoktur.
-      {% if env == 'prod' %}<b class="tone-danger">Prod: her komut onay ister ve değişiklik geçmişine yazılır.</b>{% endif %}</p>
-    <form class="row" hx-post="/k8s/exec" hx-target="#exec-out" hx-swap="afterbegin">
-      <input type="hidden" name="env" value="{{ env }}"><input type="hidden" name="pod" value="{{ p.name }}">
-      <input type="hidden" name="container" value="{{ container }}"><input type="hidden" name="app" value="{{ request.args.get('app', '') }}">
-      <input class="input mono" name="command" style="flex:1" placeholder="ör. env | sort · ls -la /app · cat /etc/resolv.conf" required>
-      <button class="btn primary" type="submit">{{ icon('play') }} Çalıştır</button>
-    </form>
-    {% if kubectl %}<a class="btn ghost sm" href="/terminal/?kube={{ env }}&cmd={{ ('kubectl logs ' ~ p.name ~ ' -c ' ~ container ~ ' --tail ' ~ lines)|urlencode }}">Terminalde kubectl logs</a>{% endif %}
-    <div id="exec-out" class="stack"></div>
-  </div>
-</dialog>
