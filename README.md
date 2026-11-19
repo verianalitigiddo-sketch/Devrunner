@@ -1,6 +1,6 @@
 # Devrunner Web
 
-Devrunner'ın web arayüzlü çatalı: **aynı backend** (`scripts/`, Devrunner `main` ile birebir), arayüz
+Devrunner'ın web arayüzlü sürümü (artık `main`): **aynı backend** (`scripts/`), arayüz
 ise yerel bir **Flask** sunucusunun ürettiği HTML ve bunu gösteren bir **PyQt6** tarayıcı penceresi.
 Kullanıcı için hâlâ çift tıklanan bir masaüstü uygulamasıdır. Tasarım ve gerekçeler: [PLAN_WEB.md](PLAN_WEB.md), ikinci tur: [PLAN_V2.md](PLAN_V2.md).
 
@@ -28,7 +28,7 @@ JetBrains Mono) ve htmx depoda gelir: ağ / CDN gerekmez.
 
 Python 3.10 veya üzeri gerekir.
 
-1. Depoyu klonlayın, `DevrunnerWeb` dalına geçin.
+1. Depoyu klonlayın (`main`). Eski PySide6 masaüstü sürüm `masaustu` dalında durur.
 2. `kur.bat`'a çift tıklayın: `.venv` oluşturur, bağımlılıkları kurar, masaüstüne **Devrunner** kısayolu koyar.
 3. Kısayolla açın. İlk açılışta adınızı yazın; sonra **Ayarlar**'dan Azure DevOps PAT'i, PostgreSQL ve
    Kubernetes bilgilerini girip her grupta **Bağlantıyı sına**'ya basın (ayrıntılar masaüstü sürümle aynı).
@@ -71,7 +71,7 @@ Kabuk backend'i `python -m web.server` ile başlatır, oturum belirtecini **stdi
 satırını bekler. Kabuk kapanınca stdin kapanır ve backend kendini düzgün kapatır (sohbet çevrimiçi kaydı silinir).
 
 ```
-DevrunnerWeb/
+Devrunner/
 ├── Devrunner.pyw        konsolsuz giriş -> shell.main
 ├── shell/               KABUK (PyQt6): main.py, backend_process.py, window.py
 ├── web/                 ARAYÜZ SUNUCUSU (Flask)
@@ -113,11 +113,11 @@ DevrunnerWeb/
 
 İçe aktarılamayan sayfa uygulamayı düşürmez; yerinde hata kartı gösterilir.
 
-### Yukarı akıştan (Devrunner) backend güncellemesi almak
+### Masaüstü sürümle backend uyumu
 
-Backend dosyaları değişmediği için Devrunner `main`'deki `scripts/` değişiklikleri doğrudan alınabilir
-(ör. `git checkout <devrunner-main> -- scripts/` sonra testler). `tests/test_web_infra.py`'deki `BASE_COMMIT`
-yeni taban commit'e güncellenir. `BookmarkAPI.py` yalnızca bu çatalda vardır.
+`scripts/`'teki masaüstü dönemi dosyaları (`4d5e134`, `masaustu` dalı) değiştirilmez; yeni backend yalnızca yeni
+dosya olarak eklenir (`BookmarkAPI.py`, `K8sExecAPI.py`, `AuraAPI.py`). Böylece masaüstü sürüm aynı veritabanıyla
+çalışmaya devam eder. `tests/test_web_infra.py`'deki `BASE_COMMIT` bu kuralı denetler.
 
 ## Güvenlik modeli
 
